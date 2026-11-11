@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "split": {"type": "string", "enum": ["dev", "test"]},
+    "id": {"type": "string", "pattern": "^q[0-9]{4}$"},
+    "matched_topic": {"type": ["string", "null"]},
+    "objects": {"type": "array", "items": {"type": "string"}},
+    "processes": {"type": "array", "items": {"type": "string"}},
+    "states": {"type": "array", "items": {"type": "string"}},
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "source": {"type": "string", "minLength": 1},
+          "relationship": {"type": "string", "minLength": 1},
+          "target": {"type": "string", "minLength": 1}
+        },
+        "required": ["source", "relationship", "target"]
+      }
+    },
+    "structurally_valid": {"type": "boolean"},
+    "semantically_aligned": {"type": "boolean"},
+    "evidence": {"type": "string", "minLength": 1},
+    "opl_text": {
+      "type": "string",
+      "pattern": ".+ can be .+\\. State .+ is initial\\.$"
+    }
+  },
+  "required": [
+    "split",
+    "id",
+    "matched_topic",
+    "objects",
+    "processes",
+    "states",
+    "relations",
+    "structurally_valid",
+    "semantically_aligned",
+    "evidence",
+    "opl_text"
+  ]
+}

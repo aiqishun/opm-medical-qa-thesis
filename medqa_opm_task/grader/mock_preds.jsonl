@@ -1,0 +1,3 @@
+{"id": "q0026", "is_cardiology": true, "reason": "完全正确的输出，格式对，逻辑也符合金标准。"}
+{"id": "q0014", "is_cardiology": true, "reason": "格式正确，但假设金标准里这题是 false，用于测试逻辑打分。"}
+{"id": "q0115", "is_cardiology": "true", "reason": "格式错误，注意这里的 true 加了引号，变成了字符串，用于测试 jsonschema 的拦截。"}

@@ -1,0 +1,48 @@
+# Python and development tools
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Credentials and local machine settings
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea/
+.vscode/
+
+# Generated research artifacts and local backups
+/experiments/results/*
+!/experiments/results/.gitkeep
+/experiments/manual_eval/*
+!/experiments/manual_eval/.gitkeep
+/outputs/graphs/*
+!/outputs/graphs/.gitkeep
+/delivery/
+/submission/
+/medqa_opm_task/submission/
+*.zip
+*.tar
+*.tar.gz
+
+# Download full upstream datasets locally; retain their source notices.
+/data/raw/external/
+/data/raw/*
+!/data/raw/.gitkeep
+!/data/raw/medqa_sample.jsonl
+/data/processed/*
+!/data/processed/.gitkeep
+!/data/processed/cardiology_knowledge.json
+!/data/processed/medqa_cardiology_sample.jsonl
+/medqa_opm_task/data/raw/external/MedQA/*
+!/medqa_opm_task/data/raw/external/MedQA/README.md
+!/medqa_opm_task/data/raw/external/MedQA/LICENSE

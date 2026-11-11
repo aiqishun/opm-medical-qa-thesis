@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^q[0-9]{4}$",
+      "description": "题目在当前 split 内的唯一标识符，例如 q0026"
+    },
+    "is_cardiology": {
+      "type": "boolean",
+      "description": "判断该题是否属于心脏病相关"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "模型给出该判断的具体理由"
+    },
+    "taxonomy_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "可选的心血管分类体系引用"
+    }
+  },
+  "required": ["id", "is_cardiology", "reason"],
+  "additionalProperties": false
+}

@@ -1,0 +1,5 @@
+# API client used by run_inference.py.
+openai>=1.0
+
+# Schema validation used by medqa_opm_task/grader/grade.py.
+jsonschema>=4.0

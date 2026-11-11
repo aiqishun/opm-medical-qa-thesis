@@ -1,0 +1,133 @@
+{
+  "task_id": "medqa_opm_eval_001",
+  "name": "MedQA 心血管主题路由与 OPM 解释可靠性评估",
+  "domain": [
+    "medical AI evaluation",
+    "cardiology",
+    "Object-Process Methodology"
+  ],
+  "difficulty": "unrated",
+  "prompt_title": "MedQA 心血管主题路由与 OPM 解释可靠性复现",
+  "prompt": "prompt.md",
+  "description": "评估模型在医学语境中的心血管主题路由，并审计其结构化 OPM/OPL 解释。",
+  "dataset_description": {
+    "dev": "100 条经人工审计的 LLM 筛选候选题；公开开发标签。",
+    "test": "100 条经人工审计的关键词高置信候选题；测试标签仅供评分器使用。",
+    "input_fields": [
+      "id",
+      "question",
+      "options",
+      "metamap_phrases",
+      "matched_terms",
+      "filter_confidence"
+    ],
+    "excluded_leakage_fields": [
+      "answer",
+      "answer_idx",
+      "is_cardiology",
+      "reason",
+      "llm_is_cardiology_relevant",
+      "llm_reason"
+    ]
+  },
+  "dataset_reference": [
+    {
+      "name": "MedQA",
+      "citation": "Jin et al., What Disease does this Patient Have? A Large-scale Open Domain Question Answering Dataset from Medical Exams, arXiv:2009.13081 (2020)",
+      "local_reference": "reference/MedQA_README.md",
+      "license_file": "reference/MedQA_LICENSE"
+    },
+    {
+      "name": "Manual audit labeling guideline v2",
+      "local_reference": "reference/manual_audit_labeling_guideline_v2.md"
+    },
+    {
+      "name": "Manual OPM extraction annotations (20 records)",
+      "local_reference": "reference/opm_extraction_gold_20.csv",
+      "visibility": "evaluator_hidden"
+    }
+  ],
+  "tools": [
+    {
+      "name": "submission validator",
+      "type": "CLI",
+      "entry_point": "tools/validate_submission.py"
+    },
+    {
+      "name": "legacy OPM pipeline",
+      "type": "Python source",
+      "path": "legacy_project/"
+    }
+  ],
+  "evaluation_criteria": {
+    "rubric": "rubrics.md",
+    "automatic_grader": "grader/grade.py",
+    "llm_judge": "judge_prompt.md",
+    "objective_metrics": [
+      "schema validity",
+      "precision",
+      "recall",
+      "F1",
+      "missing prediction count",
+      "duplicate ID count",
+      "OPL syntax validity"
+    ],
+    "qualitative_scope": "Only the dimensions explicitly defined in rubrics.md are judged qualitatively."
+  },
+  "timeout": 3600,
+  "license": {
+    "dataset": "MIT; see reference/MedQA_LICENSE",
+    "task_materials": "No separate license was present in the source project at packaging time."
+  },
+  "safety": {
+    "intended_use": "Research evaluation of dataset routing and structured explanations.",
+    "medical_use": "Not for diagnosis, treatment, or clinical decision-making.",
+    "credentials": "API keys and other secrets must not be committed or included in submissions.",
+    "data_boundary": "Agent-visible inputs exclude answer keys and gold test labels."
+  },
+  "environment": {
+    "language": "python3",
+    "version": "3.11",
+    "requirements": "env/requirements.txt",
+    "conda": "env/environment.yml",
+    "dockerfile": "env/Dockerfile"
+  },
+  "workspace": {
+    "agent_visible": [
+      "README.md",
+      "prompt.md",
+      "env/",
+      "tools/",
+      "data/README.md",
+      "data/input/",
+      "data/reference/",
+      "data/contracts/",
+      "data/processed/cardiology_knowledge.json",
+      "legacy_project/",
+      "reference/README.md",
+      "reference/MedQA_README.md",
+      "reference/MedQA_LICENSE",
+      "reference/manual_audit_labeling_guideline_v2.md",
+      "reference/dev_annotations.csv"
+    ],
+    "evaluator_hidden": [
+      "answer/",
+      "grader/",
+      "rubrics.md",
+      "judge_prompt.md",
+      "traces/",
+      "reference/test_annotations.csv",
+      "reference/opm_extraction_gold_20.csv"
+    ]
+  },
+  "execution": {
+    "entry_point": "prompt.md",
+    "timeout_seconds": 3600,
+    "submission_directory": "submission/"
+  },
+  "scoring": {
+    "auto_grader_cmd": "python3 grader/grade.py --submission submission",
+    "llm_judge_prompt": "judge_prompt.md",
+    "maximum_score": 100
+  }
+}

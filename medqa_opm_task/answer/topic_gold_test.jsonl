@@ -1,0 +1,100 @@
+{"id": "q0654", "expected_topic": "Erectile dysfunction", "error_type": "past_history_distraction"}
+{"id": "q0114", "expected_topic": "Acute Mesenteric Ischemia", "error_type": "past_history_distraction"}
+{"id": "q0025", "expected_topic": "Carcinoid syndrome", "error_type": "manifestation_vs_cause"}
+{"id": "q0759", "expected_topic": "Cor Pulmonale/Right Heart Failure", "error_type": "family_history_distraction"}
+{"id": "q0281", "expected_topic": "Stroke volume/Cardiac physiology/Hemodynamics", "error_type": "vague_topic"}
+{"id": "q0250", "expected_topic": "Pompe disease/Glycogen storage disease type II", "error_type": "manifestation_vs_cause"}
+{"id": "q0228", "expected_topic": "Aspirin-exacerbated respiratory disease/Asthma exacerbation/Pulsus paradoxus", "error_type": "physical_sign_failure"}
+{"id": "q0142", "expected_topic": "Aortic Regurgitation/Valvular Heart Disease", "error_type": "physical_sign_failure"}
+{"id": "q0754", "expected_topic": "Central Sleep Apnea/Heart Failure", "error_type": "vague_topic"}
+{"id": "q0104", "expected_topic": "Left brachiocephalic vein obstruction", "error_type": "anatomy_failure"}
+{"id": "q0692", "expected_topic": "Acute Myocardial Infarction/Acute Coronary Syndrome", "error_type": "partial_match"}
+{"id": "q0758", "expected_topic": "Homocystinuria", "error_type": "family_history_distraction"}
+{"id": "q0913", "expected_topic": "Pharmacokinetics/Loading Dose Calculation", "error_type": "calculation_context_confusion"}
+{"id": "q0558", "expected_topic": "Marfan syndrome/Aortic dissection", "error_type": "manifestation_vs_cause"}
+{"id": "q0089", "expected_topic": "Spironolactone/Aldosterone antagonist/Pharmacodynamics", "error_type": "past_history_distraction"}
+{"id": "q0604", "expected_topic": "Digital clubbing/Chronic hypoxemia/Right-to-left shunt", "error_type": "out_of_scope"}
+{"id": "q0432", "expected_topic": "Biostatistics/Probability rules", "error_type": "past_history_distraction"}
+{"id": "q0032", "expected_topic": "Dressler syndrome/Acute pericarditis", "error_type": "partial_match"}
+{"id": "q0030", "expected_topic": "Natriuretic peptide/Bradykinin/Neprilysin inhibitor", "error_type": "treatment_context_confusion"}
+{"id": "q0095", "expected_topic": "Infective endocarditis/Intravenous drug use", "error_type": "anatomy_failure"}
+{"id": "q0223", "expected_topic": "Carcinoid syndrome", "error_type": "anatomy_failure"}
+{"id": "q0238", "expected_topic": "Hemochromatosis", "error_type": "manifestation_vs_cause"}
+{"id": "q0517", "expected_topic": "Superior vena cava syndrome/Lung cancer", "error_type": "past_history_distraction"}
+{"id": "q0616", "expected_topic": "Hypertrophic Cardiomyopathy/Sudden Cardiac Death", "error_type": "family_history_distraction"}
+{"id": "q0027", "expected_topic": "Refeeding syndrome", "error_type": "manifestation_vs_cause"}
+{"id": "q0574", "expected_topic": "Right heart failure", "error_type": "out_of_scope"}
+{"id": "q0203", "expected_topic": "Infective endocarditis", "error_type": "manifestation_vs_cause"}
+{"id": "q0733", "expected_topic": "Mitral Valve Prolapse", "error_type": "manifestation_vs_cause"}
+{"id": "q0665", "expected_topic": "Wallenberg syndrome/Lateral medullary syndrome", "error_type": "past_history_distraction"}
+{"id": "q0718", "expected_topic": "Acute pancreatitis / Hypertriglyceridemia-induced pancreatitis", "error_type": "out_of_scope"}
+{"id": "q0921", "expected_topic": "Peripheral artery disease / Intermittent claudication treatment", "error_type": "partial_match"}
+{"id": "q0429", "expected_topic": "Cardiogenic shock due to acute myocardial infarction", "error_type": "partial_match"}
+{"id": "q0225", "expected_topic": "Atrial fibrillation as a risk factor for ischemic stroke", "error_type": "vague_topic"}
+{"id": "q0459", "expected_topic": "Chronic heart failure trial interpretation / Beta-blocker comparison", "error_type": "partial_match"}
+{"id": "q0603", "expected_topic": "Coagulative necrosis after myocardial infarction", "error_type": "partial_match"}
+{"id": "q0284", "expected_topic": "Heart failure treatment after prior myocardial infarction", "error_type": "partial_match"}
+{"id": "q0828", "expected_topic": "ST-elevation myocardial infarction / Myocardial ischemic injury", "error_type": "vague_topic"}
+{"id": "q0890", "expected_topic": "Digoxin toxicity management", "error_type": "partial_match"}
+{"id": "q0006", "expected_topic": "Hypertrophic Cardiomyopathy", "error_type": "partial_match"}
+{"id": "q0777", "expected_topic": "Non-hormonal contraception", "error_type": "partial_match"}
+{"id": "q0825", "expected_topic": "Mitral Stenosis Management", "error_type": "partial_match"}
+{"id": "q0163", "expected_topic": "Thrombin + Factor Xa Inhibitor", "error_type": "partial_match"}
+{"id": "q0714", "expected_topic": "Ventricular Septal Defect", "error_type": "partial_match"}
+{"id": "q0918", "expected_topic": "Hypertension management / Cardiovascular risk assessment", "error_type": "family_history_distraction"}
+{"id": "q0348", "expected_topic": "Pulmonary embolism after surgery", "error_type": "correct"}
+{"id": "q0899", "expected_topic": "Postoperative severe hypoxemia / Airway or respiratory failure", "error_type": "past_history_distraction"}
+{"id": "q0159", "expected_topic": "Pulmonary arterial hypertension / BMPR2 mutation", "error_type": "partial_match"}
+{"id": "q0220", "expected_topic": "Aortic regurgitation due to bicuspid aortic valve", "error_type": "vague_topic"}
+{"id": "q0781", "expected_topic": "Radiation-induced pulmonary fibrosis / Restrictive lung disease", "error_type": "out_of_scope"}
+{"id": "q0344", "expected_topic": "Peripartum cardiomyopathy / Systolic heart failure", "error_type": "vague_topic"}
+{"id": "q0925", "expected_topic": "Duchenne muscular dystrophy inheritance / X-linked genetic counseling", "error_type": "manifestation_vs_cause"}
+{"id": "q0094", "expected_topic": "Bioprosthetic mitral valve dysfunction / Mitral stenosis", "error_type": "past_history_distraction"}
+{"id": "q0389", "expected_topic": "Von Hippel-Lindau disease / Renal cell carcinoma", "error_type": "out_of_scope"}
+{"id": "q0099", "expected_topic": "Hemochromatosis / Restrictive or dilated cardiomyopathy complication", "error_type": "manifestation_vs_cause"}
+{"id": "q0367", "expected_topic": "Aortic dissection", "error_type": "vague_topic"}
+{"id": "q0867", "expected_topic": "Chronic subdural hematoma", "error_type": "past_history_distraction"}
+{"id": "q0352", "expected_topic": "Heart failure / Congestive heart failure", "error_type": "partial_match"}
+{"id": "q0618", "expected_topic": "Cholesterol embolization syndrome after cardiac catheterization", "error_type": "treatment_context_confusion"}
+{"id": "q0270", "expected_topic": "Heyde syndrome / Aortic stenosis-associated angiodysplasia", "error_type": "partial_match"}
+{"id": "q0826", "expected_topic": "Type 2 diabetes treatment with GLP-1 receptor agonist / Exenatide use", "error_type": "past_history_distraction"}
+{"id": "q0044", "expected_topic": "Acute rheumatic fever after untreated group A streptococcal pharyngitis", "error_type": "vague_topic"}
+{"id": "q0747", "expected_topic": "Cholangiocarcinoma risk factors", "error_type": "out_of_scope"}
+{"id": "q0470", "expected_topic": "Stable angina due to coronary atherosclerosis", "error_type": "partial_match"}
+{"id": "q0549", "expected_topic": "Cardiogenic shock in decompensated heart failure / Mechanical circulatory support", "error_type": "partial_match"}
+{"id": "q0127", "expected_topic": "Prostate cancer workup / Prostate biopsy", "error_type": "out_of_scope"}
+{"id": "q0387", "expected_topic": "Anterior spinal artery syndrome / Spinal cord infarction", "error_type": "out_of_scope"}
+{"id": "q0080", "expected_topic": "Empyema / Complicated parapneumonic effusion", "error_type": "past_history_distraction"}
+{"id": "q0565", "expected_topic": "Diabetic peripheral neuropathy management", "error_type": "past_history_distraction"}
+{"id": "q0300", "expected_topic": "Tetralogy of Fallot / Hypercyanotic spell", "error_type": "correct"}
+{"id": "q0849", "expected_topic": "Transposition of the great arteries", "error_type": "vague_topic"}
+{"id": "q0643", "expected_topic": "Idiopathic pulmonary fibrosis / Usual interstitial pneumonia", "error_type": "past_history_distraction"}
+{"id": "q0633", "expected_topic": "Digoxin toxicity / Hyperkalemia", "error_type": "treatment_context_confusion"}
+{"id": "q0370", "expected_topic": "Guillain-Barré syndrome / Respiratory failure risk", "error_type": "out_of_scope"}
+{"id": "q0591", "expected_topic": "Mitral valve prolapse / Echocardiographic finding", "error_type": "correct"}
+{"id": "q0196", "expected_topic": "Severe hypothermia management / Rewarming", "error_type": "manifestation_vs_cause"}
+{"id": "q0721", "expected_topic": "Nitroprusside-induced cyanide toxicity", "error_type": "treatment_context_confusion"}
+{"id": "q0071", "expected_topic": "Severe chronic aortic regurgitation / Aortic valve replacement indication", "error_type": "vague_topic"}
+{"id": "q0046", "expected_topic": "Acute mesenteric ischemia due to atrial fibrillation embolism", "error_type": "vague_topic"}
+{"id": "q0677", "expected_topic": "Malignant hyperthermia / Dantrolene treatment", "error_type": "out_of_scope"}
+{"id": "q0233", "expected_topic": "Subdural hematoma / Increased intracranial pressure management", "error_type": "past_history_distraction"}
+{"id": "q0791", "expected_topic": "ST-elevation myocardial infarction", "error_type": "partial_match"}
+{"id": "q0296", "expected_topic": "Factor V Leiden thrombophilia / Activated protein C resistance", "error_type": "manifestation_vs_cause"}
+{"id": "q0081", "expected_topic": "Transposition of the great arteries / Maternal diabetes risk factor", "error_type": "partial_match"}
+{"id": "q0922", "expected_topic": "Chronic ischemic heart disease / Myocardial fibrosis after prior myocardial infarctions", "error_type": "partial_match"}
+{"id": "q0103", "expected_topic": "Loop diuretics in congestive heart failure / Pulmonary edema treatment", "error_type": "partial_match"}
+{"id": "q0882", "expected_topic": "Tricuspid regurgitation / Right-sided heart failure echocardiographic finding", "error_type": "vague_topic"}
+{"id": "q0889", "expected_topic": "Atrial myxoma / Left atrial mass", "error_type": "vague_topic"}
+{"id": "q0464", "expected_topic": "Malignant mesothelioma / Asbestos exposure", "error_type": "past_history_distraction"}
+{"id": "q0650", "expected_topic": "Prosthetic valve endocarditis management", "error_type": "partial_match"}
+{"id": "q0373", "expected_topic": "Primary biliary cholangitis", "error_type": "out_of_scope"}
+{"id": "q0166", "expected_topic": "Symptomatic bradycardia / Medication-induced bradyarrhythmia management", "error_type": "partial_match"}
+{"id": "q0379", "expected_topic": "Transposition of the great arteries / Maternal diabetes risk factor", "error_type": "vague_topic"}
+{"id": "q0363", "expected_topic": "Coronary artery disease revascularization / CABG indication", "error_type": "past_history_distraction"}
+{"id": "q0214", "expected_topic": "Cardiac resynchronization therapy / Heart failure with conduction abnormality", "error_type": "partial_match"}
+{"id": "q0686", "expected_topic": "Chronic subdural hematoma", "error_type": "past_history_distraction"}
+{"id": "q0273", "expected_topic": "Rheumatic heart disease with severe mitral regurgitation / Valve surgery indication", "error_type": "partial_match"}
+{"id": "q0905", "expected_topic": "NYHA functional classification in congestive heart failure", "error_type": "partial_match"}
+{"id": "q0699", "expected_topic": "Myocardial infarction healing stage / Granulation tissue after STEMI", "error_type": "partial_match"}
+{"id": "q0663", "expected_topic": "Vinblastine adverse effect / Myelosuppression", "error_type": "out_of_scope"}
+{"id": "q0073", "expected_topic": "Hemochromatosis-related cardiomyopathy / Myocardial iron deposition", "error_type": "vague_topic"}

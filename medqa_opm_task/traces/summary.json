@@ -1,0 +1,62 @@
+{
+  "trace_version": "1.0",
+  "gold_records": 100,
+  "runs": [
+    {
+      "run_id": 1,
+      "file": "filter_results_run1.jsonl",
+      "file_modified_at": "2026-09-10T15:59:30.027765+08:00",
+      "model": "gpt-5.6-sol",
+      "temperature": 0.2,
+      "seed": null,
+      "seed_status": "unavailable; not supplied or returned by the runner",
+      "provider_version": null,
+      "endpoint_revision": null,
+      "token_usage": null,
+      "latency": null,
+      "metrics": {
+        "rows": 100,
+        "schema_valid_rows": 100,
+        "tp": 49,
+        "fp": 6,
+        "fn": 7,
+        "tn": 38,
+        "precision": 0.8909090909090909,
+        "recall": 0.875,
+        "f1": 0.8828828828828829,
+        "accuracy": 0.87
+      }
+    },
+    {
+      "run_id": 2,
+      "file": "filter_results_run2.jsonl",
+      "file_modified_at": "2026-09-10T16:12:21.242016+08:00",
+      "model": "gpt-5.6-sol",
+      "temperature": 0.2,
+      "seed": null,
+      "seed_status": "unavailable; not supplied or returned by the runner",
+      "provider_version": null,
+      "endpoint_revision": null,
+      "token_usage": null,
+      "latency": null,
+      "metrics": {
+        "rows": 100,
+        "schema_valid_rows": 100,
+        "tp": 50,
+        "fp": 8,
+        "fn": 6,
+        "tn": 36,
+        "precision": 0.8620689655172413,
+        "recall": 0.8928571428571429,
+        "f1": 0.8771929824561403,
+        "accuracy": 0.86
+      }
+    }
+  ],
+  "cross_run": {
+    "common_ids": 100,
+    "agreement_count": 97,
+    "disagreement_count": 3,
+    "agreement_rate": 0.97
+  }
+}
