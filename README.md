@@ -16,6 +16,7 @@ Repository: [aiqishun/opm-medical-qa-thesis](https://github.com/aiqishun/opm-med
 | Rule-based topic matching, predefined answers/graphs, JSON/Mermaid export | Implemented in the inherited code |
 | Existing tests | 287 passed locally at initialization; the initial GitHub Actions runs also passed |
 | Existing MedQA task, schemas, labels, and evaluation tools | Included; its inherited data limitations remain documented |
+| Audited development data and prospective evaluation queue | Built as `thesis-v0.1`: 20 pilot questions, 51 pending test candidates; final test not frozen |
 | Evidence, reasoning, and verification agents | Proposed; not implemented yet |
 | Evidence-linked graph contract and OPCloud handoff package | Proposed; not implemented yet |
 | OPCloud account, native format, import path, and image export | Pending inspection in the user's actual deployment |
@@ -166,6 +167,8 @@ Semantic edits made in OPCloud are human assistance. Keep both the raw and revie
 
 ## 8. Data and experiment protocol
 
+The first reproducible preparation version is available at [data/versions/thesis-v0.1](data/versions/thesis-v0.1/README.md), with a [preparation guide](docs/DATA_PREPARATION.md). It traces 1,481 inherited source occurrences to 935 distinct cases in the 11,451-row local raw file, quarantines the two relevance-label conflicts, and separates answer-free model inputs from evaluator references. The 20-question pilot uses consistent positive source-train cases. The 51 new source-test candidates still require scope, visual-material and duplicate review before evaluation. Inherited annotation values are preserved; their reviewer qualifications have not been independently verified.
+
 The inherited dev/test task has 12 duplicate questions across splits and two conflicting cardiology labels; see [the data audit](docs/DATA_AUDIT.md). Preserve the original files, adjudicate conflicts with documented evidence, and create versioned partitions using original identities and content-based duplicate groups. The existing `qNNNN` strings are not global IDs across candidate lists.
 
 Use already inspected examples for development. Freeze a held-out evaluation set, evidence corpus, prompts, and evaluation rules before final experiments. Keep gold labels and question-solution pages out of agent inputs and retrieval. Preventing project-level leakage does not establish that public questions were absent from a model's pretraining.
@@ -252,7 +255,8 @@ The last command checks the inherited 100-question inference mapping without cal
 Planned implementation tasks, in dependency order:
 
 - [ ] Confirm account access, model/API budget, manuscript template and review support.
-- [ ] Version the audited data and pilot/evaluation partitions.
+- [x] Build a reproducible audited development version and prospective evaluation review queues.
+- [ ] Complete candidate review and freeze a separate final evaluation version.
 - [ ] Define and validate evidence-linked graph and agent-output contracts.
 - [ ] Implement the single-agent evidence baseline.
 - [ ] Implement evidence/reasoning/verification roles and the bounded controller.

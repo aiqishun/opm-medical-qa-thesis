@@ -13,6 +13,10 @@
 
 完整重复项清单见 `cross_split_duplicates.csv`。
 
+## Follow-up thesis data preparation
+
+The first reproducible development version and prospective evaluation review queues are now available in [thesis-v0.1](../data/versions/thesis-v0.1/README.md). See the [English preparation guide](DATA_PREPARATION.md) for source-split mixing, answer-aware legacy filtering, canonical IDs, the training-only pilot, and the review required before freezing an evaluation version. The original labels above remain unchanged.
+
 迁移保留原题和原标签。下一步先核对冲突题标注依据，再建立新的、
 跨集合去重的数据版本。应在划分前统一原始题目身份，不能仅按当前 ID 去重。
 未完成清洗前，不把继承的 dev/test 划分作为独立的毕业论文测试依据。

@@ -1,0 +1,18 @@
+left_id,right_id,token_jaccard,sequence_similarity,left_original_split,right_original_split,left_question,right_question,left_options_json,right_options_json,same_underlying_item,partition_decision,reviewer,review_date,reason_and_evidence
+mq_abdb0f6c02e411697529012b1fb2198f507fe23aacf6c39a0f148a7b129b0e1f,mq_f5ad9d4f1e250929fbfca1637bce6b4621d1c02016c2993e2c58616be9086e0d,0.990826,0.991726,test,train,"A 55-year-old woman is brought to the emergency department because of worsening upper abdominal pain for the past 8 hours. She reports that the pain radiates to her back and is associated with nausea. She has hypertension and hyperlipidemia, for which she takes enalapril, furosemide, and simvastatin. Her temperature is 37.5°C (99.5°F), blood pressure is 84/58 mm Hg, and pulse is 115/min. The lungs are clear to auscultation. Examination shows abdominal distention with epigastric tenderness and guarding. Bowel sounds are decreased. Extremities are warm. Laboratory studies show:
+Hematocrit 48%
+Leukocyte count 13,800/mm3
+Platelet count 175,000/mm3
+Serum  
+Calcium 8.0 mg/dL
+Urea nitrogen 32 mg/dL
+Amylase 250 U/L
+An ECG shows sinus tachycardia. Which of the following is the most likely underlying cause of this patient's vital sign abnormalities?","A 55-year-old woman is brought to the emergency department because of worsening upper abdominal pain for 8 hours. She reports that the pain radiates to the back and is associated with nausea. She has hypertension and hyperlipidemia, for which she takes enalapril, furosemide, and simvastatin. Her temperature is 37.5°C (99.5 °F), blood pressure is 84/58 mm Hg, and pulse is 115/min. The lungs are clear to auscultation. Examination shows abdominal distention with epigastric tenderness and guarding. Bowel sounds are decreased. Extremities are warm. Laboratory studies show:
+Hematocrit 48%
+Leukocyte count 13,800/mm3
+Platelet count 175,000/mm3
+Serum:
+Calcium 8.0 mg/dL
+Urea nitrogen 32 mg/dL
+Amylase 250 U/L
+An ECG shows sinus tachycardia. Which of the following is the most likely underlying cause of this patient's vital sign abnormalities?""","{""A"": ""Abnormal coagulation and fibrinolysis"", ""B"": ""Capillary leakage"", ""C"": ""Decreased cardiac output"", ""D"": ""Pseudocyst formation""}","{""A"": ""Hemorrhagic fluid loss"", ""B"": ""Decreased cardiac output"", ""C"": ""Increased excretion of water"", ""D"": ""Capillary leakage""}",,,,,

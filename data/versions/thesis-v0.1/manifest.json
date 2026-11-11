@@ -1,0 +1,170 @@
+{
+  "agent_input_fields": [
+    "id",
+    "question",
+    "options"
+  ],
+  "build_script_sha256": "0044190588c6ca9ba736d7e75c801db582570dcacb177777fa451f6542fad3fb",
+  "candidate_screening_fields": [
+    "question"
+  ],
+  "counts": {
+    "consensus_negative_cases": 52,
+    "consensus_positive_cases": 134,
+    "eligible_positive_train_cases": 118,
+    "legacy_cross_split_duplicate_pairs": 12,
+    "legacy_packaged_original_splits": {
+      "dev": {
+        "test": 7,
+        "train": 93
+      },
+      "test": {
+        "test": 12,
+        "train": 88
+      }
+    },
+    "legacy_source_occurrences": 1481,
+    "legacy_unique_candidates": 935,
+    "legacy_unique_reviewed_cases": 188,
+    "near_duplicate_review_pairs": 1,
+    "pilot_cases": 20,
+    "prospective_test_candidates": 51,
+    "prospective_test_visual_reference_flags": 9,
+    "prospective_train_candidates": 456,
+    "raw_cross_split_stem_groups": 0,
+    "raw_original_splits": {
+      "test": 1273,
+      "train": 10178
+    },
+    "raw_repeated_stem_groups": 2,
+    "raw_rows": 11451,
+    "raw_unique_cases": 11451,
+    "relevance_conflicts_quarantined": 2,
+    "reviewed_train_cases": 167
+  },
+  "dataset_version": "thesis-v0.1",
+  "id_policy": "SHA256 of NFC/whitespace-normalized question and key-sorted options; case/punctuation preserved",
+  "notes": [
+    "No cardiology labels were adjudicated or overwritten.",
+    "Legacy benchmark dev/test are not original MedQA train/test.",
+    "The current inherited filter reads gold answer/explanation fields; historical filtering is not used as a blind evaluation protocol.",
+    "Candidate membership is not a clinical relevance judgment.",
+    "Source-reported train/test membership is traced to the local raw file; upstream release provenance is not independently certified.",
+    "Lexical near-duplicate checks do not establish absence of semantic duplicates or pretraining contamination."
+  ],
+  "pilot_seed": 42,
+  "question_only_screening_terms": [
+    "angina",
+    "aortic coarctation",
+    "aortic stenosis",
+    "arrhythmia",
+    "atrial fibrillation",
+    "cardiac arrest",
+    "cardiomyopathy",
+    "coarctation",
+    "coarctation of the aorta",
+    "coronary artery disease",
+    "ecg",
+    "echocardiography",
+    "ekg",
+    "endocarditis",
+    "heart failure",
+    "mitral prolapse",
+    "mitral regurgitation",
+    "mitral valve prolapse",
+    "murmur",
+    "myocardial infarction",
+    "myocarditis",
+    "patent ductus arteriosus",
+    "pda",
+    "pericarditis",
+    "pulmonary embolism",
+    "pulmonary embolus",
+    "tetralogy of fallot",
+    "tof",
+    "valvular disease",
+    "ventricular tachycardia"
+  ],
+  "sources": [
+    {
+      "bytes": 42146,
+      "path": "annotations/manual_audit_baseline_v2.csv",
+      "role": "inherited_manual_cardiology_annotations",
+      "sha256": "1fb3dc225ae410587634732ad2d8ce44aca8b813a202f42ba71028d34763d3c1"
+    },
+    {
+      "bytes": 61581,
+      "path": "annotations/manual_audit_llm_supervised_v1.csv",
+      "role": "inherited_manual_cardiology_annotations",
+      "sha256": "f7a8a21803abbf64544e86b28040004eccf45cb367b2d97fbadffeba4ace9bc3"
+    },
+    {
+      "bytes": 20393,
+      "path": "annotations/manual_sanity_check_20.csv",
+      "role": "previous_graph_annotation_exposure",
+      "sha256": "65ab302c6bdc12f3e31722be51704eaab55a5fcc7a0d4c9e57e4768fd2150ab0"
+    },
+    {
+      "bytes": 22413,
+      "path": "annotations/opm_extraction_gold_20.csv",
+      "role": "previous_graph_annotation_exposure",
+      "sha256": "1a2c18a8b36cc3ebdc3b1fa5c3c6aee6f5df1f0cae2e6decd4c6f6404847e40f"
+    },
+    {
+      "bytes": 18491601,
+      "path": "external_raw/medqa_full.jsonl",
+      "role": "local_raw_source_not_bundled",
+      "sha256": "1b404642b2698fc8cd6618bad6c94281441909e51f13c44c27802e111b895d0f"
+    },
+    {
+      "bytes": 22492,
+      "path": "medqa_opm_task/answer/cardio_gold_test.jsonl",
+      "role": "inherited_packaged_labels",
+      "sha256": "9d6652a42697062461032e67f0a65bae83006fb41acae10ed266df05ebc0b1ee"
+    },
+    {
+      "bytes": 176459,
+      "path": "medqa_opm_task/data/input/dev_questions.jsonl",
+      "role": "inherited_packaged_input",
+      "sha256": "982f5885bd006814fbf7c9a47d9fb6b51aa7303a72529edf824ca905093844bb"
+    },
+    {
+      "bytes": 187638,
+      "path": "medqa_opm_task/data/input/test_questions.jsonl",
+      "role": "inherited_packaged_input",
+      "sha256": "64b687fcb61d2a523ea2854ea01749a8e0ad78ce5ef46517461a48666151b9cb"
+    },
+    {
+      "bytes": 1203043,
+      "path": "medqa_opm_task/data/processed/medqa_cardiology_llm_relevant.jsonl",
+      "role": "inherited_processed_candidate_source",
+      "sha256": "761d9dfcfa08674f4ff7e19434a82489b20025df54e66f8ac4629699a0546055"
+    },
+    {
+      "bytes": 1751544,
+      "path": "medqa_opm_task/data/processed/medqa_cardiology_real_high_confidence.jsonl",
+      "role": "inherited_processed_candidate_source",
+      "sha256": "436d9acb9203cb743f294cf7879fba06f276fbf7a3a766301922c3583292ed9c"
+    },
+    {
+      "bytes": 25411,
+      "path": "medqa_opm_task/data/reference/dev_labels.jsonl",
+      "role": "inherited_packaged_labels",
+      "sha256": "f5af8f86165481ecc1a5c56e3bd80d401414a6f770ed3cb952fa13bf0665a40f"
+    },
+    {
+      "bytes": 1063,
+      "path": "medqa_opm_task/reference/MedQA_LICENSE",
+      "role": "bundled_upstream_license",
+      "sha256": "8a35478f13bfaa114cd157592ba06b9a27db0f9767ac1cb9b36d435de6157378"
+    },
+    {
+      "bytes": 8828,
+      "path": "scripts/prepare_medqa.py",
+      "role": "inherited_answer_aware_filter_reference",
+      "sha256": "cc381bc48b872e3e9298a9e03e273165eee798837a5686a0b75918fe6751b190"
+    }
+  ],
+  "status": "development_ready_evaluation_review_required",
+  "test_frozen": false
+}
