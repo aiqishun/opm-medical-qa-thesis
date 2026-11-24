@@ -1,0 +1,62 @@
+\chapter{Proposed Method}
+\label{chap:method}
+\updateheader{Chapter 4. Proposed Method}
+
+%==============================================================================
+% 写作时间：Day 2，边实现边写。必须与实际代码一致，未实现的部分不要写成已实现。
+% 学长的写法：开头概述 + 设计原则 → 总体架构图 → 按数据流每个模块一节
+% （为什么需要 → 输入/输出/算法 → 作用）→ 伪代码 → 实现细节 → 小结。
+%==============================================================================
+
+This chapter presents the proposed method. \todo{Overview paragraph and three design principles.}
+
+\section{Overall Architecture}
+\label{sec:architecture}
+% 放系统总图（FIG01，最好用 OPCloud 画；来不及就先用 TikZ，标注待替换）。
+\todo{Architecture figure and walkthrough of the processing flow.}
+
+\section{Evidence-Linked OPM Representation}
+\label{sec:graph_contract}
+% 形式化定义 G=(O,P,S,R)：稳定 ID、对象/过程类型、状态归属（owner object）、
+% 关系词表及合法端点、每个元素/关系的证据引用、所选答案与支持它的图元素的链接。
+% 说明与会议版 JSON 的区别（会议版状态没有明确的归属对象）。
+\todo{Formal definition, relation vocabulary table, and an example.}
+
+\section{Evidence Agent}
+\label{sec:evidence_agent}
+% 输入：问题；工具：BM25 检索固定语料；输出：考点、问题中的关键片段、段落 ID、证据缺口。
+\todo{Write this section.}
+
+\section{OPM Reasoning Agent}
+\label{sec:reasoning_agent}
+% 输入：问题 + 允许使用的证据；输出：所选选项、简短解释、带证据引用的 OPM 图。
+\todo{Write this section.}
+
+\section{Verification Agent and Deterministic Validators}
+\label{sec:verification}
+% 程序化检查（schema、端点类型、状态归属、孤立节点、证据 ID 是否存在）
+% + 语义检查（无证据支持的关系、与题目不适用、答案与图冲突）。
+% 输出：局部修复请求（指向具体元素）。
+\todo{Write this section with a table of check types.}
+
+\section{Bounded Repair Controller}
+\label{sec:controller}
+% 确定性控制器：执行顺序、最多 2 轮修复、停止条件、记录调用/token/耗时。
+% 放 Algorithm 伪代码。
+\todo{Write this section with Algorithm~1.}
+
+\section{Semi-Automated OPCloud Modeling Workflow}
+\label{sec:opcloud}
+% 机器输出 → 建模包（elements.csv, relations.csv, candidate OPL, modeling steps）
+% → 人工在 OPCloud 中构建和审查 → 导出图片与 OPL。
+% 强调：定量评估只用原始机器输出；人工修改过的图只用于论文插图。
+\todo{Write this section; state clearly which steps are manual.}
+
+\section{Implementation Details}
+\label{sec:implementation}
+% 模型名称与版本、prompt 固定方式、解码参数、代码提交和 tag。
+\todo{Fill in after the configuration is frozen.}
+
+\section{Chapter Summary}
+\label{sec:ch4_summary}
+\todo{Write this section.}

@@ -1,0 +1,60 @@
+\chapter{Background and Related Work}
+\label{chap:related_work}
+\updateheader{Chapter 2. Background and Related Work}
+
+%==============================================================================
+% 写作时间：Day 1（先读文献，每篇记 5 行笔记：问题/方法/数据/结果/与本文的区别）。
+% 学长的写法：按主题分节，不按论文罗列；每节最后一段写"现有方法的不足 + 与本文的关系"。
+% 只引用你真正读过的文献。
+%==============================================================================
+
+This chapter reviews the research areas on which this thesis builds. \todo{One-paragraph roadmap.}
+
+\section{Medical Question Answering}
+\label{sec:rw_medqa}
+% MedQA 数据集~\cite{jin_medqa_2021}；LLM 在医学考试题上的表现；
+% 为什么只看准确率不够（解释是否可检查）。
+\todo{Write this section.}
+
+\section{Retrieval-Augmented Medical Question Answering}
+\label{sec:rw_rag}
+% RAG~\cite{lewis_rag_2020}；MedRAG/MIRAGE~\cite{xiong_medrag_2024}（医学 RAG 基准，
+% 也使用教科书语料）；BM25~\cite{robertson_bm25_2009}。
+% 不足：检索到证据 ≠ 回答真正依赖该证据。
+\todo{Write this section.}
+
+\section{Multi-Agent Collaboration for Medical Reasoning}
+\label{sec:rw_agents}
+% MedAgents~\cite{tang_medagents_2024}（多专家角色讨论）；
+% KACR~\cite{li_kacr_2025}；GraphDx~\cite{tan_graphdx_2026}（知识增强、成本感知）。
+% 要点：agent 数量本身不是创新；本文的区别在于"证据链接的 OPM 图 + 有界验证修复"。
+\todo{Write this section and state clearly how this thesis differs.}
+
+\section{Structured and Graph-Based Explanations}
+\label{sec:rw_graphs}
+% 知识图谱/因果图用于解释；结构合法 ≠ 内容正确（会议工作的发现可在此引用）。
+\todo{Write this section.}
+
+\section{Object-Process Methodology}
+\label{sec:rw_opm}
+% 读者可能不了解 OPM，这一节要写得像教程：
+% - 对象（object）、过程（process）、状态（state）三种基本元素~\cite{dori_opm_2016,iso_19450_2015}
+% - 主要链接类型（如 instrument、consumption/result、effect、state-specified links）
+% - OPD（图）与 OPL（自然语言）双重表示
+% - OPCloud 建模工具
+% - 为什么适合表示医学机制（例：Valve calcification → Narrowing → Outflow obstruction）
+% 建议放一张简单的 OPD 示例图。
+\todo{Write this section with one small illustrative OPD.}
+
+\section{Faithfulness and Evaluation of Explanations}
+\label{sec:rw_faithfulness}
+% 依据~\cite{lyu_faithful_2024} 区分：faithfulness（反映模型内部推理）与
+% evidence support / consistency（解释是否被证据支持、是否与答案一致）。
+% 本文只评估后者，不声称测量了模型的内部推理。
+\todo{Write this section and define the claim boundary of this thesis.}
+
+\section{Summary and Positioning}
+\label{sec:rw_summary}
+% 用一个表对比代表性方法：是否检索证据 / 是否多 agent / 是否结构化图 /
+% 是否验证修复 / 是否评估证据支持度。最后一行是本文。
+\todo{Add a comparison table and a positioning paragraph.}

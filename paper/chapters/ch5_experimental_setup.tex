@@ -1,0 +1,53 @@
+\chapter{Experimental Setup}
+\label{chap:setup}
+\updateheader{Chapter 5. Experimental Setup}
+
+%==============================================================================
+% 写作时间：Day 3。参照学长 Ch4 前半部分：概述 → 数据 → 指标 → 实现细节 → 超参数。
+% 每个实验都要回答 Ch1 的某个 RQ。
+%==============================================================================
+
+\section{Experimental Overview}
+\label{sec:exp_overview}
+% 一张表：RQ → 对比条件 → 指标。
+\todo{Write this section.}
+
+\section{Evaluation Data}
+\label{sec:eval_data}
+% 引用 Chapter~\ref{chap:problem_data}；最终测试集大小、版本 tag。
+\todo{Final evaluation set size and version.}
+
+\section{Evidence Corpus}
+\label{sec:corpus}
+% MedQA 附带的英文教科书；心血管相关部分的选取规则；切块大小；BM25 参数；
+% 语料 hash；确认参考答案和题解不在语料中。
+\todo{Write this section.}
+
+\section{Compared Conditions}
+\label{sec:conditions}
+% C1 单 agent + 文字解释；C2 单 agent + OPM 图；C3 三 agent + 有界修复；
+% C4 = C3 的第一轮输出（无修复，不需要额外调用）。
+% 同一模型、同一语料、固定检索段落；继承的规则方法只作参考。
+\todo{Table of conditions with what is held fixed.}
+
+\section{Evaluation Metrics}
+\label{sec:metrics}
+% 答案准确率；结构合法性；证据支持的关系比例；解释完整度（防止删关系刷支持率）；
+% 答案-图一致性；修复成功与回退；调用次数/token/延迟；弃答和无效输出单独计数。
+\todo{Table with metric definitions and formulas.}
+
+\section{Human Evaluation Protocol}
+\label{sec:human_eval}
+% 事先确定的抽样规则；评审者的真实资质；评审维度；
+% 生成系统的 verifier 不能作为独立评估者。
+\todo{Write this section.}
+
+\section{Statistical Analysis}
+\label{sec:statistics}
+% 小样本：bootstrap 95% 置信区间；配对比较用 McNemar 检验；不把小样本结论说成定论。
+\todo{Write this section.}
+
+\section{Implementation and Reproducibility}
+\label{sec:reproducibility}
+% 硬件/软件、模型版本、代码 commit、数据版本、配置与输出路径。
+\todo{Write this section.}

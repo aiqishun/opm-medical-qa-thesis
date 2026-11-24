@@ -1,0 +1,270 @@
+\documentclass[11pt,a4paper,oneside]{report}
+%==============================================================================
+% Master's thesis — OPM-guided multi-agent cardiology QA
+% Layout adapted from the laboratory's existing thesis template
+% (cover page, margins, header style, Roman/Arabic page numbering).
+% Compile: pdflatex -> bibtex -> pdflatex -> pdflatex
+%==============================================================================
+
+%------------------------------------------------------------------------------
+% Packages
+%------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{CJKutf8}                 % Japanese text on the cover page only
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{newtxtext,newtxmath}
+\usepackage[scaled=0.95]{helvet}
+
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{placeins}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,fit,shapes.geometric}
+
+\usepackage{cite}
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
+
+\usepackage[top=4.8cm, bottom=3.2cm, left=3cm, right=2.5cm]{geometry}
+\usepackage{setspace}
+\singlespacing
+
+%------------------------------------------------------------------------------
+% Draft helpers — remove every \todo before final submission
+% Set \drafttrue -> \draftfalse to hide all TODO marks.
+%------------------------------------------------------------------------------
+\newif\ifdraft
+\drafttrue
+\ifdraft
+  \newcommand{\todo}[1]{{\color{red}\textbf{[TODO: #1]}}}
+\else
+  \newcommand{\todo}[1]{}
+\fi
+
+%------------------------------------------------------------------------------
+% Heading styles (sans-serif section headings, as in the lab template)
+%------------------------------------------------------------------------------
+\titleformat{\section}
+  {\normalfont\sffamily\bfseries\Large}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{3.0ex}{3.0ex}
+
+\titleformat{\subsection}
+  {\normalfont\sffamily\bfseries\large}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{3.0ex}{3.0ex}
+
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\bfseries\normalsize}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{1.2ex}{0.6ex}
+
+\titleformat{\paragraph}
+  {\normalfont\sffamily\bfseries\normalsize}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{1.0ex}{0.5ex}
+
+% Chapter headings: "Chapter N" line + title (numbered), title only (unnumbered)
+\makeatletter
+\newlength{\ChapterTopSkip}
+\newlength{\ChapterAfterSkip}
+\setlength{\ChapterTopSkip}{15mm}
+\setlength{\ChapterAfterSkip}{20mm}
+\def\@makechapterhead#1{%
+  \vspace*{\ChapterTopSkip}%
+  {\parindent\z@ \raggedright \normalfont
+    \ifnum\c@secnumdepth>\m@ne
+      \huge\bfseries \@chapapp\space \thechapter\par\nobreak
+      \vskip 8mm
+    \fi
+    \interlinepenalty\@M
+    \Huge\bfseries #1\par\nobreak
+    \vskip \ChapterAfterSkip
+  }%
+}
+\def\@makeschapterhead#1{%
+  \vspace*{\ChapterTopSkip}%
+  {\parindent\z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    \Huge\bfseries #1\par\nobreak
+    \vskip \ChapterAfterSkip
+  }%
+}
+\makeatother
+
+% Contents / List of Figures / List of Tables title spacing
+\setlength{\cftbeforetoctitleskip}{15mm}
+\setlength{\cftbeforeloftitleskip}{15mm}
+\setlength{\cftbeforelottitleskip}{15mm}
+\setlength{\cftaftertoctitleskip}{20mm}
+\setlength{\cftafterloftitleskip}{20mm}
+\setlength{\cftafterlottitleskip}{20mm}
+
+%------------------------------------------------------------------------------
+% Page styles
+%------------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\setlength{\headsep}{16pt}
+
+\fancypagestyle{frontmatter}{%
+  \fancyhf{}
+  \fancyhead[R]{\textbf{\thepage}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}}
+
+\fancypagestyle{mainmatter}{%
+  \fancyhf{}
+  \fancyhead[L]{\nouppercase{\leftmark}}
+  \fancyhead[R]{\textbf{\thepage}}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}}
+
+\fancypagestyle{chapterplain}{%
+  \fancyhf{}
+  \fancyhead[R]{\textbf{\thepage}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}}
+
+% Running header "Chapter N. Title" is set at the start of each chapter file
+\newcommand{\updateheader}[1]{\markboth{#1}{}}
+
+%------------------------------------------------------------------------------
+% Theorem-like environments and shorthand
+%------------------------------------------------------------------------------
+\newtheorem{definition}{Definition}[chapter]
+\newcommand{\OPM}{OPM}
+\newcommand{\dataversion}{\texttt{thesis-v0.1}}
+
+%==============================================================================
+% Cover page — fill in every field marked （要填写）
+%==============================================================================
+\newcommand{\coverAcademicYear}{令和8年度}
+\newcommand{\coverThesisType}{修士論文}
+\newcommand{\coverTitleJP}{（日本語題目を記入）}   % 要填写：日文题目
+\newcommand{\coverTitleEN}{\textbf{An OPM-Guided Multi-Agent Framework for Evidence-Grounded Cardiology Question Answering}}
+\newcommand{\coverAuthorName}{（氏名）}              % 要填写：日文姓名，姓和名之间用全角空格
+\newcommand{\coverAffiliationA}{徳島大学大学院創成科学研究科}   % 要确认
+\newcommand{\coverAffiliationB}{理工学専攻知能情報システムコース2年} % 要确认
+\newcommand{\coverSupervisor}{（指導教員名）}        % 要填写：指导老师
+
+\newcommand{\makeOfficialCover}{%
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \begin{CJK}{UTF8}{min}
+    \centering
+    \vspace*{0mm}
+    {\fontsize{18}{26}\selectfont \makebox[\textwidth][c]{\makebox[5em][s]{\coverAcademicYear}}\par}
+    \vspace{2mm}
+    {\fontsize{18}{26}\selectfont \makebox[\textwidth][c]{\makebox[5em][s]{\coverThesisType}}\par}
+    \vspace{9mm}
+    {\fontsize{18}{26}\selectfont \makebox[\textwidth][c]{\makebox[2.5em][s]{題目}}\par}
+    \vspace{2mm}
+    {\fontsize{18}{26}\selectfont \coverTitleJP\par}
+    \vspace{2mm}
+    {\fontsize{16}{24}\selectfont \coverTitleEN\par}
+    \vspace{9mm}
+    {\fontsize{18}{26}\selectfont 報告者\par}
+    \vspace{2mm}
+    {\fontsize{18}{26}\selectfont \coverAuthorName\par}
+    \vspace{9mm}
+    {\fontsize{18}{24}\selectfont \coverAffiliationA\par}
+    \vspace{2mm}
+    {\fontsize{18}{24}\selectfont \coverAffiliationB\par}
+    \vspace{9mm}
+    {\fontsize{14}{22}\selectfont
+      \renewcommand{\arraystretch}{1.2}%
+      \setlength{\tabcolsep}{8pt}%
+      \newcolumntype{C}[1]{>{\centering\arraybackslash}m{##1}}%
+      \begin{tabular}{|C{0.18\textwidth}|C{0.35\textwidth}|}
+        \hline
+        受付年月日 & 令和\hspace{2em}年\hspace{2em}月\hspace{2em}日 \\ \hline
+        指導教官   & \coverSupervisor \\ \hline
+        \multirow{3}{*}{審査担当教官} & \rule{0pt}{1.2em}\hfill 印 \\ \cline{2-2}
+                                   & \rule{0pt}{1.2em}\hfill 印 \\ \cline{2-2}
+                                   & \rule{0pt}{1.2em}\hfill 印 \\ \hline
+      \end{tabular}
+    }
+    \end{CJK}
+  \end{titlepage}
+}
+
+%==============================================================================
+\begin{document}
+%==============================================================================
+\makeOfficialCover
+
+%------------------------------------------------------------------------------
+% Front matter (Roman numerals)
+%------------------------------------------------------------------------------
+\pagenumbering{roman}
+\pagestyle{frontmatter}
+\makeatletter
+\let\ps@plain\ps@frontmatter
+\makeatother
+
+\cleardoublepage
+\pagestyle{mainmatter}
+\chapter*{Abstract}
+\markboth{Abstract}{}
+\input{chapters/abstract}
+
+\cleardoublepage
+\pagestyle{mainmatter}
+\setcounter{page}{2}
+\markboth{Contents}{}
+\tableofcontents
+
+\cleardoublepage
+\pagestyle{frontmatter}
+\listoffigures
+\cleardoublepage
+\pagestyle{frontmatter}
+\listoftables
+
+%------------------------------------------------------------------------------
+% Main matter (Arabic numerals)
+%------------------------------------------------------------------------------
+\cleardoublepage
+\pagenumbering{arabic}
+\pagestyle{mainmatter}
+\makeatletter
+\let\ps@plain\ps@chapterplain
+\makeatother
+
+\input{chapters/ch1_introduction}
+\input{chapters/ch2_related_work}
+\input{chapters/ch3_problem_and_data}
+\input{chapters/ch4_method}
+\input{chapters/ch5_experimental_setup}
+\input{chapters/ch6_results}
+\input{chapters/ch7_discussion}
+\input{chapters/ch8_conclusion}
+
+%------------------------------------------------------------------------------
+\chapter*{Acknowledgments}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+\markboth{Acknowledgments}{}
+\input{chapters/acknowledgments}
+
+%------------------------------------------------------------------------------
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\renewcommand{\bibname}{References}
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+\end{document}

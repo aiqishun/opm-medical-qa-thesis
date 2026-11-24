@@ -1,0 +1,68 @@
+\chapter{Introduction}
+\label{chap:introduction}
+\updateheader{Chapter 1. Introduction}
+
+%==============================================================================
+% 写作时间：Day 5（实验结果出来后再定稿）。可以先写 1.1–1.3。
+% 参照学长 Ch1 的漏斗式写法：应用场景 → 现有方法的不足 → 本文要解决的问题
+% → 方法概览 → 贡献（分主次、与证据对齐）→ 章节安排。
+%==============================================================================
+
+\section{Background}
+\label{sec:background}
+% 段落顺序建议：
+% (1) LLM 在医学问答上准确率越来越高，但推理过程难以检查（medical QA, MedQA）。
+% (2) 临床和教育场景需要可检查的解释，而不仅是答案。
+% (3) 检索增强（RAG）提供外部证据，但"引用了证据"不等于"解释被证据支持"。
+% (4) 多 agent 协作与图结构推理已有大量工作（MedAgents, KACR, GraphDx）。
+% (5) OPM 用对象、过程、状态描述机制，适合表示"病因 → 病理过程 → 表现"。
+% (6) 引出：把证据链接到 OPM 图，并对图进行验证和修复。
+\todo{Write 5--6 paragraphs following the outline in the source comments.}
+
+\section{Problem Statement}
+\label{sec:problem_statement}
+% 参照学长 "The first challenge is..." 的写法，列 3 个挑战：
+% (1) 解释与证据脱节：图或解释中的关系没有出处（会议工作中 grounding 只有约 0.40，
+%     这是"继承的前期结果"，引用时要注明来源）。
+% (2) 答案与图不一致：图解释的机制与所选答案对不上（topic mismatch 是主要错误）。
+% (3) 错误难以定位和修正：一次性生成，出错后无法局部修复。
+% 最后一段用一句话把任务形式化，指向 Definition~\ref{def:task}。
+\todo{Describe three challenges and end with a one-sentence task statement.}
+
+\section{Research Questions}
+\label{sec:research_questions}
+% 来自 README 的研究问题。建议拆成 2–3 个可检验的子问题，并与 Ch5 的实验一一对应：
+% RQ1: 在可比的模型与预算下，证据链接的 OPM 构建能否提高解释的证据支持度？(C1 vs C2)
+% RQ2: 角色分离与有界验证/修复能否提高答案与图的一致性？(C2 vs C3, C3 vs C4)
+% RQ3: 上述改进是否以牺牲答案准确率或成本为代价？
+\todo{State the main research question and two or three testable sub-questions.}
+
+\section{Overview of the Proposed Approach}
+\label{sec:approach_overview}
+% 每个组件一段：Evidence Agent / OPM Reasoning Agent / Verification Agent /
+% bounded repair controller / OPCloud 半自动建模流程。
+% 明确主次：主要贡献是 evidence-linked OPM representation + bounded verification/repair。
+\todo{One paragraph per component; state which component is the main contribution.}
+
+\section{Relationship to Prior Work by the Author}
+\label{sec:prior_work}
+% 很重要：清楚区分会议论文已有的工作和毕业论文新增的工作。
+% 会议工作：规则主题匹配、预定义答案与图、启发式图质量审计、20 例人工检查。
+% 本文新增：数据审计与新数据版本、证据链接的图格式、三 agent 系统、验证修复、
+%           对照实验、OPCloud 建模流程。
+\todo{Cite the conference paper and list inherited versus new components in a table.}
+
+\section{Contributions}
+\label{sec:contributions}
+% 3–4 条，按证据强弱分主次（学习学长的写法），实验结束后再定最终措辞。
+\todo{Finalize after experiments; do not claim improvements that the results do not show.}
+
+\section{Organization of the Thesis}
+\label{sec:organization}
+This thesis is organized into eight chapters.
+Chapter~\ref{chap:related_work} reviews medical question answering, retrieval augmentation, multi-agent reasoning, structured explanations, and the Object-Process Methodology.
+Chapter~\ref{chap:problem_data} defines the task and describes the data protocol.
+Chapter~\ref{chap:method} presents the proposed representation and agent method.
+Chapter~\ref{chap:setup} describes the experimental setup, and Chapter~\ref{chap:results} reports the results.
+Chapter~\ref{chap:discussion} analyzes errors, discusses the findings, and states the limitations.
+Chapter~\ref{chap:conclusion} concludes the thesis and outlines future work.
