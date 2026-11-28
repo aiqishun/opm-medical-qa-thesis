@@ -12,7 +12,15 @@ Interpretation decisions (confirmed with the author, 2026-11-28):
 * question findings may be objects or states;
 * ``support_path`` alternates element, relation, element, ...; each relation must
   connect its two neighbours in either direction (undirected); state ownership
-  is not a path step;
+  is not a path step. The path is checked without regard to direction because
+  OPM link types point in different directions (consumption is object ->
+  process, result is process -> object, input_state is state -> process,
+  output_state is process -> state, ...). A causal chain of reasoning from a
+  finding to the answer may therefore run against some links. For example, a
+  finding is often the *result* of the disease process that is the answer, so
+  the path walks finding <-result- process. Direction stays meaningful through
+  the endpoint-type check; the path check only asks whether the cited links
+  connect the steps;
 * ownership counts as a connection for the isolated-element check;
 * when a process has both input and output states, the owners of its input
   states must equal the owners of its output states; a process with only input

@@ -3,6 +3,11 @@
 The deterministic validators (Table 4.2) run on the graph and their results are
 stored with the prediction. There is no repair and no retry: a graph that fails
 validation is still a valid output.
+
+The support path is validated without regard to link direction, because OPM
+link types point in different directions (consumption object -> process,
+result process -> object, ...) and a reasoning path from a finding to the
+answer may run against some of them. See ``evidence_graph.validate``.
 """
 
 from __future__ import annotations
