@@ -29,19 +29,37 @@ def write_once_json(path: Path, payload: Any) -> None:
         handle.write("\n")
 
 
+# Directories whose untracked files change what a run executes. Output
+# directories such as experiments/runs/ are deliberately not listed.
+CODE_DIRS = ("src", "scripts", "prompts", "schemas", "configs")
+
+
 def git_info(root: Path) -> dict[str, Any]:
-    def run(*args: str) -> str:
-        return subprocess.run(["git", *args], cwd=root, capture_output=True, text=True, check=True).stdout.strip()
+    """Commit, exact tag (if any) and cleanliness of the working tree.
+
+    The tree is dirty if a tracked file has uncommitted changes, or if an
+    untracked (and not ignored) file exists under one of ``CODE_DIRS``.
+    """
+    def run(*args: str, check: bool = True) -> subprocess.CompletedProcess:
+        return subprocess.run(["git", *args], cwd=root, capture_output=True, text=True, check=check)
 
     try:
+        tracked = run("status", "--porcelain", "--untracked-files=no").stdout.split("\n")
+        untracked = run("ls-files", "--others", "--exclude-standard", "--", *CODE_DIRS).stdout.split("\n")
+        tag = run("describe", "--exact-match", "--tags", "HEAD", check=False)
+        tracked, untracked = [x for x in tracked if x.strip()], [x for x in untracked if x.strip()]
         return {
-            "commit": run("rev-parse", "HEAD"),
-            "short": run("rev-parse", "--short", "HEAD"),
-            "branch": run("rev-parse", "--abbrev-ref", "HEAD"),
-            "dirty": bool(run("status", "--porcelain", "--untracked-files=no")),
+            "commit": run("rev-parse", "HEAD").stdout.strip(),
+            "short": run("rev-parse", "--short", "HEAD").stdout.strip(),
+            "branch": run("rev-parse", "--abbrev-ref", "HEAD").stdout.strip(),
+            "tag": tag.stdout.strip() if tag.returncode == 0 else None,
+            "dirty": bool(tracked or untracked),
+            "modified_tracked": tracked[:50],
+            "untracked_code_files": untracked[:50],
         }
     except (OSError, subprocess.CalledProcessError):
-        return {"commit": None, "short": "nogit", "branch": None, "dirty": None}
+        return {"commit": None, "short": "nogit", "branch": None, "tag": None, "dirty": None,
+                "modified_tracked": [], "untracked_code_files": []}
 
 
 def safe_component(text: str) -> str:

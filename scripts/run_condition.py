@@ -37,7 +37,7 @@ if str(SRC_DIR) not in sys.path:
 from agents import get_condition  # noqa: E402
 from agents.base import ModelConfig  # noqa: E402
 from experiment import inputs as data  # noqa: E402
-from experiment.records import git_info, safe_component, sha256_file, write_once_json  # noqa: E402
+from experiment.records import CODE_DIRS, git_info, safe_component, sha256_file, write_once_json  # noqa: E402
 from llm.client import LLMClient, OpenAIResponsesClient  # noqa: E402
 
 RUNS_DIR = ROOT / "experiments/runs"
@@ -96,12 +96,19 @@ def main(argv: list[str] | None = None,
         return 2
 
     git = git_info(root)
+    if args.split == "test":
+        if git["dirty"] is not False:
+            print("error: the test split may not be run from a dirty working tree.", file=sys.stderr)
+            return 2
+        if not git["tag"]:
+            print("error: --split test requires HEAD to be exactly at a git tag "
+                  "(git describe --exact-match --tags HEAD). Tag the frozen configuration first.", file=sys.stderr)
+            return 2
     if git["dirty"] and not args.allow_dirty:
-        print("error: tracked files have uncommitted changes; commit first so the run is tied to a commit "
-              "(or pass --allow-dirty for development).", file=sys.stderr)
-        return 2
-    if args.split == "test" and git["dirty"]:
-        print("error: the test split may not be run from a dirty working tree.", file=sys.stderr)
+        print("error: uncommitted changes to tracked files or untracked files under "
+              f"{', '.join(CODE_DIRS)}: {(git['modified_tracked'] + git['untracked_code_files'])[:5]}. "
+              "Commit first so the run is tied to a commit (or pass --allow-dirty for development).",
+              file=sys.stderr)
         return 2
 
     condition_cls = get_condition(args.condition)
@@ -145,6 +152,7 @@ def main(argv: list[str] | None = None,
         "question_ids": [q.id for q in questions],
         "passage_ids": {q.id: [p.passage_id for p in evidence[q.id]] for q in questions},
         "git": git,
+        "git_tag": git["tag"],
         "allow_dirty": args.allow_dirty,
         "software": {"python": platform.python_version(), "openai": openai.__version__},
     }

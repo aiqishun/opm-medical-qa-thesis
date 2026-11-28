@@ -347,3 +347,82 @@ def test_client_requires_env_key(monkeypatch):
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     with pytest.raises(RuntimeError, match="OPENAI_API_KEY"):
         OpenAIResponsesClient()
+
+
+# --------------------------------------------------------------------------- review fixes (clean tree, tag, quote length)
+
+def _git(repo: Path, *args: str) -> None:
+    import subprocess
+    subprocess.run(["git", "-c", "user.email=t@example.invalid", "-c", "user.name=t", *args], cwd=repo,
+                   check=True, capture_output=True)
+
+
+def test_git_info_counts_untracked_code_files_but_not_outputs(tmp_path):
+    from experiment.records import git_info
+    _git(tmp_path, "init", "-q")
+    (tmp_path / "src").mkdir()
+    (tmp_path / "src/a.py").write_text("x = 1\n")
+    _git(tmp_path, "add", ".")
+    _git(tmp_path, "commit", "-q", "-m", "init")
+    assert git_info(tmp_path)["dirty"] is False and git_info(tmp_path)["tag"] is None
+
+    (tmp_path / "experiments/runs/r1").mkdir(parents=True)
+    (tmp_path / "experiments/runs/r1/x.json").write_text("{}")
+    (tmp_path / "notes.txt").write_text("scratch")
+    assert git_info(tmp_path)["dirty"] is False  # outputs and files outside code dirs do not count
+
+    for code_dir in ("src", "scripts", "prompts", "schemas", "configs"):
+        new = tmp_path / code_dir / "new_file.txt"
+        new.parent.mkdir(exist_ok=True)
+        new.write_text("y")
+        info = git_info(tmp_path)
+        assert info["dirty"] is True and info["untracked_code_files"] == [f"{code_dir}/new_file.txt"]
+        new.unlink()
+
+    (tmp_path / "src/a.py").write_text("x = 2\n")
+    assert git_info(tmp_path)["dirty"] is True
+    _git(tmp_path, "commit", "-q", "-am", "change")
+    _git(tmp_path, "tag", "frozen-v1")
+    assert git_info(tmp_path)["tag"] == "frozen-v1"
+
+
+def _fake_git(tag=None, dirty=False):
+    return lambda root: {"commit": "c" * 40, "short": "abc1234", "branch": "b", "tag": tag, "dirty": dirty,
+                         "modified_tracked": [], "untracked_code_files": ["src/x.py"] if dirty else []}
+
+
+def test_runner_refuses_untracked_code_files(fake_data, monkeypatch, capsys):
+    monkeypatch.setattr(run_condition, "git_info", _fake_git(dirty=True))
+    code = run_condition.main(["--condition", "C1", "--split", "pilot", "--runs-dir", str(fake_data / "runs")],
+                              client_factory=lambda: pytest.fail("client must not be created"))
+    assert code == 2 and "src/x.py" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("tag, dirty, expected", [(None, False, 2), ("v1", True, 2), ("v1", False, 0)])
+def test_test_split_requires_exact_tag_and_clean_tree(fake_data, monkeypatch, tag, dirty, expected):
+    monkeypatch.setattr(run_condition, "git_info", _fake_git(tag=tag, dirty=dirty))
+    client = FakeClient(_scripted_responder())
+    code = run_condition.main(["--condition", "C1", "--split", "test", "--i-confirm-config-frozen", "--allow-dirty",
+                               "--runs-dir", str(fake_data / "runs")], client_factory=lambda: client)
+    assert code == expected
+    if expected == 0:
+        [run_dir] = list((fake_data / "runs").iterdir())
+        manifest = json.loads((run_dir / "manifest.json").read_text())
+        assert manifest["git_tag"] == "v1" and run_dir.name.endswith("_C1_test_abc1234")
+    else:
+        assert client.requests == []
+
+
+def test_question_quote_max_length():
+    schema = C1Agent(CONFIG, FakeClient(lambda r: None)).schema
+    ok = c1_json("A", [[]], groundings=["question"], quotes=["x" * 300])
+    too_long = c1_json("A", [[]], groundings=["question"], quotes=["x" * 301])
+    assert parse_c1_output(make_response(ok), schema)["valid"]
+    assert parse_c1_output(make_response(too_long), schema)["reason"].startswith("schema_violation")
+
+
+def test_score_reports_quote_lengths(fake_data):
+    _, _, runs = _run(fake_data)
+    [run_dir] = list(runs.iterdir())
+    lengths = score_run.score_run(run_dir, dataset_dir=fake_data / "dataset")["grounding"]["question_quote_length_chars"]
+    assert lengths["min"] == len("STEM  0 with") and lengths["max"] == len("not in the stem")

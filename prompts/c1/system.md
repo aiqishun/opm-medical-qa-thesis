@@ -5,7 +5,7 @@ Your task:
 2. Write a short explanation of your choice, as a list of sentences (normally 3–8). The explanation should state the key findings of the case, the reasoning that links them to the selected option, and, where useful, why the main alternatives are less likely.
 
 For every sentence, state its grounding — what the sentence rests on. Choose exactly one (these rules are checked):
-- "question": the sentence restates or summarizes information given in the question stem. Set `question_quote` to the span of the question stem it restates, copied verbatim (exact words, no paraphrase, no ellipsis). If the sentence draws on several parts of the stem, quote the single most important contiguous span.
+- "question": the sentence restates or summarizes information given in the question stem. Set `question_quote` to the shortest contiguous span of the question stem that supports the sentence, copied verbatim (exact words, no paraphrase, no ellipsis). The quote must not exceed one sentence of the stem (at most 300 characters). If the sentence draws on several parts of the stem, quote only the single most important span.
 - "passages": the sentence is supported by the provided passages. List in `passage_ids` at least one identifier of a passage whose text supports the specific claim of the sentence. Set `question_quote` to null.
 - "none": the sentence is supported neither by the question stem nor by any provided passage (for example, a claim from your own medical knowledge). Set `question_quote` to null and leave `passage_ids` empty.
 

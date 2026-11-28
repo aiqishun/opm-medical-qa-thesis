@@ -27,7 +27,8 @@
           },
           "question_quote": {
             "type": ["string", "null"],
-            "description": "For grounding=question: the verbatim span of the question stem that the sentence restates. Otherwise null."
+            "maxLength": 300,
+            "description": "For grounding=question: the shortest verbatim contiguous span of the question stem that supports the sentence (at most one sentence, at most 300 characters). Otherwise null."
           },
           "passage_ids": {
             "type": "array",

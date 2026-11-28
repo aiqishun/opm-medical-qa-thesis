@@ -124,6 +124,7 @@ def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
     g_counts = {g: 0 for g in GROUNDINGS}
     g_unlabelled = 0
     quotes_checked = quotes_verbatim = 0
+    quote_lengths: list[int] = []
     p_cited_total = p_cited_legal = p_sentences = p_sentences_all_legal = 0
     violations: dict[str, int] = {}
     correct = abstain = invalid = missing = 0
@@ -164,6 +165,7 @@ def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
                 violations[problem] = violations.get(problem, 0) + 1
             if grounding == "question" and sentence.get("question_quote"):
                 quotes_checked += 1
+                quote_lengths.append(len(sentence["question_quote"]))
                 if quote_in_stem(sentence["question_quote"], stems[qid]):
                     quotes_verbatim += 1
                 else:
@@ -233,6 +235,7 @@ def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
             "question_quotes_checked": quotes_checked,
             "question_quotes_verbatim": quotes_verbatim,
             "question_quote_verbatim_rate": quotes_verbatim / quotes_checked if quotes_checked else None,
+            "question_quote_length_chars": _distribution(quote_lengths),
             "passages_sentences": p_sentences,
             "passages_sentences_all_ids_in_Eq": p_sentences_all_legal,
             "passages_cited_ids": p_cited_total,
@@ -274,13 +277,17 @@ def _dist_text(d: dict[str, Any]) -> str:
     return f"zero {d['zero']}/{d['n']}, min {d['min']}, median {d['median']}, mean {d['mean']}, max {d['max']}"
 
 
+def _len_text(d: dict[str, Any]) -> str:
+    return "n/a" if not d.get("n") else f"min {d['min']}, median {d['median']}, max {d['max']}"
+
+
 def _grounding_line(g: dict[str, Any]) -> str:
     c, sh = g["counts"], g["shares"]
     return (f"Grounding ({g['sentences']} sentences): question {c['question']} ({_pct(sh['question'])}), "
             f"passages {c['passages']} ({_pct(sh['passages'])}), none {c['none']} ({_pct(sh['none'])})"
             + (f", unlabelled {g['unlabelled']}" if g["unlabelled"] else "")
             + f"\n  question_quote verbatim in stem: {g['question_quotes_verbatim']}/{g['question_quotes_checked']}"
-              f" ({_pct(g['question_quote_verbatim_rate'])})"
+              f" ({_pct(g['question_quote_verbatim_rate'])}); length chars: {_len_text(g['question_quote_length_chars'])}"
             + f"\n  passages sentences: {g['passages_sentences_all_ids_in_Eq']}/{g['passages_sentences']} with all ids in E_q;"
               f" ids {g['passages_cited_ids_in_Eq']}/{g['passages_cited_ids']} ({_pct(g['passages_citation_validity_rate'])})"
             + f"\n  rule violations: {g['rule_violations'] or 'none'}")
