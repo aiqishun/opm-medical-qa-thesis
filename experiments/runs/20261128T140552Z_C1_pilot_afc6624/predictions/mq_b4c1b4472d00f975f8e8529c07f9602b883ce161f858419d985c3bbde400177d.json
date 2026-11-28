@@ -1,0 +1,46 @@
+{
+  "answer": "B",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Physical examination shows a 3/6 holosystolic murmur that is loudest at the apex and radiates to the axilla with a mid-systolic click.",
+        "sentence": "The key examination finding is a holosystolic murmur loudest at the apex that radiates to the axilla, accompanied by a midsystolic click."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step1:000178",
+          "Pediatrics_Nelson:001990"
+        ],
+        "question_quote": null,
+        "sentence": "The murmur identifies mitral regurgitation, while the midsystolic click points to mitral valve prolapse as its cause."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathoma_Husain:000117"
+        ],
+        "question_quote": null,
+        "sentence": "Myxomatous degeneration makes the mitral leaflets floppy, allowing them to prolapse into the left atrium during systole."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathology_Robbins:001508"
+        ],
+        "question_quote": null,
+        "sentence": "Mitral valve prolapse can cause palpitations and atypical chest pain, and significant regurgitation can lead to heart failure, explaining the dyspnea and bilateral crackles."
+      }
+    ]
+  },
+  "question_id": "mq_b4c1b4472d00f975f8e8529c07f9602b883ce161f858419d985c3bbde400177d",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

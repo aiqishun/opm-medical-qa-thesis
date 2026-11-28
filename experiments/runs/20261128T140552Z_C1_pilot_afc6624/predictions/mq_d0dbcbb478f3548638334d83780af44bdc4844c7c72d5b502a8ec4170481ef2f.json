@@ -1,0 +1,44 @@
+{
+  "answer": "C",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "sudden onset \"vice-like\" chest pain, diaphoresis, and pain radiating to his left shoulder. He has ST elevations on his EKG and elevated cardiac enzymes.",
+        "sentence": "The patient has sudden chest pain radiating to the left shoulder, diaphoresis, ST elevations, and elevated cardiac enzymes."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "These findings indicate an acute ST-elevation myocardial infarction, which can impair ventricular contractility."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pediatrics_Nelson:000562",
+          "InternalMed_Harrison:001220"
+        ],
+        "question_quote": null,
+        "sentence": "Reduced contractility lowers stroke volume and thus tends to decrease cardiac output."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:002001"
+        ],
+        "question_quote": null,
+        "sentence": "Compensatory sympathetic vasoconstriction raises systemic vascular resistance to help maintain arterial pressure."
+      }
+    ]
+  },
+  "question_id": "mq_d0dbcbb478f3548638334d83780af44bdc4844c7c72d5b502a8ec4170481ef2f",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

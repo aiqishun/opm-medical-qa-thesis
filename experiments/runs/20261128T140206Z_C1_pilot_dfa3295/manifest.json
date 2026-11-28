@@ -1,0 +1,83 @@
+{
+  "allow_dirty": false,
+  "condition": "C1",
+  "config_file": "configs/c1.json",
+  "git": {
+    "branch": "c1-baseline",
+    "commit": "dfa32958ecc4322d2ebd184ea3630f46b396faa4",
+    "dirty": false,
+    "short": "dfa3295"
+  },
+  "inputs": {
+    "corpus_manifest_sha256": "988a28b5723ec438b35aad9a355c9bc038d333a4ac5cfe0da2f33bb647327daa",
+    "questions": {
+      "path": "data/versions/thesis-v0.2/inputs/pilot_questions.jsonl",
+      "sha256": "9278e0de8beda332475b8fb110f6ee754bc86215c5f6168a252ad7172a3ffff4"
+    },
+    "retrieval": {
+      "manifest_sha256": "a7c536db4af39ef030868989d24b3fd8ee23504574dc0c9004307ecf8e4aaf01",
+      "path": "experiments/retrieval/medqa-textbooks-en-v1__bm25_k10/pilot.jsonl",
+      "sha256": "d93d12636eca9b609017762cdd40c8da52b7035feab207fe3daf556f76d3f7d0"
+    }
+  },
+  "limit": 2,
+  "model_config": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "sampling_parameters": "none (not sent)"
+  },
+  "passage_ids": {
+    "mq_bc1defbfe9631047b557ef5e3b96edfbe24805d776189eb3ed4c6448cf03cf88": [
+      "InternalMed_Harrison:014566",
+      "Histology_Ross:000582",
+      "Neurology_Adams:002191",
+      "Surgery_Schwartz:006037",
+      "InternalMed_Harrison:015066",
+      "InternalMed_Harrison:016827",
+      "Anatomy_Gray:000645",
+      "Immunology_Janeway:000528",
+      "InternalMed_Harrison:017582",
+      "Surgery_Schwartz:003597"
+    ],
+    "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c": [
+      "InternalMed_Harrison:013293",
+      "Pharmacology_Katzung:001780",
+      "InternalMed_Harrison:000447",
+      "InternalMed_Harrison:000444",
+      "Anatomy_Gray:000380",
+      "InternalMed_Harrison:013298",
+      "InternalMed_Harrison:012318",
+      "InternalMed_Harrison:013481",
+      "InternalMed_Harrison:013479",
+      "InternalMed_Harrison:012702"
+    ]
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "3817f88c0949e182013bb7b60e45cb47b6f17ce83641bbc4cbb03ac75b99b1a6"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_ids": [
+    "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+    "mq_bc1defbfe9631047b557ef5e3b96edfbe24805d776189eb3ed4c6448cf03cf88"
+  ],
+  "retry_policy": "at most 1 retry, only on network or rate-limit errors; SDK auto-retry disabled",
+  "run_id": "20261128T140206Z_C1_pilot_dfa3295",
+  "schema": {
+    "name": "c1_answer_with_cited_explanation",
+    "path": "schemas/c1_output.schema.json",
+    "sha256": "791d1e6a76aefe6d9d647ca33c56e4d7e57128290314085a578593690d74fc9d"
+  },
+  "software": {
+    "openai": "2.34.0",
+    "python": "3.11.3"
+  },
+  "split": "pilot",
+  "started_at": "2026-11-28T14:02:06.156648+00:00"
+}

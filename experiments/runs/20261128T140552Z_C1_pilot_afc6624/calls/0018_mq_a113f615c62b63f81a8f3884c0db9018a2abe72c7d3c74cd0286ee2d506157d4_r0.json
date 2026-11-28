@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 18,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.902,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_a113f615c62b63f81a8f3884c0db9018a2abe72c7d3c74cd0286ee2d506157d4",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"This 20-year-old athlete has fainted twice during competition and has a systolic murmur best heard at the lower left sternal border.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"Cardiac exam reveals a systolic murmur best heard at the lower left sternal border that radiates to the axilla.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Recurrent exertional syncope in a young athlete with a systolic murmur at this location favors hypertrophic obstructive cardiomyopathy.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Squatting increases left ventricular filling, which reduces dynamic outflow tract obstruction and makes the murmur softer.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Mitral stenosis produces a diastolic rumble, while aortic stenosis typically produces a systolic murmur that radiates to the carotids rather than the axilla.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:002020\", \"InternalMed_Harrison:002032\"]\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220",
+    "user": "11490d2cb24d03a744c58ee3b659dc9cace70349b7aac297cb081881e8a8fd4a"
+  },
+  "response_id": "resp_07a09f69c30c12ed016b0ae0187c3c87d08820b7e0c72fa713",
+  "round": 0,
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "schema_sha256": "a94f84c23670b5719c2db53d03e0d561f3c30741ebcc9ede09d262bcd84a6e73",
+  "status": "completed",
+  "total_latency_s": 4.902,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 4026,
+    "output_tokens": 313,
+    "reasoning_tokens": 0
+  }
+}

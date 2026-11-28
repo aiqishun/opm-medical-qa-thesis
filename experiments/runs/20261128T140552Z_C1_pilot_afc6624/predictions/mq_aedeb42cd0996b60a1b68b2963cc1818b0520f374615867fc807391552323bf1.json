@@ -1,0 +1,47 @@
+{
+  "answer": "B",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Cardiac auscultation reveals a normal S1 and loud P2. An echocardiogram is performed demonstrating right ventricular hypertrophy.",
+        "sentence": "Her dyspnea progressed from exertion to rest, and examination and echocardiography reveal a loud P2 and right ventricular hypertrophy."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "These findings suggest pulmonary hypertension, and her mother's death from heart failure raises the possibility of heritable pulmonary arterial hypertension."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:013797"
+        ],
+        "question_quote": null,
+        "sentence": "Right heart catheterization is the gold standard for confirming pulmonary hypertension and distinguishing precapillary from postcapillary disease."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "BMPR2, the gene most commonly implicated in heritable pulmonary arterial hypertension, encodes a receptor whose signaling normally inhibits pulmonary arterial smooth muscle proliferation."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Loss of this restraint promotes vascular remodeling and increases pulmonary vascular resistance."
+      }
+    ]
+  },
+  "question_id": "mq_aedeb42cd0996b60a1b68b2963cc1818b0520f374615867fc807391552323bf1",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

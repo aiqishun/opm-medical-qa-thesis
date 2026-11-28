@@ -1,0 +1,47 @@
+{
+  "answer": "C",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "A 78-year-old man presents to the hospital because of shortness of breath and chest pain that started a few hours ago. 3 weeks ago he had surgery for a total hip replacement with a prosthesis.",
+        "sentence": "The patient developed acute shortness of breath and chest pain three weeks after total hip replacement."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Recent hip replacement and prior deep vein thrombosis increase the risk of venous thromboembolism, even if heparin prophylaxis was given during hospitalization."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Anatomy_Gray:000380"
+        ],
+        "question_quote": null,
+        "sentence": "Pulmonary embolism can present with acute chest pain, dyspnea, and tachypnea despite clear lungs on examination."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "A normal chest radiograph does not rule out pulmonary embolism, and the lack of fever or sputum makes pneumonia less likely."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The abrupt symptoms and strong venous thromboembolism risk factors make pulmonary thromboembolism the most likely diagnosis."
+      }
+    ]
+  },
+  "question_id": "mq_97be471ffc66d9164e1887916c0e12fc74490ca7271daf4a5dd4c87f8939b405",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

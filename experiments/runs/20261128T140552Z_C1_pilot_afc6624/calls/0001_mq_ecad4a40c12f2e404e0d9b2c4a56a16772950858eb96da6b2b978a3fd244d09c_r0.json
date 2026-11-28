@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 1,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 6.36,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"Coronary arteriography shows reduced ejection fraction and two-vessel disease, with 65% stenosis of the left anterior descending artery and 75% stenosis of the left circumflex artery.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"Coronary arteriography shows a reduced ejection fraction, a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"He has diabetes and a history of myocardial infarction and angina, and he has developed new chest pain.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"A 62-year-old man with a past medical history of previous myocardial infarction, angina, hypertension, hyperlipidemia, diabetes mellitus, peripheral vascular disease, and below knee amputation has developed new chest pain.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"CABG is the best choice because diabetes and impaired left ventricular function favor surgical revascularization over PCI in multivessel disease involving the LAD, particularly when the LAD lesion is proximal.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:013298\", \"InternalMed_Harrison:012702\"]\n    },\n    {\n      \"sentence\": \"Heparin may be used acutely if an acute coronary syndrome is suspected, and a long-acting nitrate can relieve angina, but neither provides definitive revascularization.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220",
+    "user": "54276602e01b59f48d6eb4340dcae9696be20875a28c8ba5cbecd7a6511ebeda"
+  },
+  "response_id": "resp_0b595f8197daf5c6016b0adfc1a00c87d0ba8e4983c7df0c5c",
+  "round": 0,
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "schema_sha256": "a94f84c23670b5719c2db53d03e0d561f3c30741ebcc9ede09d262bcd84a6e73",
+  "status": "completed",
+  "total_latency_s": 6.36,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3476,
+    "output_tokens": 392,
+    "reasoning_tokens": 0
+  }
+}

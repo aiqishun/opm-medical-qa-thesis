@@ -1,0 +1,47 @@
+{
+  "answer": "C",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Unlike previous episodes of chest pain, this one is unresponsive to nitroglycerin.",
+        "sentence": "The patient has severe chest pain that does not respond to nitroglycerin, along with ST-segment elevation."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "This presentation is consistent with an acute ST-elevation myocardial infarction."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "He is discharged within 2 weeks. He comes back 3 weeks later for follow-up.",
+        "sentence": "He returns three weeks after discharge, which places the follow-up roughly three to five weeks after the infarction."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "During the two-to-eight-week healing phase, a gray-white collagenous scar becomes visible as it grows inward from the infarct margins, even though scarring is not yet complete."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathoma_Husain:000108"
+        ],
+        "question_quote": null,
+        "sentence": "Yellow necrotic pallor and a red granulation-tissue border are characteristic of earlier stages of healing."
+      }
+    ]
+  },
+  "question_id": "mq_47eddb8c1ef111f8ab49f71f3e74f74d5e1fcc9642140582cb3ce5bf9ef2fe57",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

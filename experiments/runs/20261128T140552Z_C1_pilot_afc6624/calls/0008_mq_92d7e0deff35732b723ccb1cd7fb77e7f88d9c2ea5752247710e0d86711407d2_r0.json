@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 8,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 6.248,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_92d7e0deff35732b723ccb1cd7fb77e7f88d9c2ea5752247710e0d86711407d2",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"She has an acute febrile sore throat with purulent tonsillar exudate and tender cervical lymphadenopathy.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"A 27-year-old woman comes to the physician because of a 3-day history of a sore throat and fever. Her temperature is 38.5°C (101.3°F). Examination shows edematous oropharyngeal mucosa and enlarged tonsils with purulent exudate. There is tender cervical lymphadenopathy.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"This pattern is characteristic of group A streptococcal pharyngitis.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:008162\"]\n    },\n    {\n      \"sentence\": \"Toxic shock syndrome is the best listed option because it can complicate severe invasive group A streptococcal infection, although it is rare after uncomplicated pharyngitis.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:001148\"]\n    },\n    {\n      \"sentence\": \"Acute rheumatic fever is a classic sequela of untreated streptococcal pharyngitis, but its characteristic cardiac manifestation is valvulitis, not dilated cardiomyopathy.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220",
+    "user": "482dc1f6d341c48fc3a30fecf472cb01656629191254d76c7ef548b9a413d99a"
+  },
+  "response_id": "resp_09d5a5eff33bf3d5016b0adfe5066c87d08c9469860afb926f",
+  "round": 0,
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "schema_sha256": "a94f84c23670b5719c2db53d03e0d561f3c30741ebcc9ede09d262bcd84a6e73",
+  "status": "completed",
+  "total_latency_s": 6.248,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3720,
+    "output_tokens": 418,
+    "reasoning_tokens": 61
+  }
+}

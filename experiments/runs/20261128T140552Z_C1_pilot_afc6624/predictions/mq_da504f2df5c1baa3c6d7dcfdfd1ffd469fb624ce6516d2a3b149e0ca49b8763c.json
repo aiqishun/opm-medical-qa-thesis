@@ -1,0 +1,46 @@
+{
+  "answer": "D",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "D",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "The chest pain occurs after climbing more than 2 flight of stairs or walking for more than 10 minutes and resolves with rest.",
+        "sentence": "His chest pain comes on predictably with climbing stairs or prolonged walking and resolves with rest."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:000933"
+        ],
+        "question_quote": null,
+        "sentence": "This is the classic pattern of stable angina, in which myocardial oxygen demand rises during exertion and exceeds the blood supply available through a narrowed coronary artery."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathology_Robbins:001460"
+        ],
+        "question_quote": null,
+        "sentence": "A fixed atherosclerotic stenosis greater than 70% is the best explanation because it can limit blood flow during exertion while still allowing adequate perfusion at rest."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathoma_Husain:000106",
+          "InternalMed_Harrison:000933"
+        ],
+        "question_quote": null,
+        "sentence": "Coronary vasospasm typically causes pain unrelated to exertion, while acute coronary thrombosis is more consistent with an unstable or infarction presentation than with predictable effort-related pain."
+      }
+    ]
+  },
+  "question_id": "mq_da504f2df5c1baa3c6d7dcfdfd1ffd469fb624ce6516d2a3b149e0ca49b8763c",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

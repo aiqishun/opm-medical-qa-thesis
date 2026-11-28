@@ -1,0 +1,48 @@
+{
+  "answer": "D",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "D",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "The patient is hypotensive to 70/42 mm Hg, and on further examination his skin is cold and clammy. He is diagnosed with a life-threatening condition that resulted from inadequate circulation of blood, with decreased cardiac output and high pulmonary capillary wedge pressure.",
+        "sentence": "The patient has profound hypotension, cold and clammy skin, decreased cardiac output, and elevated pulmonary capillary wedge pressure."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Low cardiac output with elevated left-sided filling pressure is characteristic of cardiogenic shock."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Neurology_Adams:002191",
+          "Surgery_Schwartz:003597"
+        ],
+        "question_quote": null,
+        "sentence": "Myocardial infarction and severe aortic stenosis can reduce cardiac output, and hemodynamically significant mitral stenosis can elevate wedge pressure."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Atrial fibrillation with a rapid ventricular response can also precipitate cardiogenic shock by impairing ventricular filling, making I, II, and IV the best combination."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Hemorrhage, pulmonary embolism, and sepsis classically cause hypovolemic, obstructive, and distributive shock, respectively."
+      }
+    ]
+  },
+  "question_id": "mq_bc1defbfe9631047b557ef5e3b96edfbe24805d776189eb3ed4c6448cf03cf88",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

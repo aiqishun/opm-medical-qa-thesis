@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 2,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.916,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "3817f88c0949e182013bb7b60e45cb47b6f17ce83641bbc4cbb03ac75b99b1a6"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_bc1defbfe9631047b557ef5e3b96edfbe24805d776189eb3ed4c6448cf03cf88",
+  "raw_text": "{\n  \"answer\": \"D\",\n  \"explanation\": [\n    {\n      \"sentence\": \"Profound hypotension and cold, clammy skin indicate shock, and the combination of low cardiac output and elevated pulmonary capillary wedge pressure points to cardiogenic shock.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Acute myocardial infarction (I) can reduce cardiac output by impairing ventricular contraction.\",\n      \"passage_ids\": [\"Neurology_Adams:002191\"]\n    },\n    {\n      \"sentence\": \"Rapid atrial fibrillation (II) can precipitate cardiogenic shock by shortening ventricular filling time and eliminating coordinated atrial contraction.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Severe valvular stenosis (IV) can limit forward flow; mitral stenosis, for example, can also elevate pulmonary capillary wedge pressure.\",\n      \"passage_ids\": [\"Neurology_Adams:002191\", \"Surgery_Schwartz:003597\"]\n    },\n    {\n      \"sentence\": \"Hemorrhage typically causes hypovolemic shock, massive pulmonary embolism causes obstructive shock, and sepsis typically causes distributive shock.\",\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "3817f88c0949e182013bb7b60e45cb47b6f17ce83641bbc4cbb03ac75b99b1a6",
+    "user": "a306953f9849fe890435d8dd7cbddabc36c6b3811bad1b5c939d5791098fc41d"
+  },
+  "response_id": "resp_0788373831d311f8016b0adee311cc87d0812e3bfe7913207a",
+  "round": 0,
+  "run_id": "20261128T140206Z_C1_pilot_dfa3295",
+  "schema_sha256": "791d1e6a76aefe6d9d647ca33c56e4d7e57128290314085a578593690d74fc9d",
+  "status": "completed",
+  "total_latency_s": 4.916,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3640,
+    "output_tokens": 277,
+    "reasoning_tokens": 0
+  }
+}
