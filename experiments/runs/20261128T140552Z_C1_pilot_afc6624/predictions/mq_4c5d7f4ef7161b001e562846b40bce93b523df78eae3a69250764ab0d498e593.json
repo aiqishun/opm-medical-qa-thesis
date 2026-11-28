@@ -1,0 +1,43 @@
+{
+  "answer": "B",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "When the child squats, the murmur is intensified and the cyanosis improves.",
+        "sentence": "The boy briefly lost consciousness while running, and his perioral cyanosis improves when he squats."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step2:000557"
+        ],
+        "question_quote": null,
+        "sentence": "Relief with squatting, a single S2, and a systolic ejection murmur at the left upper sternal border point to a hypercyanotic spell in tetralogy of Fallot."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Squatting raises systemic vascular resistance, reducing right-to-left shunting and improving pulmonary blood flow."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step2:000557"
+        ],
+        "question_quote": null,
+        "sentence": "The most appropriate immediate treatment is morphine, oxygen, IV fluids, and a beta blocker such as propranolol."
+      }
+    ]
+  },
+  "question_id": "mq_4c5d7f4ef7161b001e562846b40bce93b523df78eae3a69250764ab0d498e593",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

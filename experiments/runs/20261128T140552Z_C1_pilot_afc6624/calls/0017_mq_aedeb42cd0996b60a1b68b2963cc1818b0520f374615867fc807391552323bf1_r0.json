@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 17,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 5.531,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_aedeb42cd0996b60a1b68b2963cc1818b0520f374615867fc807391552323bf1",
+  "raw_text": "{\n  \"answer\": \"B\",\n  \"explanation\": [\n    {\n      \"sentence\": \"Her dyspnea progressed from exertion to rest, and examination and echocardiography reveal a loud P2 and right ventricular hypertrophy.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"Cardiac auscultation reveals a normal S1 and loud P2. An echocardiogram is performed demonstrating right ventricular hypertrophy.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"These findings suggest pulmonary hypertension, and her mother's death from heart failure raises the possibility of heritable pulmonary arterial hypertension.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Right heart catheterization is the gold standard for confirming pulmonary hypertension and distinguishing precapillary from postcapillary disease.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:013797\"]\n    },\n    {\n      \"sentence\": \"BMPR2, the gene most commonly implicated in heritable pulmonary arterial hypertension, encodes a receptor whose signaling normally inhibits pulmonary arterial smooth muscle proliferation.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Loss of this restraint promotes vascular remodeling and increases pulmonary vascular resistance.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220",
+    "user": "0b46bb5f1941ca3eae6dcf2138de3fa5a6b681acdec900ed2967944df7f4963c"
+  },
+  "response_id": "resp_06729c199b4ac0f0016b0ae012f59087d098e2c127f99f5eef",
+  "round": 0,
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "schema_sha256": "a94f84c23670b5719c2db53d03e0d561f3c30741ebcc9ede09d262bcd84a6e73",
+  "status": "completed",
+  "total_latency_s": 5.531,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3437,
+    "output_tokens": 340,
+    "reasoning_tokens": 0
+  }
+}

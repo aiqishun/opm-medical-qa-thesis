@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 16,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.9,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_2e6b301045ec5e1de14a50cd4ef35211334b464083763fd8b4fb1336a9d83ac8",
+  "raw_text": "{\n  \"answer\": \"C\",\n  \"explanation\": [\n    {\n      \"sentence\": \"Initial echocardiography showed septal and apical hypokinesis, and catheterization revealed 96% occlusion of the left anterior descending artery.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"Echocardiography shows left ventricular septal and apical hypokinesis. Cardiac catheterization shows 96% occlusion of the left anterior descending artery.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Regional contractile function returned to normal within one week of angioplasty and stenting.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"The patient undergoes angioplasty and placement of a stent. The patient's shortness of breath subsequently resolves and follow-up echocardiography one week later shows normal regional contractile function.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Myocardial ischemia can cause reversible regional wall-motion abnormalities on echocardiography.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:013250\"]\n    },\n    {\n      \"sentence\": \"The recovery after revascularization is characteristic of hibernating myocardium: chronically underperfused but viable heart muscle that regains contractility when blood flow is restored.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220",
+    "user": "0c2fb18a813af3b204184d623f9301629365282c5b58a84ff6b46b004d8d422a"
+  },
+  "response_id": "resp_0fb2ec4e27f7ad11016b0ae00e0bdc87d09143b7ac52098897",
+  "round": 0,
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "schema_sha256": "a94f84c23670b5719c2db53d03e0d561f3c30741ebcc9ede09d262bcd84a6e73",
+  "status": "completed",
+  "total_latency_s": 4.9,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3553,
+    "output_tokens": 335,
+    "reasoning_tokens": 0
+  }
+}

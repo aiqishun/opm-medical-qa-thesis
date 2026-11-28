@@ -1,0 +1,41 @@
+{
+  "answer": "C",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Echocardiography shows left ventricular septal and apical hypokinesis. Cardiac catheterization shows 96% occlusion of the left anterior descending artery.",
+        "sentence": "Initial echocardiography showed septal and apical hypokinesis, and catheterization revealed 96% occlusion of the left anterior descending artery."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "The patient undergoes angioplasty and placement of a stent. The patient's shortness of breath subsequently resolves and follow-up echocardiography one week later shows normal regional contractile function.",
+        "sentence": "Regional contractile function returned to normal within one week of angioplasty and stenting."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:013250"
+        ],
+        "question_quote": null,
+        "sentence": "Myocardial ischemia can cause reversible regional wall-motion abnormalities on echocardiography."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The recovery after revascularization is characteristic of hibernating myocardium: chronically underperfused but viable heart muscle that regains contractility when blood flow is restored."
+      }
+    ]
+  },
+  "question_id": "mq_2e6b301045ec5e1de14a50cd4ef35211334b464083763fd8b4fb1336a9d83ac8",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

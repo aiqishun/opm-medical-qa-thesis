@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 19,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.177,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_5918b9786d5f58e11c2ef448e75336c4a0e33a653e3da2024e830a0b23d17ff3",
+  "raw_text": "{\n  \"answer\": \"D\",\n  \"explanation\": [\n    {\n      \"sentence\": \"After a new heart failure drug was added, the patient's dyspnea and edema improved, but examination revealed bilateral, mildly tender breast enlargement.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"At his previous visit 4 months ago, a new drug was added to his treatment regimen. He reports that his dyspnea and peripheral edema have improved. His pulse is 70/min and blood pressure is 110/80 mm Hg. Physical examination shows bilateral, mildly tender enlargement of breast tissue.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"This finding is gynecomastia, a characteristic adverse effect of spironolactone due to its antiandrogen activity.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Spironolactone blocks aldosterone receptors in principal cells of the cortical collecting duct, reducing sodium reabsorption while sparing potassium.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220",
+    "user": "7a9bcdeb9c2fcb0c3798189d469ff04121b500a446ef88a2eceb99daa1fbcf9e"
+  },
+  "response_id": "resp_0277b16f84e66959016b0ae01d708087d0947d718925f4026d",
+  "round": 0,
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "schema_sha256": "a94f84c23670b5719c2db53d03e0d561f3c30741ebcc9ede09d262bcd84a6e73",
+  "status": "completed",
+  "total_latency_s": 4.177,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3311,
+    "output_tokens": 266,
+    "reasoning_tokens": 0
+  }
+}

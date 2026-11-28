@@ -1,0 +1,50 @@
+{
+  "answer": "A",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "The patient reports being quite active and able to climb 3 flights of stairs in his building 10 years ago, whereas now he feels extremely winded when climbing a single flight. At first, he attributed this to old age but has more recently begun noticing that he feels similarly short of breath when lying down.",
+        "sentence": "He has progressive exertional dyspnea and now becomes short of breath when lying flat."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pharmacology_Katzung:000835"
+        ],
+        "question_quote": null,
+        "sentence": "Orthopnea, bibasilar crackles, a palpable liver edge, and bilateral leg edema together point to heart failure with pulmonary and systemic congestion."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "A cardiac catheterization report from 5 years ago reveals a moderately enlarged heart but patent coronary arteries.",
+        "sentence": "His prior catheterization showed cardiac enlargement despite patent coronary arteries."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Nightly drinking and prior hospitalizations for “the shakes,” suggestive of alcohol withdrawal, make alcohol-induced toxic cardiomyopathy the most likely cause of his heart failure."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step2:000015",
+          "Pharmacology_Katzung:000835"
+        ],
+        "question_quote": null,
+        "sentence": "Cardiac enlargement favors a dilated cardiomyopathy over isolated diastolic heart failure, although an echocardiogram is needed to assess ventricular function."
+      }
+    ]
+  },
+  "question_id": "mq_1f491476867b7a387d05dd57fc761ef8a1063019c7fd6d3cfda3c13e6cabe9cf",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

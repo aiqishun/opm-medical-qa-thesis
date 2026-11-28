@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 20,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 8.201,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_47eddb8c1ef111f8ab49f71f3e74f74d5e1fcc9642140582cb3ce5bf9ef2fe57",
+  "raw_text": "{\n  \"answer\": \"C\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The patient has severe chest pain that does not respond to nitroglycerin, along with ST-segment elevation.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"Unlike previous episodes of chest pain, this one is unresponsive to nitroglycerin.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"This presentation is consistent with an acute ST-elevation myocardial infarction.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"He returns three weeks after discharge, which places the follow-up roughly three to five weeks after the infarction.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"He is discharged within 2 weeks. He comes back 3 weeks later for follow-up.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"During the two-to-eight-week healing phase, a gray-white collagenous scar becomes visible as it grows inward from the infarct margins, even though scarring is not yet complete.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Yellow necrotic pallor and a red granulation-tissue border are characteristic of earlier stages of healing.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Pathoma_Husain:000108\"]\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220",
+    "user": "8fab4cfcd93561dc77993a2606a5996763124397ea93b77dec474ac2d95dfb61"
+  },
+  "response_id": "resp_0cf091702e1bf778016b0ae021950087d0932db397801a7b4a",
+  "round": 0,
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "schema_sha256": "a94f84c23670b5719c2db53d03e0d561f3c30741ebcc9ede09d262bcd84a6e73",
+  "status": "completed",
+  "total_latency_s": 8.201,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3715,
+    "output_tokens": 548,
+    "reasoning_tokens": 198
+  }
+}

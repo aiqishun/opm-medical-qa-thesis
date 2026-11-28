@@ -1,0 +1,43 @@
+{
+  "answer": "D",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "D",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Approximately 3 weeks ago, he had an anterior ST-elevation myocardial infarction, which was treated with intravenous alteplase.",
+        "sentence": "The patient had an anterior ST-elevation myocardial infarction approximately three weeks before this presentation."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Surgery_Schwartz:003699"
+        ],
+        "question_quote": null,
+        "sentence": "Sharp positional chest pain radiating to the shoulder ridge and a scratchy friction rub at the left sternal border point to acute pericarditis."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Widespread concave ST elevations with PR depressions further support pericarditis rather than a ventricular aneurysm."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step2:000746"
+        ],
+        "question_quote": null,
+        "sentence": "The three-week delay is typical of Dressler’s syndrome, an autoimmune form of postinfarction pericarditis."
+      }
+    ]
+  },
+  "question_id": "mq_3fcd8a6f86d5e17a7d4e03005fc409e14461a08bf371475a43546f076007e1c0",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

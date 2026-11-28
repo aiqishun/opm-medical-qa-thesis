@@ -1,0 +1,36 @@
+{
+  "answer": "A",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "passage_ids": [],
+        "sentence": "This patient has new chest pain, insulin-treated diabetes, two-vessel coronary disease involving the left anterior descending and left circumflex arteries, and a reduced ejection fraction."
+      },
+      {
+        "passage_ids": [
+          "InternalMed_Harrison:013298",
+          "InternalMed_Harrison:012702"
+        ],
+        "sentence": "CABG is the best choice because diabetes and impaired left ventricular function favor surgical revascularization in multivessel disease involving the LAD, particularly when the LAD lesion is proximal."
+      },
+      {
+        "passage_ids": [
+          "InternalMed_Harrison:013298"
+        ],
+        "sentence": "By contrast, angioplasty with stenting is generally favored for anatomically suitable one- or two-vessel disease when left ventricular function is preserved."
+      },
+      {
+        "passage_ids": [],
+        "sentence": "Extended-release nitrates can relieve angina, and heparin may be used acutely if an acute coronary syndrome is suspected, but neither provides definitive revascularization."
+      }
+    ]
+  },
+  "question_id": "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+  "run_id": "20261128T140206Z_C1_pilot_dfa3295",
+  "validity": "valid"
+}

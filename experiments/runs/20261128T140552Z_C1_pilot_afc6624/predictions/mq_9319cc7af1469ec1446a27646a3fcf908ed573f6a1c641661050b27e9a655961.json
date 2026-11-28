@@ -1,0 +1,43 @@
+{
+  "answer": "B",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "A cardiac ultrasound shows pericardial calcifications and small tubular-shaped ventricles.",
+        "sentence": "Ultrasound shows pericardial calcifications and small, tubular ventricles."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:013096"
+        ],
+        "question_quote": null,
+        "sentence": "The failure of jugular venous pressure to fall during inspiration is Kussmaul’s sign, which, along with hepatomegaly and a diminished apical impulse, is characteristic of chronic constrictive pericarditis."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The prominent y descent reflects rapid early ventricular filling that stops abruptly when the rigid pericardium limits further expansion."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Anatomy_Gray:000356"
+        ],
+        "question_quote": null,
+        "sentence": "Constrictive pericarditis best explains the persistent heart failure because a scarred, calcified pericardium mechanically restricts diastolic filling."
+      }
+    ]
+  },
+  "question_id": "mq_9319cc7af1469ec1446a27646a3fcf908ed573f6a1c641661050b27e9a655961",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

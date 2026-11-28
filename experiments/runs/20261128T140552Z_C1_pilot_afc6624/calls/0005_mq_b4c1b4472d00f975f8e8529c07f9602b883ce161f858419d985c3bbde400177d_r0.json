@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 5,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 5.235,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_b4c1b4472d00f975f8e8529c07f9602b883ce161f858419d985c3bbde400177d",
+  "raw_text": "{\n  \"answer\": \"B\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The key examination finding is a holosystolic murmur loudest at the apex that radiates to the axilla, accompanied by a midsystolic click.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"Physical examination shows a 3/6 holosystolic murmur that is loudest at the apex and radiates to the axilla with a mid-systolic click.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"The murmur identifies mitral regurgitation, while the midsystolic click points to mitral valve prolapse as its cause.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"First_Aid_Step1:000178\", \"Pediatrics_Nelson:001990\"]\n    },\n    {\n      \"sentence\": \"Myxomatous degeneration makes the mitral leaflets floppy, allowing them to prolapse into the left atrium during systole.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Pathoma_Husain:000117\"]\n    },\n    {\n      \"sentence\": \"Mitral valve prolapse can cause palpitations and atypical chest pain, and significant regurgitation can lead to heart failure, explaining the dyspnea and bilateral crackles.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Pathology_Robbins:001508\"]\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "db34e11759403ea4726f77c7a8fcbac8b477b6ec27f15947c6d9fa4597269220",
+    "user": "8bee1a1ddd7fcc33df6af99d7f8425c119af3c0b20bf98fb04bf6f3b21cc3bb6"
+  },
+  "response_id": "resp_02c94be131fba2f2016b0adfd741dc87d090b26d2b7e953c0f",
+  "round": 0,
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "schema_sha256": "a94f84c23670b5719c2db53d03e0d561f3c30741ebcc9ede09d262bcd84a6e73",
+  "status": "completed",
+  "total_latency_s": 5.235,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3898,
+    "output_tokens": 356,
+    "reasoning_tokens": 0
+  }
+}

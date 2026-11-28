@@ -1,0 +1,41 @@
+{
+  "answer": "B",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Physical exam reveals a high-pitched, harsh, holosystolic murmur that is best heard at the lower left sternal border. No cyanosis is observed.",
+        "sentence": "The child has exertional breathlessness and a harsh holosystolic murmur at the lower left sternal border, without cyanosis."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pediatrics_Nelson:002015"
+        ],
+        "question_quote": null,
+        "sentence": "A holosystolic murmur best heard at the lower left sternal border is characteristic of a ventricular septal defect."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "During systole, higher left ventricular pressure drives oxygenated blood through the defect into the right ventricle, producing a step-up in right ventricular oxygen tension."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Because the shunt does not introduce deoxygenated blood into the left ventricle, left ventricular and systemic arterial oxygen tensions remain normal."
+      }
+    ]
+  },
+  "question_id": "mq_9eed9dc111e3ed9c8aa8b3704df00e8560d3fd29fccbaba4c9508df0c9a5cfac",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}

@@ -1,0 +1,40 @@
+{
+  "answer": "D",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "D",
+    "explanation": [
+      {
+        "passage_ids": [],
+        "sentence": "Profound hypotension and cold, clammy skin indicate shock, and the combination of low cardiac output and elevated pulmonary capillary wedge pressure points to cardiogenic shock."
+      },
+      {
+        "passage_ids": [
+          "Neurology_Adams:002191"
+        ],
+        "sentence": "Acute myocardial infarction (I) can reduce cardiac output by impairing ventricular contraction."
+      },
+      {
+        "passage_ids": [],
+        "sentence": "Rapid atrial fibrillation (II) can precipitate cardiogenic shock by shortening ventricular filling time and eliminating coordinated atrial contraction."
+      },
+      {
+        "passage_ids": [
+          "Neurology_Adams:002191",
+          "Surgery_Schwartz:003597"
+        ],
+        "sentence": "Severe valvular stenosis (IV) can limit forward flow; mitral stenosis, for example, can also elevate pulmonary capillary wedge pressure."
+      },
+      {
+        "passage_ids": [],
+        "sentence": "Hemorrhage typically causes hypovolemic shock, massive pulmonary embolism causes obstructive shock, and sepsis typically causes distributive shock."
+      }
+    ]
+  },
+  "question_id": "mq_bc1defbfe9631047b557ef5e3b96edfbe24805d776189eb3ed4c6448cf03cf88",
+  "run_id": "20261128T140206Z_C1_pilot_dfa3295",
+  "validity": "valid"
+}

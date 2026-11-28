@@ -1,0 +1,42 @@
+{
+  "answer": "A",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Coronary arteriography shows a reduced ejection fraction, a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery.",
+        "sentence": "Coronary arteriography shows reduced ejection fraction and two-vessel disease, with 65% stenosis of the left anterior descending artery and 75% stenosis of the left circumflex artery."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "A 62-year-old man with a past medical history of previous myocardial infarction, angina, hypertension, hyperlipidemia, diabetes mellitus, peripheral vascular disease, and below knee amputation has developed new chest pain.",
+        "sentence": "He has diabetes and a history of myocardial infarction and angina, and he has developed new chest pain."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:013298",
+          "InternalMed_Harrison:012702"
+        ],
+        "question_quote": null,
+        "sentence": "CABG is the best choice because diabetes and impaired left ventricular function favor surgical revascularization over PCI in multivessel disease involving the LAD, particularly when the LAD lesion is proximal."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Heparin may be used acutely if an acute coronary syndrome is suspected, and a long-acting nitrate can relieve angina, but neither provides definitive revascularization."
+      }
+    ]
+  },
+  "question_id": "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+  "run_id": "20261128T140552Z_C1_pilot_afc6624",
+  "validity": "valid"
+}
