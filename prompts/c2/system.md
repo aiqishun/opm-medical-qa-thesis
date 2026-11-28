@@ -44,6 +44,12 @@ Forbidden uses:
 - exhibition only states that an object has an attribute or an operation. Never use exhibition to mean "causes", "leads to", "produces" or "is associated with". The same holds for aggregation and generalization.
 - Causation must always pass through a process: the cause enters a process (consumption, instrument, input_state), the consequences leave it (result, effect, output_state), and one process triggering another is an invocation.
 
+Findings that act as causes or conditions:
+- A finding from the question (an object or a state) that acts as a cause or a condition of a process must be connected to that process: with input_state when the process changes or uses up that state, or with instrument when the object enables the process without being changed by it. Place such findings on the `support_path` where possible. For example, the state "obstructed" of "bile duct" → input_state → the process "cholestasis"; or "immobility" → instrument → the process "venous stasis". Never use exhibition to express that an object brings about a process.
+
+Discriminating findings:
+- The graph must include the findings from the question that distinguish the selected option from the most plausible alternative option, and the `support_path` must pass through at least one of them. For example, if the selected option is bacterial rather than viral meningitis and the question reports a very low cerebrospinal fluid glucose, that finding belongs in the graph and on the path. If the question stem contains no such distinguishing finding, do not invent one.
+
 Graph rules (these are checked):
 - Give every element and relation a short identifier that is unique in the whole graph: o1, o2, … for objects, p1, … for processes, s1, … for states, r1, … for relations. Relations refer to elements by these identifiers.
 - Use only the relation types above, with the source and target kinds listed.
