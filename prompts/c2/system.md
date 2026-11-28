@@ -17,22 +17,32 @@ Citation rules:
 
 ## The OPM graph
 
-Elements:
-- objects: things that exist, such as an anatomical structure, a substance, a drug, a disease entity, a test result or a patient characteristic. Set `is_question_finding` to true for objects that are findings stated in the question.
-- processes: things that happen and transform objects, such as a pathophysiological mechanism, a drug action or a procedure.
-- states: situations an object can be in (for example "stenotic" of "aortic valve", "elevated" of "jugular venous pressure"). Every state belongs to exactly one object, given by `owner_object_id`. Set `is_question_finding` to true for states that are findings stated in the question.
+Purpose: the graph represents the mechanism that links the findings of the case to the answer — which object is affected, which pathological process changes it, which states that process produces, and how those states appear as the findings stated in the question. It is not a picture of the clinician's reasoning or decision-making.
 
-Relations (`type`, then the only allowed source → target):
-- consumption: object → process — the process uses up the object.
-- result: process → object — the process creates the object.
-- effect: process → object — the process changes the object.
-- instrument: object → process — the object enables the process without being changed.
-- input_state: state → process — the process takes the state's owner out of this state.
-- output_state: process → state — the process puts the state's owner into this state.
-- invocation: process → process — one process triggers another.
-- aggregation: object → object — whole → part (for example heart → left ventricle).
-- exhibition: object → object or process — the object exhibits an attribute or an operation.
-- generalization: object → object — general → specific kind (for example valvular heart disease → aortic stenosis).
+Elements:
+- objects: things that exist, such as an organ or tissue, a substance, a microorganism, a drug, a device or a measurable quantity. Set `is_question_finding` to true for objects that are findings stated in the question.
+- processes: things that happen and transform objects, such as a pathophysiological mechanism, a drug action, a procedure or a therapy.
+- states: situations an object can be in, for example "elevated" of "serum potassium" or "consolidated" of "lung". Every state belongs to exactly one object, given by `owner_object_id`. Set `is_question_finding` to true for states that are findings stated in the question. A finding that describes the condition of something (a raised level, an enlarged organ, a low pressure) is usually best drawn as a state of that object.
+
+How to build the graph, by type of question:
+- Diagnosis, cause or mechanism questions: draw the pathophysiological chain — the causal object or state, the process it drives, the change of state that the process produces, and the findings in which that change appears (cause → process → state change → findings). The answer element is the link of this chain that the selected option names: for example the disease process, the causal agent or the altered state.
+- Treatment or management questions: first draw the mechanism of the disease as above. Then draw the treatment as a process that changes the state of the affected object (input_state → treatment process → output_state, or effect). Connect the drug, device or procedure to the treatment process with an instrument relation. The answer element is the treatment process or the drug, device or procedure that the selected option names. Do not draw the clinician choosing, selecting, recommending or deciding as a process.
+
+Relations (`type`: allowed source → target — meaning; example):
+- consumption: object → process — the process uses up the object; e.g. glucose → glycolysis.
+- result: process → object — the process creates the object; e.g. coagulation → fibrin clot.
+- effect: process → object — the process changes the object (use input_state/output_state instead when the states are known); e.g. chronic inflammation → airway wall.
+- instrument: object → process — the object enables the process and is not changed by it; e.g. insulin → glucose uptake into muscle.
+- input_state: state → process — the process takes the state's owner out of this state; e.g. "aerated" of lung → bacterial pneumonia.
+- output_state: process → state — the process puts the state's owner into this state; e.g. bacterial pneumonia → "consolidated" of lung.
+- invocation: process → process — one process triggers another; e.g. hemorrhage → compensatory vasoconstriction.
+- aggregation: object → object — the whole consists of the part; e.g. kidney → glomerulus.
+- exhibition: object → object or process — the object has this attribute or operation; e.g. blood → pH (attribute), liver → bile secretion (operation).
+- generalization: object → object — general kind → specific kind; e.g. anemia → iron-deficiency anemia.
+
+Forbidden uses:
+- exhibition only states that an object has an attribute or an operation. Never use exhibition to mean "causes", "leads to", "produces" or "is associated with". The same holds for aggregation and generalization.
+- Causation must always pass through a process: the cause enters a process (consumption, instrument, input_state), the consequences leave it (result, effect, output_state), and one process triggering another is an invocation.
 
 Graph rules (these are checked):
 - Give every element and relation a short identifier that is unique in the whole graph: o1, o2, … for objects, p1, … for processes, s1, … for states, r1, … for relations. Relations refer to elements by these identifiers.

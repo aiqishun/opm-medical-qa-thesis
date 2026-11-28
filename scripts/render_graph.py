@@ -25,7 +25,11 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "outputs/graphs"
 
-ARROWS = {  # OPM link type -> Mermaid arrow (normal, on support path)
+# OPM link type -> Mermaid arrow (normal, on support path). Every arrow form
+# below was rendered with @mermaid-js/mermaid-cli 11.4.2 and checked in the SVG:
+# -->/==> point end, <-->/<==> point at both ends, --o/==o circle end,
+# -.-> dotted, "-. text .-" dotted line without a marker; == means thick.
+ARROWS = {
     "consumption": ("-->", "==>"), "result": ("-->", "==>"), "effect": ("<-->", "<==>"),
     "instrument": ("--o", "==o"), "input_state": ("-->", "==>"), "output_state": ("-->", "==>"),
     "invocation": ("-.->", "==>"), "aggregation": ("-->", "==>"), "exhibition": ("-->", "==>"),
