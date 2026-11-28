@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answer", "explanation"],
+  "properties": {
+    "answer": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D", "abstain"],
+      "description": "The selected option label, or \"abstain\"."
+    },
+    "explanation": {
+      "type": "array",
+      "description": "The explanation, one entry per sentence, in reading order.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sentence", "passage_ids"],
+        "properties": {
+          "sentence": {
+            "type": "string",
+            "description": "One sentence of the explanation."
+          },
+          "passage_ids": {
+            "type": "array",
+            "description": "Identifiers of the provided passages that support this sentence; empty if none does.",
+            "items": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
+}
