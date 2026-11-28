@@ -14,15 +14,24 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["sentence", "passage_ids"],
+        "required": ["sentence", "grounding", "question_quote", "passage_ids"],
         "properties": {
           "sentence": {
             "type": "string",
             "description": "One sentence of the explanation."
           },
+          "grounding": {
+            "type": "string",
+            "enum": ["question", "passages", "none"],
+            "description": "question: restates information from the question stem; passages: supported by the cited passages; none: neither (own knowledge)."
+          },
+          "question_quote": {
+            "type": ["string", "null"],
+            "description": "For grounding=question: the verbatim span of the question stem that the sentence restates. Otherwise null."
+          },
           "passage_ids": {
             "type": "array",
-            "description": "Identifiers of the provided passages that support this sentence; empty if none does.",
+            "description": "Identifiers of the provided passages that support this sentence. At least one for grounding=passages; empty for grounding=none.",
             "items": {"type": "string"}
           }
         }

@@ -30,7 +30,12 @@ class FakeClient:
         return self.responder(request)
 
 
-def c1_json(answer: str, citations: list[list[str]]) -> str:
+def c1_json(answer: str, citations: list[list[str]], groundings: list[str] | None = None,
+            quotes: list[str | None] | None = None) -> str:
+    """Default grounding: "passages" if the sentence cites something, else "none"."""
+    groundings = groundings or ["passages" if ids else "none" for ids in citations]
+    quotes = quotes or [None] * len(citations)
     return json.dumps({"answer": answer,
-                       "explanation": [{"sentence": f"Sentence {i}.", "passage_ids": ids}
-                                       for i, ids in enumerate(citations)]})
+                       "explanation": [{"sentence": f"Sentence {i}.", "grounding": g, "question_quote": q,
+                                        "passage_ids": ids}
+                                       for i, (ids, g, q) in enumerate(zip(citations, groundings, quotes))]})

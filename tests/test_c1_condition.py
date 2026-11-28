@@ -62,7 +62,9 @@ def _scripted_responder():
     """q0: correct answer with one legal and one illegal citation; q1: abstain; q2: unparseable."""
     def respond(request: LLMRequest):
         if "Stem 0" in request.user_prompt:
-            return make_response(c1_json("A", [["Book:0000000"], [], ["Made:up"]]))
+            return make_response(c1_json("A", [[], ["Book:0000000"], [], ["Made:up"], [], ["Book:0000001"]],
+                                         groundings=["question", "passages", "none", "passages", "question", "none"],
+                                         quotes=["STEM  0 with", None, None, None, "not in the stem", None]))
         if "Stem 1" in request.user_prompt:
             return make_response(c1_json("abstain", [[]]))
         return make_response('{"answer": "C", "explanation": [')
@@ -137,6 +139,35 @@ def test_c1_parse_accepts_valid_output():
     schema = C1Agent(CONFIG, FakeClient(lambda r: None)).schema
     parsed = parse_c1_output(make_response(c1_json("abstain", [["X:1"], []])), schema)
     assert parsed["valid"] and parsed["output"]["answer"] == "abstain"
+
+
+def test_c1_schema_requires_grounding_fields():
+    schema = C1Agent(CONFIG, FakeClient(lambda r: None)).schema
+    missing = '{"answer": "A", "explanation": [{"sentence": "s", "passage_ids": []}]}'
+    bad_enum = '{"answer": "A", "explanation": [{"sentence": "s", "grounding": "x", "question_quote": null, "passage_ids": []}]}'
+    for raw in (missing, bad_enum):
+        assert parse_c1_output(make_response(raw), schema)["reason"].startswith("schema_violation")
+    item = schema["properties"]["explanation"]["items"]
+    assert set(item["required"]) == set(item["properties"])  # strict structured output: every field required
+
+
+@pytest.mark.parametrize("sentence, expected", [
+    ({"grounding": "question", "question_quote": "x", "passage_ids": []}, []),
+    ({"grounding": "question", "question_quote": " ", "passage_ids": []}, ["question_without_quote"]),
+    ({"grounding": "passages", "question_quote": None, "passage_ids": []}, ["passages_without_citation"]),
+    ({"grounding": "passages", "question_quote": "q", "passage_ids": ["a"]}, ["quote_on_non_question_sentence"]),
+    ({"grounding": "none", "question_quote": None, "passage_ids": ["a"]}, ["none_with_citation"]),
+])
+def test_grounding_rules(sentence, expected):
+    assert score_run.sentence_violations(sentence) == expected
+
+
+def test_quote_normalization():
+    stem = "A 62\u2011year\u2010old man has  \u201ccrushing\u201d chest pain\u2014radiating to the jaw."
+    assert score_run.quote_in_stem('"Crushing" chest pain-radiating', stem)
+    assert score_run.quote_in_stem("chest   pain.", stem)
+    assert not score_run.quote_in_stem("chest pain radiating", stem)
+    assert not score_run.quote_in_stem("  ...  ", stem)
 
 
 def test_condition_registry():
@@ -214,8 +245,16 @@ def test_score_run(fake_data):
     score = score_run.score_run(run_dir, dataset_dir=fake_data / "dataset")
     answers, citations, cost = score["answers"], score["citations"], score["cost"]
     assert answers == {"n_questions": 3, "correct": 1, "accuracy": 1 / 3, "abstain": 1, "invalid": 1, "missing": 0}
-    assert citations["cited_ids"] == 2 and citations["cited_ids_in_Eq"] == 1
-    assert citations["citation_validity_rate"] == 0.5
+    assert citations["cited_ids"] == 3 and citations["cited_ids_in_Eq"] == 2
+    assert citations["citation_validity_rate"] == pytest.approx(2 / 3)
+    g = score["grounding"]
+    assert g["counts"] == {"question": 2, "passages": 2, "none": 3}  # q1 contributes one "none"
+    assert g["question_quotes_checked"] == 2 and g["question_quotes_verbatim"] == 1
+    assert g["passages_sentences"] == 2 and g["passages_sentences_all_ids_in_Eq"] == 1
+    assert g["passages_citation_validity_rate"] == 0.5
+    assert g["rule_violations"] == {"none_with_citation": 1}
+    assert cost["reasoning_tokens_per_question"] == {"n": 3, "zero": 0, "min": 200, "max": 200, "mean": 200,
+                                                     "median": 200}
     assert citations["outputs_all_citations_valid"] == 0 and citations["outputs_with_citations"] == 1
     assert cost["calls"] == 3 and cost["input_tokens"] == 3000 and cost["output_tokens_incl_reasoning"] == 900
     assert cost["reasoning_tokens"] == 600
