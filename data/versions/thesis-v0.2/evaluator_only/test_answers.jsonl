@@ -1,0 +1,28 @@
+{"answer": "Prolonged QT interval", "answer_idx": "C", "id": "mq_05861c436716ec18f0778bf45a65f70997d07cd452cddb50bc2235aee036a43d", "original_split": "test"}
+{"answer": "Increased capillary hydrostatic pressure", "answer_idx": "C", "id": "mq_091aabf3f53d13170f9737558a09585d256f0d9c7cc5a8e3a09839129a209d70", "original_split": "test"}
+{"answer": "Clopidogrel", "answer_idx": "C", "id": "mq_0a7d81ed4d543350f6b1fae3a43778b490d47f3ac54c6a7a96889ffa9d3399d1", "original_split": "test"}
+{"answer": "Ibuprofen + colchicine +/- omeprazole", "answer_idx": "B", "id": "mq_0bbe56b9e72c1c880f8ff630f058ec70f0588169ea6fe44d5cddd34198ea8e17", "original_split": "test"}
+{"answer": "Acute arterial occlusion", "answer_idx": "C", "id": "mq_11c32a243c25f448322e2cdfb885eb1b1ed316c5dd69850b273687cf495439c2", "original_split": "test"}
+{"answer": "V/Q scan", "answer_idx": "C", "id": "mq_17a57ddf62f08005aac8b6f4f736c8cccb0fc059eb12d639726e5f33555f2e28", "original_split": "test"}
+{"answer": "Staphylococcus aureus", "answer_idx": "B", "id": "mq_19a7ae8227bd10dae271b42fc151ab52cab31861c22bcb07103847475d9f300c", "original_split": "test"}
+{"answer": "Late systolic crescendo murmur at the apex with mid-systolic click", "answer_idx": "B", "id": "mq_1e35a856f681e4cd8e6decc0c1864a57d0e05ed568adfeda7a2e7e4c70d27749", "original_split": "test"}
+{"answer": "Cardiac pacing", "answer_idx": "C", "id": "mq_21369b80b18fbe79a483d8792faef8b417cc3c68c5e5e57571532344860907a3", "original_split": "test"}
+{"answer": "Group D streptococci", "answer_idx": "D", "id": "mq_28dfd090e8b8f4003eebe36f1b2d15d21262a2c3e78547ec4204f839f1c9e209", "original_split": "test"}
+{"answer": "Pericardiocentesis", "answer_idx": "A", "id": "mq_2f2c93e81a637268e4c9badcb75a62c9f501baa2f83faae36b420b927ffee54e", "original_split": "test"}
+{"answer": "Interrupted 2-0 polypropylene suture with supporting pledgets", "answer_idx": "C", "id": "mq_330525b047526b591b18f29b9f44a9bfb9da433823410d179b8c1d8c1a6e7a0c", "original_split": "test"}
+{"answer": "Propranolol", "answer_idx": "A", "id": "mq_37e2c2f3ffde349b25dd2ea5c8d05167c1d1ba431297e18ae175d5898574ab42", "original_split": "test"}
+{"answer": "Echocardiogram", "answer_idx": "B", "id": "mq_703b4c2730e2deb11a9e0009afddf550830b8fc7d4c7a7f8afacf15115d3226b", "original_split": "test"}
+{"answer": "Indomethacin", "answer_idx": "A", "id": "mq_70f5eb122612d9f85df367858f6cd11ee5a8285042519ebae5c09cf5e4e32bd8", "original_split": "test"}
+{"answer": "Repeat blood cultures now", "answer_idx": "A", "id": "mq_73710f71d011f2798b1ce71bfb567d0e62852e24a1ab7fded55d75a207a72649", "original_split": "test"}
+{"answer": "Endocardial cushion", "answer_idx": "A", "id": "mq_9c73874479baa5a53461d21fd3e16ed136b8f235d7d1e72a2ff4007c97f71f9e", "original_split": "test"}
+{"answer": "Systolic murmur that increases with hand clenching", "answer_idx": "A", "id": "mq_9d945e0ec10bd87884fed08dad22aebd8c1523d403d712bf3e6a8fc5bab1eb2c", "original_split": "test"}
+{"answer": "Parasitic infection", "answer_idx": "C", "id": "mq_a23a0d056298452a3141ea2ed80ca8c475d01b41193e6a222b11faf9a796d849", "original_split": "test"}
+{"answer": "Coronary artery vasospasm", "answer_idx": "A", "id": "mq_b64cff7c80b8fc435190da5acd4cdff643353462585f2311e5a0e3f04fb421ae", "original_split": "test"}
+{"answer": "Vasovagal syncope", "answer_idx": "A", "id": "mq_b8590d478c369bd6b45d1a7bbbefe082e5cba0efb4406b161a84da955d8a4d07", "original_split": "test"}
+{"answer": "Subcutaneous fondaparinux", "answer_idx": "A", "id": "mq_b9a2286e859a39da42681e86d9acb246d3dbb870ffb2e209270bf4c1d889b463", "original_split": "test"}
+{"answer": "Myocardial perfusion scan under pharmacological stress", "answer_idx": "A", "id": "mq_c07caf85c639663199af19fa503eff9e0fccb665e893472a8e93dc2956182a7c", "original_split": "test"}
+{"answer": "High LDL-cholesterol", "answer_idx": "C", "id": "mq_c4a495bda70bd6b588e89b84f5adb954e77714cf2845c15f80c36795448a5bff", "original_split": "test"}
+{"answer": "Granulomas with giant cells", "answer_idx": "D", "id": "mq_d138f56a33d18d0341318ca7e2f1db87181b74d3d7befb631c487207f5e6b022", "original_split": "test"}
+{"answer": "Gastritis", "answer_idx": "C", "id": "mq_d5819cff5d6a85ae44470ba4a4618172476f606fd8f5c89df37d94e218792e8a", "original_split": "test"}
+{"answer": "22q11 deletion", "answer_idx": "A", "id": "mq_deb13a78384e054ee263801f343980b06d931a99b88113514891d99829babb6a", "original_split": "test"}
+{"answer": "A reduction in diastolic filling time", "answer_idx": "D", "id": "mq_e4120b536bf39418f3c0eb1362647ab2f35f801c0d68847af0f11586fc1b4f34", "original_split": "test"}

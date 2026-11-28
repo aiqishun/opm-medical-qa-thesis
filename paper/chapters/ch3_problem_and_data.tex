@@ -6,7 +6,7 @@
 % 本章作用：定义任务（输入/输出/约束），并说明评测数据如何得到、为什么可信。
 % 写作依据：docs/DATA_AUDIT.md, docs/DATA_PREPARATION.md,
 %           data/versions/thesis-v0.1/{README.md, manifest.json}
-% 所有数字均来自 manifest.json；审核完成后需更新 \todo 部分。
+% 所有数字均来自 thesis-v0.1 和 thesis-v0.2 的 manifest.json。
 %==============================================================================
 
 This chapter defines the question answering task studied in this thesis and describes the data protocol used for development and evaluation. Section~\ref{sec:task_definition} specifies the inputs, outputs, and constraints of the task. Section~\ref{sec:data_source} introduces the source data. Section~\ref{sec:inherited_audit} reports an audit of the evaluation material inherited from the earlier conference prototype and explains why that material is not used directly as a thesis test set. Section~\ref{sec:dataset_construction} describes the construction of the versioned dataset \dataversion{}, and Section~\ref{sec:review_protocol} defines the review and freezing procedure for the final evaluation set. Section~\ref{sec:leakage_control} summarizes the measures taken against information leakage.
@@ -139,7 +139,7 @@ Based on the audit, a new dataset version, \dataversion{}, was constructed with 
 \node[box, below right=8mm and -12mm of raw] (screen) {Question-only screening\\of unexposed stems};
 \node[box, below=of screen] (cand) {Test candidates: 51\\(training candidates: 456)};
 \node[box, below=of cand] (review) {Manual review\\scope, visuals, duplicates};
-\node[key, below=of review] (test) {Frozen evaluation set\\\todo{final size}};
+\node[key, below=of review] (test) {Frozen evaluation set\\28 questions};
 
 \draw[arr] (raw) -- (legacy);
 \draw[arr] (legacy) -- (ann);
@@ -188,7 +188,7 @@ angina; aortic coarctation; aortic stenosis; arrhythmia; atrial fibrillation; ca
 
 Two exclusion rules are applied before screening. First, every stem that appeared in the inherited candidate lists or in earlier graph annotations is excluded, including stems that appear with different options. This ensures that no question seen during the conference work, or during its manual analysis, enters the evaluation pool. Second, the source partition of each record is preserved.
 
-Screening produced 51 candidates from the source test partition and 456 from the source training partition. The 51 test-partition candidates form the primary evaluation pool. The training-partition candidates are counted but not labeled; they are a reserve that can be reviewed under the same protocol if the primary pool proves too small. \todo{State whether the reserve was used and how many questions were added.}
+Screening produced 51 candidates from the source test partition and 456 from the source training partition. The 51 test-partition candidates form the primary evaluation pool. The training-partition candidates are counted but not labeled; they are a reserve that can be reviewed under the same protocol if the primary pool proves too small. The reserve was not used for the frozen evaluation set reported in this thesis.
 
 Keyword membership is not a judgment of clinical relevance. A question may mention a murmur while testing an unrelated concept, and a cardiology question may use none of the listed terms. The candidates therefore require manual review (Section~\ref{sec:review_protocol}).
 
@@ -196,7 +196,7 @@ Keyword membership is not a judgment of clinical relevance. A question may menti
 
 Exact identifiers do not detect questions that differ only slightly in wording. Each test candidate is compared with every other question in the inherited candidate pool and in the new candidate lists (pairs with an identical stem are handled by the stem identifier instead), and a pair is flagged as a possible near duplicate if it satisfies all of the following: the ratio of the shorter to the longer normalized stem length is at least 0.85, the Jaccard similarity of their word sets is at least 0.90, and their character-level sequence similarity is at least 0.92. One pair was flagged. It spans the source test and training partitions and requires manual inspection. These lexical thresholds generate review candidates only; they cannot establish that all semantic duplicates have been found.
 
-In addition, 9 of the 51 test candidates mention a figure, image, photograph, diagram, or radiograph, or refer to material ``shown'' above or below. Such questions may be unanswerable if the referenced material is missing. The flag prompts inspection; it does not by itself make a question invalid.
+In addition, 9 of the 51 test candidates mention a figure, image, photograph, diagram, or radiograph, or refer to material ``shown'' above or below. Such questions may be unanswerable if the referenced material is missing. The flag prompts inspection; it does not by itself make a question invalid. Manual review showed that the flag is imperfect in both directions: in four flagged questions the referenced material was given in the text or was not needed, while two unflagged questions referred to missing material with wording that the pattern does not match (``picture'' and the plural ``Figures''). Exhibit dependence was therefore judged for every candidate during review rather than taken from the flag.
 
 \subsection{Released Files}
 
@@ -229,41 +229,90 @@ File & Intended use \\
 
 \subsection{Scope Definition}
 
-A question is in scope if its \emph{main tested concept} is cardiovascular. A cardiac history, an abnormal vital sign, a cardiovascular risk factor, or a cardiovascular distractor option is not sufficient on its own. The scope rule is written down before any candidate is reviewed and before any system output is inspected.
-
-\todo{Insert the final written scope rule, including decisions on pharmacology questions, calculations, vascular disease, and secondary neurological injury. Copy it verbatim from the review record.}
-
-\subsection{Review Fields}
-
-Each candidate is reviewed with the question and options only; answer keys are not shown in the review form. For every candidate, the reviewer records the fields in Table~\ref{tab:review_fields}.
+A question is in scope if its \emph{main tested concept} is cardiovascular. Table~\ref{tab:scope_rules} lists the final scope rules, including the decisions for boundary cases. The rules were fixed by the author before the final labels were assigned. Several boundary rules were added after reading the candidate questions; they were not informed by answer keys or by any system output.
 
 \begin{table}[H]
 \centering
-\caption{Fields recorded during manual review of each evaluation candidate.}
+\caption{Final scope rules for the evaluation set.}
+\label{tab:scope_rules}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.24\linewidth} >{\raggedright\arraybackslash}X}
+\toprule
+Case & Rule \\
+\midrule
+Core rule & A question is in scope if its main tested concept is cardiovascular. A cardiac history, vital-sign value, risk factor, or cardiovascular distractor option is not sufficient on its own. \\
+Cardiovascular pharmacology & Include drug selection, treatment mechanisms, contraindications and adverse effects when the question directly tests cardiovascular care or physiology. Exclude primarily noncardiovascular drug effects and toxicology. \\
+Calculations & Include if the calculation directly computes a cardiovascular physiological parameter (e.g., cardiac output, ejection fraction, systemic vascular resistance, mean arterial pressure). \\
+Vascular disease & Include aortic, peripheral arterial and venous thrombotic disease, and questions that directly test a circulatory or hemodynamic mechanism. \\
+Pulmonary embolism & Include pulmonary embolism and pulmonary vascular disease when they are the primary target of diagnosis, mechanism or management. \\
+Secondary neurological injury & Include if the primary tested concept is cardiovascular prevention or management of the cardiac source (e.g., anticoagulation for atrial fibrillation to prevent cardioembolic stroke); exclude pure neurological localization. \\
+Congenital heart disease in syndromes & Include diagnosis, embryology or etiology of a cardiac lesion. Exclude syndrome recognition and questions asking for a noncardiac associated finding. \\
+Other boundary cases & Assess scope and test eligibility separately. Keep exhibits described in sufficient text. Exclude essential missing exhibits and duplicates. Use \texttt{unclear} for unresolved scope, exhibit dependence or source quality. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\todo{Rule for cardiovascular risk-factor management (one included question tests it): add an explicit clause, or explain here why the core rule covers it.}
+
+\subsection{Review Fields}
+
+Each candidate is reviewed with the question and options only; answer keys are not shown in the review form. For every candidate, the fields in Table~\ref{tab:review_fields} are recorded. The recorded reasons describe the tested concept only and do not state the answer.
+
+\begin{table}[H]
+\centering
+\caption{Fields recorded during review of each evaluation candidate.}
 \label{tab:review_fields}
 \begin{tabularx}{\linewidth}{l >{\raggedright\arraybackslash}X}
 \toprule
 Field & Content \\
 \midrule
-\texttt{is\_cardiology} & \texttt{yes}, \texttt{no}, or \texttt{unclear} under the written scope rule \\
-\texttt{include\_for\_evaluation} & \texttt{yes}, \texttt{no}, or \texttt{unclear}, also accounting for missing visual material and unresolved duplicates \\
-\texttt{reviewer}, \texttt{review\_date} & Who made the decision and when \\
-\texttt{reason\_and\_evidence} & Short justification for the decision \\
+\texttt{is\_cardiology} & \texttt{yes} or \texttt{no} under the scope rules (\texttt{unclear} allowed during drafting only) \\
+\texttt{include\_for\_evaluation} & \texttt{yes} or \texttt{no}, also accounting for missing exhibits, duplicates and source quality \\
+\texttt{exclusion\_reason} & Out of scope, essential missing exhibit, near duplicate across source partitions, or source quality \\
+\texttt{rule\_applied} & The rule in Table~\ref{tab:scope_rules} on which the decision rests \\
+\texttt{reason\_and\_evidence} & Short justification naming the tested concept \\
+\texttt{reviewer}, \texttt{review\_date} & Who made the final decision and when \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-For the flagged near-duplicate pair, the reviewer compares stems, negations, numerical values, options, and source partitions. If the two records represent the same underlying item, they are kept in the same partition. For the two conflicting relevance labels, an adjudicated label is recorded only together with the reviewer, date, and supporting reason; the original labels remain preserved.
+For the flagged near-duplicate pair, stems, numerical values, final questions, options, and source partitions are compared. For the two conflicting relevance labels, an adjudicated label is recorded together with the reviewer, date, and supporting reason; the original labels remain preserved.
 
-\subsection{Reviewer}
+\subsection{Labeling Procedure}
 
-\todo{Describe who performed the review and their actual qualifications (e.g., ``the author, a graduate student in information science without clinical training''). Do not claim expert or multi-rater review unless it took place. If a second reviewer checked a subset, report the subset size and agreement.}
+Candidate labels were drafted with the assistance of large language models. Three LLMs (ChatGPT, Gemini, and Claude) independently drafted labels for all 51 candidates. Each draft was produced under a different preliminary version of the scope rules. On \texttt{include\_for\_evaluation}, the three drafts agreed on 36 of 51 candidates (70.6\%); pairwise agreement ranged from 39 to 41 of 51. Because the drafts used different rule versions, these figures describe the stability of the drafting step, not inter-annotator agreement between human reviewers.
 
-\subsection{Freezing}
+The author then fixed the final rules in Table~\ref{tab:scope_rules}, all candidates were re-labeled under these rules, and the author confirmed every final decision, including all items on which the earlier drafts had disagreed. The author is a graduate student in information science without clinical training. \todo{Confirm this description of your background.} No independent clinical expert reviewed the labels; this limitation is discussed in Chapter~\ref{chap:discussion}.
 
-After the review, a new dataset version is built containing the final evaluation identifiers, the exclusion reason for every rejected candidate, the paired reference answers, and the checksums of all files. The evaluation set, the evidence corpus, the prompts, and the evaluation rules are frozen before any final experiment is run. Selection decisions never depend on whether a system answers a question correctly.
+\subsection{Review Outcome and Freezing}
 
-\todo{Report the outcome: number of candidates included, excluded (by reason: out of scope, missing visual material, duplicate, unclear), the final evaluation set size, and the version tag of the frozen dataset.}
+Table~\ref{tab:review_outcome} summarizes the outcome. Of the 51 candidates, 32 were judged in scope and 28 were included in the evaluation set. Two in-scope questions were excluded because a missing exhibit was essential for answering, one because it is a near duplicate of a source-training question, and one because its option set does not contain the histology expected for the described lesion, which raised doubts about the source item. This last decision was made without consulting the answer key.
+
+\begin{table}[H]
+\centering
+\caption{Outcome of the evaluation-candidate review.}
+\label{tab:review_outcome}
+\begin{tabular}{lr}
+\toprule
+Item & Count \\
+\midrule
+Candidates reviewed & 51 \\
+\quad Out of scope & 19 \\
+\quad In scope & 32 \\
+\qquad Excluded: essential missing exhibit & 2 \\
+\qquad Excluded: near duplicate across source partitions & 1 \\
+\qquad Excluded: source quality & 1 \\
+\textbf{Included in the evaluation set} & \textbf{28} \\
+\midrule
+Conflicting relevance labels adjudicated (both not in scope) & 2 \\
+Near-duplicate pairs resolved (same underlying item) & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The flagged near-duplicate pair was judged to be the same underlying item: the stems, findings and final questions are nearly identical and only the option sets differ. The source-test record is excluded, and both records are listed in a quarantine file so that neither can enter an evaluation set later, for example when the training reserve is reviewed.
+
+The frozen evaluation set is released as dataset version \texttt{thesis-v0.2}, built deterministically from \dataversion{} and the recorded decisions. It contains the 28 evaluation questions as model inputs, their reference answers in a separate evaluator-only file, every review decision with its reason, the final scope rules, and checksums of all files. The development pilot and the development pool are carried over unchanged. The evidence corpus, the prompts, and the evaluation rules are frozen before any final experiment is run, and selection never depended on whether a system answered a question correctly.
 
 %==============================================================================
 \section{Leakage Control}
@@ -275,6 +324,7 @@ The following measures prevent reference information from reaching the system.
   \item \textbf{Minimal input records.} Every model-input record contains exactly three fields: the identifier, the question, and the options. Answers, answer indices, relevance labels, screening terms, prior model judgments, and annotation reasons are excluded.
   \item \textbf{Separated reference files.} Reference answers are stored in an evaluator-only directory. Because a directory name is not an access-control boundary, the experiment runner loads only the designated input file, and evaluator files are excluded from the retrieval corpus.
   \item \textbf{Exposure-aware screening.} Stems seen during the conference work are excluded from the evaluation pool, as described in Section~\ref{sec:dataset_construction}.
+  \item \textbf{Duplicate quarantine.} Records judged to be the same underlying item are listed in a quarantine file and can never enter an evaluation set.
   \item \textbf{Traceability.} Each derived file is linked to the raw source by checksums and source row indices recorded in the manifest.
 \end{itemize}
 
@@ -284,4 +334,4 @@ These measures prevent leakage at the level of this project. They cannot rule ou
 \section{Chapter Summary}
 \label{sec:ch3_summary}
 
-This chapter defined the task as multiple-choice cardiology question answering with an evidence-linked OPM explanation, and separated answer correctness from explanation support. An audit of the inherited material showed that its packaged benchmark mixes source partitions, contains cross-split duplicates and conflicting labels, and was selected with access to answers. The thesis therefore constructs a new dataset version with content-based identifiers, a reproducible 20-question development pilot, and a question-only evaluation pool of 51 candidates that is reviewed and frozen before the final experiments. The next chapter describes the method evaluated on this data.
+This chapter defined the task as multiple-choice cardiology question answering with an evidence-linked OPM explanation, and separated answer correctness from explanation support. An audit of the inherited material showed that its packaged benchmark mixes source partitions, contains cross-split duplicates and conflicting labels, and was selected with access to answers. The thesis therefore constructs a new dataset version with content-based identifiers, a reproducible 20-question development pilot, and a question-only evaluation pool of 51 candidates. After LLM-assisted drafting and author adjudication under written scope rules, 28 questions form the frozen evaluation set \texttt{thesis-v0.2}. The next chapter describes the method evaluated on this data.

@@ -46,3 +46,6 @@ dist/
 /medqa_opm_task/data/raw/external/MedQA/*
 !/medqa_opm_task/data/raw/external/MedQA/README.md
 !/medqa_opm_task/data/raw/external/MedQA/LICENSE
+
+# Evidence corpus text (copyrighted textbooks); commit manifests only
+/data/corpus/*/passages.jsonl

@@ -3,60 +3,219 @@
 \updateheader{Chapter 4. Proposed Method}
 
 %==============================================================================
-% 写作时间：Day 2，边实现边写。必须与实际代码一致，未实现的部分不要写成已实现。
-% 学长的写法：开头概述 + 设计原则 → 总体架构图 → 按数据流每个模块一节
-% （为什么需要 → 输入/输出/算法 → 作用）→ 伪代码 → 实现细节 → 小结。
+% 进度稿版本（2026-11-28）：本章是设计，不是已实现的系统。
+% 实现完成后：删除 4.0 的状态说明，把 "is designed to" 改成实际实现的描述，
+% 并在 4.8 填入真实的模型、参数和代码版本。不要把没实现的部分写成已实现。
 %==============================================================================
 
-This chapter presents the proposed method. \todo{Overview paragraph and three design principles.}
+\todo{Progress draft: this chapter specifies the design. Implementation is in progress; details may change and will be updated to match the implemented system.}
 
+This chapter presents the proposed framework for evidence-grounded cardiology question answering. Section~\ref{sec:architecture} gives an overview. Section~\ref{sec:graph_contract} defines the evidence-linked OPM representation, which is the core of the method. Sections~\ref{sec:evidence_agent} to~\ref{sec:controller} describe the three agents and the controller that coordinates them. Section~\ref{sec:opcloud} describes how selected outputs are turned into reviewed OPM figures, and Section~\ref{sec:implementation} gives implementation details.
+
+The design follows three principles.
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{Every explanatory element is traceable.} Each object, process, state, and relation in a graph either cites the evidence passages that support it or is explicitly marked as unsupported.
+  \item \textbf{Checks are local.} Verification identifies the specific element that fails a check, so that a repair can change that element instead of regenerating the whole output.
+  \item \textbf{Cost is bounded and recorded.} The number of repair rounds is limited, and every model call, token count, and latency is logged, so that quality can be compared at known cost.
+\end{enumerate}
+
+%==============================================================================
 \section{Overall Architecture}
 \label{sec:architecture}
-% 放系统总图（FIG01，最好用 OPCloud 画；来不及就先用 TikZ，标注待替换）。
-\todo{Architecture figure and walkthrough of the processing flow.}
 
+Figure~\ref{fig:architecture} shows the processing flow for one question. A fixed retrieval step first returns a set of candidate passages from the evidence corpus. The Evidence Agent selects the passages and question spans that are relevant to the tested concept. The OPM Reasoning Agent selects an answer and builds an evidence-linked graph. Deterministic validators and the Verification Agent then check the graph. If problems are found and the repair budget is not exhausted, the controller sends a localized repair request either to the Evidence Agent (for missing evidence) or to the Reasoning Agent (for a problem in the graph). The final output and the full trace are stored unchanged and are evaluated separately.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  node distance=6mm and 10mm,
+  box/.style={draw, rounded corners=2pt, align=center, font=\small, minimum width=34mm, minimum height=10mm, fill=gray!8},
+  agent/.style={box, fill=blue!8},
+  store/.style={box, fill=green!8},
+  arr/.style={-{Stealth[length=2mm]}, thick},
+  back/.style={-{Stealth[length=2mm]}, thick, dashed}
+]
+\node[box] (q) {Question $q$, options $\mathcal{O}$};
+\node[box, right=of q] (ret) {Fixed BM25 retrieval\\passage set $E_q$};
+\node[agent, below=of q] (ev) {Evidence Agent};
+\node[agent, below=of ev] (re) {OPM Reasoning Agent};
+\node[agent, below=of re] (ve) {Verification Agent\\+ deterministic validators};
+\node[box, right=of ve] (ctl) {Controller\\(at most 2 repair rounds)};
+\node[store, below=of ve] (out) {Final answer, graph, trace\\(stored unchanged)};
+
+\draw[arr] (q) -- (ev);
+\draw[arr] (q) -- (ret);
+\draw[arr] (ret) |- (ev);
+\draw[arr] (ev) -- node[right, font=\scriptsize]{selected evidence} (re);
+\draw[arr] (re) -- node[right, font=\scriptsize]{answer + graph} (ve);
+\draw[arr] (ve) -- node[above, font=\scriptsize]{findings} (ctl);
+\draw[arr] (ve) -- node[right, font=\scriptsize]{accepted / budget exhausted} (out);
+\draw[back] (ctl.north) |- node[pos=0.25, right, font=\scriptsize]{graph issue} (re.east);
+\draw[back] (ctl.east) -- ++(6mm,0) |- node[pos=0.25, right, font=\scriptsize]{evidence gap} (ev.east);
+\end{tikzpicture}
+\caption{Processing flow of the proposed framework. Dashed arrows are repair routes. \todo{Replace with a reviewed OPCloud system diagram.}}
+\label{fig:architecture}
+\end{figure}
+
+For the controlled comparisons in this thesis, the retrieved passage set $E_q$ is computed once per question and shared by all system variants. The Evidence Agent therefore selects from $E_q$ but does not issue new searches. This isolates the effect of the representation and the agents from the effect of retrieval.
+
+%==============================================================================
 \section{Evidence-Linked OPM Representation}
 \label{sec:graph_contract}
-% 形式化定义 G=(O,P,S,R)：稳定 ID、对象/过程类型、状态归属（owner object）、
-% 关系词表及合法端点、每个元素/关系的证据引用、所选答案与支持它的图元素的链接。
-% 说明与会议版 JSON 的区别（会议版状态没有明确的归属对象）。
-\todo{Formal definition, relation vocabulary table, and an example.}
 
+\subsection{Motivation}
+
+The graphs of the earlier prototype listed objects, processes, and states as text labels. A state such as \emph{stenotic} was not attached to the object that has the state, relation types were not constrained, and no element referred to a source. As a result, a program could check that the graph was well formed, but not whether a relation was meaningful or supported. The representation defined here addresses these gaps.
+
+\subsection{Definition}
+
+\begin{definition}[Evidence-linked OPM graph]
+\label{def:graph}
+An evidence-linked OPM graph for a question is a tuple
+\begin{equation}
+  G = (O,\, P,\, S,\, \mathit{own},\, R,\, \mathit{ev},\, \mathit{supp}),
+  \label{eq:graph}
+\end{equation}
+where $O$ is a set of objects, $P$ a set of processes, and $S$ a set of states; $\mathit{own}: S \to O$ assigns every state to exactly one owning object; $R$ is a set of typed relations $(u, t, v)$ with source $u$, relation type $t$, and target $v$; $\mathit{ev}$ maps every element of $O \cup P \cup S \cup R$ to a (possibly empty) set of passage identifiers from $E_q$; and $\mathit{supp} \subseteq O \cup P \cup S \cup R$ is the set of elements that the graph declares as supporting the selected answer $\hat{a}$.
+\end{definition}
+
+Every element has a stable identifier, a type, and a label. A question finding (for example, a murmur or an ECG change) is represented as an object or a state and additionally points to the span of the question text in which it appears. Layout information is stored separately from the graph, so that rearranging a diagram cannot change its meaning.
+
+\subsection{Relation Vocabulary}
+
+The relation types follow the OPM link types defined in ISO/PAS~19450~\cite{iso_19450_2015}, restricted to those needed for mechanistic explanations. Each type constrains the kinds of elements it may connect (Table~\ref{tab:relations}).
+
+\begin{table}[H]
+\centering
+\caption{Relation types of the evidence-linked OPM graph and their endpoint constraints.}
+\label{tab:relations}
+\small
+\begin{tabularx}{\linewidth}{l l >{\raggedright\arraybackslash}X}
+\toprule
+Type & Endpoints & Meaning in an explanation \\
+\midrule
+Consumption & object $\to$ process & The process uses up the object \\
+Result & process $\to$ object & The process creates the object \\
+Effect & process $\leftrightarrow$ object & The process changes the object \\
+Input / output state & state $\to$ process $\to$ state & The process changes an object from one of its states to another \\
+Instrument & object $\to$ process & The object enables the process without being changed \\
+Invocation & process $\to$ process & One process triggers another \\
+Aggregation & object $\to$ object & Whole--part (e.g., heart and left ventricle) \\
+Exhibition & object $\to$ object/process & An object exhibits an attribute or operation \\
+Generalization & object $\to$ object & Kind-of relation (e.g., a valvular disease and its subtype) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+For an input/output state pair, both states must belong to the same object. This constraint, which the earlier representation could not express, prevents a common error in which a process appears to change one object into a state of another.
+
+\subsection{Answer Link}
+
+The selected answer is part of the graph. The Reasoning Agent marks the elements in $\mathit{supp}$ that lead to the answer, and these elements must form a connected path from at least one question finding to the element that corresponds to the selected option. If no such path exists, the graph does not explain the answer, regardless of how well its individual relations are supported.
+
+%==============================================================================
 \section{Evidence Agent}
 \label{sec:evidence_agent}
-% 输入：问题；工具：BM25 检索固定语料；输出：考点、问题中的关键片段、段落 ID、证据缺口。
-\todo{Write this section.}
 
+The Evidence Agent receives the question, the options, and the retrieved passage set $E_q$. It returns:
+\begin{itemize}
+  \item the tested concept, stated in one sentence;
+  \item the key findings of the question, each with its character span in the question text;
+  \item the identifiers of passages in $E_q$ that are relevant to the tested concept, each with the sentence that is relevant; and
+  \item a list of evidence gaps, that is, findings or steps for which no relevant passage was found.
+\end{itemize}
+The agent does not select an answer. Separating evidence selection from answer selection is intended to reduce the tendency to choose evidence that fits an answer already chosen.
+
+During repair, the Evidence Agent receives the list of gaps identified by the verifier and may select additional passages from $E_q$, or confirm that no passage in $E_q$ supports the requested step.
+
+%==============================================================================
 \section{OPM Reasoning Agent}
 \label{sec:reasoning_agent}
-% 输入：问题 + 允许使用的证据；输出：所选选项、简短解释、带证据引用的 OPM 图。
-\todo{Write this section.}
 
+The OPM Reasoning Agent receives the question, the options, and the evidence selected by the Evidence Agent. It returns the selected option (or an explicit abstention), a short explanation, and a graph according to Definition~\ref{def:graph}. The agent is instructed to cite, for each element, the passage identifiers that support it, and to leave the citation set empty rather than cite a passage that does not support the element. The output is requested in a fixed JSON schema.
+
+During repair, the agent receives its previous graph and a list of repair requests, each of which names an element and an issue. It is asked to change only the named elements unless the change makes other elements inconsistent.
+
+%==============================================================================
 \section{Verification Agent and Deterministic Validators}
 \label{sec:verification}
-% 程序化检查（schema、端点类型、状态归属、孤立节点、证据 ID 是否存在）
-% + 语义检查（无证据支持的关系、与题目不适用、答案与图冲突）。
-% 输出：局部修复请求（指向具体元素）。
-\todo{Write this section with a table of check types.}
 
+Verification combines checks that a program can perform with checks that require reading the text. Table~\ref{tab:checks} lists them.
+
+\begin{table}[H]
+\centering
+\caption{Verification checks.}
+\label{tab:checks}
+\small
+\begin{tabularx}{\linewidth}{l >{\raggedright\arraybackslash}X l}
+\toprule
+Check & Description & Performed by \\
+\midrule
+Schema & Output parses and follows the JSON schema & Program \\
+Endpoint types & Each relation connects element types allowed by Table~\ref{tab:relations} & Program \\
+State ownership & Every state has one owner; input/output states share the owner & Program \\
+Connectivity & No isolated elements; an answer path exists & Program \\
+Citation validity & Every cited passage identifier exists in $E_q$ & Program \\
+Evidence support & Each cited passage actually supports the element & Verification Agent \\
+Applicability & The element applies to this patient, not only to the disease in general & Verification Agent \\
+Answer consistency & The answer path supports the selected option rather than another option & Verification Agent \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Each finding names the element concerned, the check that failed, and a suggested action: \emph{add evidence}, \emph{revise relation}, \emph{reattach state}, or \emph{remove element}. Findings of type \emph{add evidence} are routed to the Evidence Agent; all others are routed to the Reasoning Agent.
+
+A passed check does not establish medical correctness. The validators confirm structure, and the Verification Agent judges support with respect to the cited passages. The Verification Agent is part of the system and is therefore not used as the independent evaluator in Chapter~\ref{chap:setup}.
+
+%==============================================================================
 \section{Bounded Repair Controller}
 \label{sec:controller}
-% 确定性控制器：执行顺序、最多 2 轮修复、停止条件、记录调用/token/耗时。
-% 放 Algorithm 伪代码。
-\todo{Write this section with Algorithm~1.}
 
+A deterministic controller coordinates the agents (Algorithm~\ref{alg:controller}). It allows at most $B = 2$ repair rounds. It stops when all checks pass, when the budget is exhausted, or when a round produces the same findings as the previous round. The output of the first round (before any repair) is stored together with the final output, so that the effect of repair can be measured without running the system twice.
+
+\begin{algorithm}[H]
+\caption{Bounded verification and repair for one question.}
+\label{alg:controller}
+\begin{algorithmic}[1]
+\Require question $q$, options $\mathcal{O}$, passages $E_q$, budget $B$
+\State $\mathcal{E} \gets \textsc{EvidenceAgent}(q, \mathcal{O}, E_q)$
+\State $(\hat{a}, G) \gets \textsc{ReasoningAgent}(q, \mathcal{O}, \mathcal{E})$
+\State $F \gets \textsc{Validate}(G, E_q) \cup \textsc{Verify}(q, \hat{a}, G, \mathcal{E})$
+\State store $(\hat{a}, G, F)$ as round 0
+\For{$b = 1$ \textbf{to} $B$}
+  \If{$F = \emptyset$} \State \textbf{stop} (accepted) \EndIf
+  \If{$F$ contains \emph{add evidence} findings}
+     \State $\mathcal{E} \gets \textsc{EvidenceAgent}(q, \mathcal{O}, E_q, \mathcal{E}, F)$
+  \EndIf
+  \State $(\hat{a}, G) \gets \textsc{ReasoningAgent}(q, \mathcal{O}, \mathcal{E}, G, F)$
+  \State $F' \gets \textsc{Validate}(G, E_q) \cup \textsc{Verify}(q, \hat{a}, G, \mathcal{E})$
+  \If{$F' = F$} \State \textbf{stop} (no progress) \EndIf
+  \State $F \gets F'$; store round $b$
+\EndFor
+\State \Return $(\hat{a}, G, F)$ and the trace of all rounds
+\end{algorithmic}
+\end{algorithm}
+
+If findings remain after the last round, the output is returned with its unresolved findings rather than discarded. The controller records, for every call, the agent, the round, the number of input and output tokens, and the latency.
+
+%==============================================================================
 \section{Semi-Automated OPCloud Modeling Workflow}
 \label{sec:opcloud}
-% 机器输出 → 建模包（elements.csv, relations.csv, candidate OPL, modeling steps）
-% → 人工在 OPCloud 中构建和审查 → 导出图片与 OPL。
-% 强调：定量评估只用原始机器输出；人工修改过的图只用于论文插图。
-\todo{Write this section; state clearly which steps are manual.}
 
+OPCloud is a web-based tool for building OPM models. Whether a model can be imported into OPCloud from an external file has not been established for the deployment used in this thesis. Selected outputs are therefore converted into a modeling package: tables of elements and relations with their identifiers, a draft of the corresponding OPM sentences, and ordered construction steps. A human builds the model in OPCloud from this package, reviews each element against the evidence, and records every change.
+
+The reviewed models are used only as figures and case studies. All quantitative results are computed on the raw machine outputs, so that human corrections made while drawing a figure cannot improve the reported performance of the system.
+
+\todo{Report the outcome of the OPCloud import test and the route actually used.}
+
+%==============================================================================
 \section{Implementation Details}
 \label{sec:implementation}
-% 模型名称与版本、prompt 固定方式、解码参数、代码提交和 tag。
-\todo{Fill in after the configuration is frozen.}
 
+\todo{Fill in after the configuration is frozen: model name and version, decoding parameters (temperature 0), maximum tokens, JSON schema version, prompt files and their hashes, code commit and git tag.}
+
+%==============================================================================
 \section{Chapter Summary}
 \label{sec:ch4_summary}
-\todo{Write this section.}
+
+This chapter defined an evidence-linked OPM representation with explicit state ownership, a constrained relation vocabulary, element-level evidence references, and an explicit link from the graph to the selected answer. It described three agents that select evidence, build the graph, and verify it, and a controller that performs at most two rounds of localized repair while recording cost. The next chapter describes how the contribution of each component is measured.

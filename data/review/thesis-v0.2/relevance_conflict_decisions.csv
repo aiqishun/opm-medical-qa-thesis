@@ -1,0 +1,3 @@
+id,adjudicated_label,evidence_and_reason,reviewer,review_date,labeling_note
+mq_093de410ec2db9f5a8ddc8f282d16f868c9d10727056e1c894263176625ec75d,no,Tested concept is the diagnosis of a metabolic disease presenting with hypotonia; myocardial hypertrophy is one clue (analogous to syndrome recognition).,SHUN QI,2026-11-28,"LLM-assisted: labels drafted by ChatGPT, Gemini and Claude; scope rules and final decisions by the author"
+mq_ac157320a3df22d124bdf21904156a2b7a9f8d79556c482da30b0286138d5002,no,Tested concept is the laboratory marker of a systemic neuroendocrine syndrome; the right-sided valve findings are a clue.,SHUN QI,2026-11-28,"LLM-assisted: labels drafted by ChatGPT, Gemini and Claude; scope rules and final decisions by the author"

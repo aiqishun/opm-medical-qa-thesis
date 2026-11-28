@@ -1,0 +1,128 @@
+{
+  "corpus_version": "medqa-textbooks-en-v1",
+  "source": "MedQA English textbooks (data_clean/textbooks/en); all books, no topic selection",
+  "chunking": {
+    "method": "pack whole paragraphs (line breaks) up to max_words; split longer paragraphs into overlapping windows",
+    "max_words": 200,
+    "overlap_words": 30
+  },
+  "passage_id_format": "<book>:<6-digit index>",
+  "books": [
+    {
+      "book": "Anatomy_Gray",
+      "file_sha256": "e042a602ecdf286d32acf172c3d165323aaa823667278ad767fdc77aeaa5f23c",
+      "passages": 2050,
+      "words": 352590
+    },
+    {
+      "book": "Biochemistry_Lippincott",
+      "file_sha256": "b26ba8ce3b1c6f220813aee6f936edf3c512259a6744307ae192b19e3705d799",
+      "passages": 1406,
+      "words": 209278
+    },
+    {
+      "book": "Cell_Biology_Alberts",
+      "file_sha256": "3beae75976c9d3ad98833fcc8e1bee72cc3c494f03fcf6cf9f6962bde03f2a19",
+      "passages": 5163,
+      "words": 766053
+    },
+    {
+      "book": "First_Aid_Step1",
+      "file_sha256": "2ac10bab1d5e644025722043eb7d12a16a940b9ee42a9803b327370eed98e4ff",
+      "passages": 499,
+      "words": 89908
+    },
+    {
+      "book": "First_Aid_Step2",
+      "file_sha256": "76885005d4c6acbe1fa1b897e8795d93f1be6e1899a39e9f3afe95ce71b5bfbe",
+      "passages": 839,
+      "words": 147417
+    },
+    {
+      "book": "Gynecology_Novak",
+      "file_sha256": "195e08a97d67ba89fb3ab31ea8ef799a8c73e106dc4a35d08c413f74122aeed2",
+      "passages": 5315,
+      "words": 828865
+    },
+    {
+      "book": "Histology_Ross",
+      "file_sha256": "6c3a02e2e5af95481fe6b2e8ba75ed1f24e054205db6965e5bb34de3e2e7b261",
+      "passages": 3171,
+      "words": 473008
+    },
+    {
+      "book": "Immunology_Janeway",
+      "file_sha256": "f5a72e4bfff3ecd29a091ab4af5fd0cc641d66237d663e54c3c5b1a9cbea956b",
+      "passages": 3474,
+      "words": 512480
+    },
+    {
+      "book": "InternalMed_Harrison",
+      "file_sha256": "f56e1b224a416e61ff03790f72e74aae742e94661d863d3ee25b015438c34697",
+      "passages": 22499,
+      "words": 3302194
+    },
+    {
+      "book": "Neurology_Adams",
+      "file_sha256": "cf5a3e6087590ab5bfae4231c08740857d9f93cca3fe9ce367e9717a7c5fc460",
+      "passages": 8979,
+      "words": 1294988
+    },
+    {
+      "book": "Obstentrics_Williams",
+      "file_sha256": "6d9279984b772fb91afa55232a9c060f3c21581867c91ebeeda72f18f9a95a24",
+      "passages": 5982,
+      "words": 963451
+    },
+    {
+      "book": "Pathology_Robbins",
+      "file_sha256": "3379a5cc6a79d12f9a91a26b026b3ae362445c6dfdb780416ecf6ff64be39a39",
+      "passages": 2923,
+      "words": 456127
+    },
+    {
+      "book": "Pathoma_Husain",
+      "file_sha256": "7be3901e0cb887861ee5f68967c0cc333fdec23dbd4fd078e5e6e153fcbc9479",
+      "passages": 300,
+      "words": 57413
+    },
+    {
+      "book": "Pediatrics_Nelson",
+      "file_sha256": "a00ea67ce8504502233106f4fa4b94cddcf95fed6d001d984330959accc8e47d",
+      "passages": 2769,
+      "words": 428590
+    },
+    {
+      "book": "Pharmacology_Katzung",
+      "file_sha256": "cae7fb85cdd0c12e53ef7b3918c03b8f9c6607eaac5be9f1d7aaba2f425dd4d4",
+      "passages": 4912,
+      "words": 741984
+    },
+    {
+      "book": "Physiology_Levy",
+      "file_sha256": "3c0fb6ef6922e7cfee7ea3c9f1917c49c59776b4ef67c89da6c10c668d0d87a7",
+      "passages": 2657,
+      "words": 411867
+    },
+    {
+      "book": "Psichiatry_DSM-5",
+      "file_sha256": "7e5c6f34fcae556168280292a9cab09927ebbad0a767c515b12d8007c153f6c9",
+      "passages": 2656,
+      "words": 422054
+    },
+    {
+      "book": "Surgery_Schwartz",
+      "file_sha256": "76218cdbe925d26d4c08d86ce815c2ad83b4a8c70eaef620d75d8c82c031f3bb",
+      "passages": 9479,
+      "words": 1882320
+    }
+  ],
+  "total_passages": 85073,
+  "passages_file": "passages.jsonl",
+  "passages_sha256": "7677b9b95e94de154b763df0f18191aa3cdba216b91d2c8d36da3bbc413c252b",
+  "build_script_sha256": "24f5fb73b567b815f1c16bffbc8b8e659495a50134de57931e08aaefa36553dc",
+  "notes": [
+    "passages.jsonl contains textbook text and is not committed; rebuild it locally from the same source files.",
+    "Textbook file checksums above identify the exact source files."
+  ]
+}

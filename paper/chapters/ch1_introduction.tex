@@ -3,62 +3,109 @@
 \updateheader{Chapter 1. Introduction}
 
 %==============================================================================
-% 写作时间：Day 5（实验结果出来后再定稿）。可以先写 1.1–1.3。
-% 参照学长 Ch1 的漏斗式写法：应用场景 → 现有方法的不足 → 本文要解决的问题
-% → 方法概览 → 贡献（分主次、与证据对齐）→ 章节安排。
+% 进度稿版本（2026-11-28）。实验结果出来后需要更新 1.6 Contributions。
+% 会议论文的数字（0.398 等）是作者的前期工作，引用时必须注明出处。
 %==============================================================================
 
 \section{Background}
 \label{sec:background}
-% 段落顺序建议：
-% (1) LLM 在医学问答上准确率越来越高，但推理过程难以检查（medical QA, MedQA）。
-% (2) 临床和教育场景需要可检查的解释，而不仅是答案。
-% (3) 检索增强（RAG）提供外部证据，但"引用了证据"不等于"解释被证据支持"。
-% (4) 多 agent 协作与图结构推理已有大量工作（MedAgents, KACR, GraphDx）。
-% (5) OPM 用对象、过程、状态描述机制，适合表示"病因 → 病理过程 → 表现"。
-% (6) 引出：把证据链接到 OPM 图，并对图进行验证和修复。
-\todo{Write 5--6 paragraphs following the outline in the source comments.}
+
+Large language models (LLMs) now answer a substantial share of medical licensing examination questions correctly, and medical question answering has become a standard benchmark for their clinical knowledge~\cite{jin_medqa_2021}. For clinical education and decision support, however, a correct answer is not sufficient. A student who studies a model's answer, or a clinician who considers it, needs to know \emph{why} the answer follows from the findings in the question, and whether that reasoning rests on established medical knowledge. When the reasoning is hidden or expressed only as fluent free text, an incorrect step can go unnoticed, and a correct answer can be accepted for the wrong reason.
+
+Retrieval-augmented generation addresses part of this problem by giving the model access to external documents at inference time~\cite{lewis_rag_2020}. In medicine, retrieval from textbooks and literature has been shown to change answer accuracy in ways that depend on the corpus, the retriever, and the model~\cite{xiong_medrag_2024}. Retrieval makes evidence available, but it does not guarantee that the explanation actually uses that evidence. A model may cite a passage that does not support its claim, or combine supported and unsupported statements in the same explanation.
+
+A second line of work structures the reasoning process itself. Multi-agent frameworks assign different roles to several LLM instances, for example domain experts who discuss a question~\cite{tang_medagents_2024}, or agents that combine knowledge retrieval with collaborative reasoning~\cite{li_kacr_2025,tan_graphdx_2026}. These systems can improve accuracy and expose intermediate steps, but the number of agents is not in itself a guarantee that each step is supported or that the final answer is consistent with the stated reasoning.
+
+Explanations in cardiology often describe a mechanism: a cause leads to a pathological process, which changes the state of an organ and produces the findings in the question. The Object-Process Methodology (OPM) is a conceptual modeling language that represents systems through \emph{objects}, \emph{processes} that transform them, and the \emph{states} that objects can take~\cite{dori_opm_2016,iso_19450_2015}. Its graphical diagrams are paired with equivalent natural-language sentences. These properties make OPM a candidate representation for medical explanations that can be read by humans and checked by programs. For example, an aortic valve (object) can be linked to a calcification process that changes it from \emph{normal} to \emph{stenotic} (states), and the stenotic valve can in turn be linked to the obstruction of left ventricular outflow.
+
+In earlier work, the author built a prototype that answers cardiology questions and exports an OPM-style graph for each answer \todo{cite the author's conference paper}. On 543 generated graphs, the graphs were structurally valid, but only about 40\% of graph labels could be matched to the text of the question, answer, explanation or knowledge entry (overall grounding rate 0.398), and answer--graph consistency was similarly moderate. A manual check of 20 cases found that most graphs were at least partially relevant, but only 4 provided a fully explanatory path, and the most frequent error was a mismatch between the question and the selected topic. These findings motivate this thesis: a well-formed graph is not yet a supported explanation.
 
 \section{Problem Statement}
 \label{sec:problem_statement}
-% 参照学长 "The first challenge is..." 的写法，列 3 个挑战：
-% (1) 解释与证据脱节：图或解释中的关系没有出处（会议工作中 grounding 只有约 0.40，
-%     这是"继承的前期结果"，引用时要注明来源）。
-% (2) 答案与图不一致：图解释的机制与所选答案对不上（topic mismatch 是主要错误）。
-% (3) 错误难以定位和修正：一次性生成，出错后无法局部修复。
-% 最后一段用一句话把任务形式化，指向 Definition~\ref{def:task}。
-\todo{Describe three challenges and end with a one-sentence task statement.}
+
+This thesis addresses three problems in producing explanations for cardiology questions.
+
+The first problem is that \textbf{explanations are not linked to evidence}. In the earlier prototype, each graph was a stored template for a topic, and nothing in the graph indicated which source supported a given object, process, or relation. Retrieval-augmented systems can supply evidence, but without an explicit link between each explanatory element and its source, a reader cannot verify the explanation element by element.
+
+The second problem is that \textbf{the explanation may not support the selected answer}. A graph can describe a plausible mechanism that is related to the question but does not lead to the chosen option, or that leads to a different option. Such answer--graph inconsistency was the dominant failure mode in the earlier work.
+
+The third problem is that \textbf{errors are difficult to locate and correct}. A single-pass generator produces the answer and its explanation at once. If one relation is unsupported or one state is attached to the wrong object, the usual remedies are to accept the error or to regenerate everything, which may introduce new errors.
+
+Formally, given a multiple-choice question, its options, and a fixed evidence corpus, the task is to select an answer and to produce an OPM graph whose elements cite supporting evidence and whose mechanism leads to the selected answer. The precise task definition is given in Definition~\ref{def:task} in Chapter~\ref{chap:problem_data}.
 
 \section{Research Questions}
 \label{sec:research_questions}
-% 来自 README 的研究问题。建议拆成 2–3 个可检验的子问题，并与 Ch5 的实验一一对应：
-% RQ1: 在可比的模型与预算下，证据链接的 OPM 构建能否提高解释的证据支持度？(C1 vs C2)
-% RQ2: 角色分离与有界验证/修复能否提高答案与图的一致性？(C2 vs C3, C3 vs C4)
-% RQ3: 上述改进是否以牺牲答案准确率或成本为代价？
-\todo{State the main research question and two or three testable sub-questions.}
+
+The main research question of this thesis is:
+
+\begin{quote}
+\emph{Under comparable model and inference-budget conditions, does evidence-linked OPM construction with targeted verification improve the evidence support of explanations and the consistency between answer and graph, while preserving answer accuracy?}
+\end{quote}
+
+It is divided into three sub-questions, each of which corresponds to a comparison in Chapter~\ref{chap:setup}.
+
+\begin{description}[leftmargin=1.2cm, style=nextline]
+  \item[RQ1] Does requiring an evidence-linked OPM graph, instead of a free-text explanation, change answer accuracy and the share of explanatory claims supported by evidence?
+  \item[RQ2] Does separating evidence selection, graph construction, and verification into distinct roles, with a bounded repair loop, improve evidence support and answer--graph consistency over a single agent?
+  \item[RQ3] How much of the effect of the full system is due to verification and repair, and what does it cost in model calls, tokens, and time?
+\end{description}
 
 \section{Overview of the Proposed Approach}
 \label{sec:approach_overview}
-% 每个组件一段：Evidence Agent / OPM Reasoning Agent / Verification Agent /
-% bounded repair controller / OPCloud 半自动建模流程。
-% 明确主次：主要贡献是 evidence-linked OPM representation + bounded verification/repair。
-\todo{One paragraph per component; state which component is the main contribution.}
 
-\section{Relationship to Prior Work by the Author}
+The proposed framework, described in Chapter~\ref{chap:method}, has four components.
+
+\begin{itemize}
+  \item An \textbf{evidence-linked OPM representation} defines objects, processes, states with explicit owning objects, and typed relations, each of which carries references to evidence passages. The selected answer is linked to the graph elements that support it. This representation is the central contribution of the thesis.
+  \item An \textbf{Evidence Agent} identifies the tested concept and the key findings of the question and selects relevant passages from a fixed retrieval set drawn from medical textbooks.
+  \item An \textbf{OPM Reasoning Agent} selects an answer and builds the graph using only the selected evidence.
+  \item A \textbf{Verification Agent}, together with deterministic validators, checks structure, evidence support, applicability to the question, and consistency with the answer. A deterministic controller routes localized repair requests back to the responsible agent for at most two rounds.
+\end{itemize}
+
+In addition, selected outputs are converted into modeling packages and reviewed by a human in the OPCloud modeling tool, which produces the OPM figures used in this thesis. This step is used for illustration only; all quantitative results are computed on raw machine outputs.
+
+\section{Relationship to the Author's Prior Work}
 \label{sec:prior_work}
-% 很重要：清楚区分会议论文已有的工作和毕业论文新增的工作。
-% 会议工作：规则主题匹配、预定义答案与图、启发式图质量审计、20 例人工检查。
-% 本文新增：数据审计与新数据版本、证据链接的图格式、三 agent 系统、验证修复、
-%           对照实验、OPCloud 建模流程。
-\todo{Cite the conference paper and list inherited versus new components in a table.}
+
+Table~\ref{tab:prior_vs_thesis} separates the components inherited from the conference prototype from those developed in this thesis.
+
+\begin{table}[H]
+\centering
+\caption{Inherited components and components developed in this thesis.}
+\label{tab:prior_vs_thesis}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+Inherited from the conference prototype & Developed in this thesis \\
+\midrule
+Rule-based topic matching over 21 hand-built cardiology topics & Question-specific graph construction by an LLM \\
+Stored answers and graphs per topic & Evidence-linked graph contract with state ownership and typed relations \\
+Heuristic graph-quality audit (structure, grounding, consistency) & Evidence, reasoning and verification agents with bounded repair \\
+20-case manual sanity check & Audited data protocol and a frozen evaluation set (Chapter~\ref{chap:problem_data}) \\
+JSON and Mermaid export & Controlled comparison of four system conditions; semi-automated OPCloud modeling workflow \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Results of the conference prototype are cited as prior work and are not reported as results of this thesis.
 
 \section{Contributions}
 \label{sec:contributions}
-% 3–4 条，按证据强弱分主次（学习学长的写法），实验结束后再定最终措辞。
-\todo{Finalize after experiments; do not claim improvements that the results do not show.}
+
+The intended contributions of this thesis are as follows.
+
+\begin{enumerate}
+  \item \textbf{An audited data protocol} for cardiology question answering on MedQA, including an audit of the inherited benchmark, content-based identifiers, answer isolation, and a frozen evaluation set selected without access to answers (Chapter~\ref{chap:problem_data}).
+  \item \textbf{An evidence-linked OPM representation} for medical explanations, with explicit state ownership, a constrained relation vocabulary, and element-level evidence references (Chapter~\ref{chap:method}).
+  \item \textbf{A bounded verification and repair mechanism} that combines deterministic validators with semantic verification and returns localized repair requests (Chapter~\ref{chap:method}).
+  \item \textbf{A controlled evaluation} that separates the effect of the representation, of role separation, and of repair, and reports cost alongside quality (Chapters~\ref{chap:setup} and~\ref{chap:results}).
+\end{enumerate}
+
+\todo{Revise after the experiments: state which contributions the results support, and how strongly.}
 
 \section{Organization of the Thesis}
 \label{sec:organization}
+
 This thesis is organized into eight chapters.
 Chapter~\ref{chap:related_work} reviews medical question answering, retrieval augmentation, multi-agent reasoning, structured explanations, and the Object-Process Methodology.
 Chapter~\ref{chap:problem_data} defines the task and describes the data protocol.

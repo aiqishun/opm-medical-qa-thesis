@@ -1,0 +1,72 @@
+{
+  "agent_input_fields": [
+    "id",
+    "options",
+    "question"
+  ],
+  "counts": {
+    "candidates_reviewed": 51,
+    "excluded": {
+      "essential_missing_exhibit": 2,
+      "near_duplicate_across_source_splits": 1,
+      "out_of_scope": 19,
+      "source_quality": 1
+    },
+    "in_scope_candidates": 32,
+    "included_for_evaluation": 28,
+    "near_duplicate_pairs_resolved": 1,
+    "never_evaluate_ids": 2,
+    "relevance_conflicts_adjudicated": 2
+  },
+  "dataset_version": "thesis-v0.2",
+  "evaluation_ids": [
+    "mq_05861c436716ec18f0778bf45a65f70997d07cd452cddb50bc2235aee036a43d",
+    "mq_091aabf3f53d13170f9737558a09585d256f0d9c7cc5a8e3a09839129a209d70",
+    "mq_0a7d81ed4d543350f6b1fae3a43778b490d47f3ac54c6a7a96889ffa9d3399d1",
+    "mq_0bbe56b9e72c1c880f8ff630f058ec70f0588169ea6fe44d5cddd34198ea8e17",
+    "mq_11c32a243c25f448322e2cdfb885eb1b1ed316c5dd69850b273687cf495439c2",
+    "mq_17a57ddf62f08005aac8b6f4f736c8cccb0fc059eb12d639726e5f33555f2e28",
+    "mq_19a7ae8227bd10dae271b42fc151ab52cab31861c22bcb07103847475d9f300c",
+    "mq_1e35a856f681e4cd8e6decc0c1864a57d0e05ed568adfeda7a2e7e4c70d27749",
+    "mq_21369b80b18fbe79a483d8792faef8b417cc3c68c5e5e57571532344860907a3",
+    "mq_28dfd090e8b8f4003eebe36f1b2d15d21262a2c3e78547ec4204f839f1c9e209",
+    "mq_2f2c93e81a637268e4c9badcb75a62c9f501baa2f83faae36b420b927ffee54e",
+    "mq_330525b047526b591b18f29b9f44a9bfb9da433823410d179b8c1d8c1a6e7a0c",
+    "mq_37e2c2f3ffde349b25dd2ea5c8d05167c1d1ba431297e18ae175d5898574ab42",
+    "mq_703b4c2730e2deb11a9e0009afddf550830b8fc7d4c7a7f8afacf15115d3226b",
+    "mq_70f5eb122612d9f85df367858f6cd11ee5a8285042519ebae5c09cf5e4e32bd8",
+    "mq_73710f71d011f2798b1ce71bfb567d0e62852e24a1ab7fded55d75a207a72649",
+    "mq_9c73874479baa5a53461d21fd3e16ed136b8f235d7d1e72a2ff4007c97f71f9e",
+    "mq_9d945e0ec10bd87884fed08dad22aebd8c1523d403d712bf3e6a8fc5bab1eb2c",
+    "mq_a23a0d056298452a3141ea2ed80ca8c475d01b41193e6a222b11faf9a796d849",
+    "mq_b64cff7c80b8fc435190da5acd4cdff643353462585f2311e5a0e3f04fb421ae",
+    "mq_b8590d478c369bd6b45d1a7bbbefe082e5cba0efb4406b161a84da955d8a4d07",
+    "mq_b9a2286e859a39da42681e86d9acb246d3dbb870ffb2e209270bf4c1d889b463",
+    "mq_c07caf85c639663199af19fa503eff9e0fccb665e893472a8e93dc2956182a7c",
+    "mq_c4a495bda70bd6b588e89b84f5adb954e77714cf2845c15f80c36795448a5bff",
+    "mq_d138f56a33d18d0341318ca7e2f1db87181b74d3d7befb631c487207f5e6b022",
+    "mq_d5819cff5d6a85ae44470ba4a4618172476f606fd8f5c89df37d94e218792e8a",
+    "mq_deb13a78384e054ee263801f343980b06d931a99b88113514891d99829babb6a",
+    "mq_e4120b536bf39418f3c0eb1362647ab2f35f801c0d68847af0f11586fc1b4f34"
+  ],
+  "freeze_script_sha256": "94cfdea2b32a5c54681e151fea0beebe968da5d89156f6902086a0504c332d59",
+  "frozen_on": "2026-11-28",
+  "notes": [
+    "Candidates were screened from the question stem only (see the parent manifest).",
+    "Review used the question and options only; answer keys were not shown.",
+    "Labels were drafted with LLM assistance (ChatGPT, Gemini, Claude) and finalized by the author under the rules in review/scope_rules.md.",
+    "Selection did not depend on any system output or on whether any model answered correctly.",
+    "Development files are carried over unchanged from the parent version.",
+    "Records listed in quarantine/never_evaluate_ids.json must not enter any evaluation set."
+  ],
+  "parent_manifest_sha256": "668b34c8a95287ac8af213bc618fc19674148338f1aa5736b85cf4932c32c7d0",
+  "parent_version": "thesis-v0.1",
+  "review_decision_files": {
+    "near_duplicate_decisions.csv": "8582e3ffc2d1b5adf75ab193432d8d003c7b3ed945c9eee9a0532bdce36965d6",
+    "prospective_test_decisions.csv": "5eab190a2d8428443021866acedf15327ff18af099243c6272fef76b990fc2e4",
+    "relevance_conflict_decisions.csv": "483731ab32bd7a7110031ba56b2e9902a77c384bccbaea2ace711b4a996e7158",
+    "scope_rules.md": "842b840449fcf6102270d666afd28e254961648b2eb112766de0da31e87cca60"
+  },
+  "status": "evaluation_set_frozen",
+  "test_frozen": true
+}

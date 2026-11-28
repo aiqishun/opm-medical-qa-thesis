@@ -1,0 +1,2 @@
+left_id,right_id,same_underlying_item,partition_decision,reason_and_evidence,reviewer,review_date,labeling_note
+mq_abdb0f6c02e411697529012b1fb2198f507fe23aacf6c39a0f148a7b129b0e1f,mq_f5ad9d4f1e250929fbfca1637bce6b4621d1c02016c2993e2c58616be9086e0d,yes,exclude_test_record_and_never_evaluate_train_variant,Token Jaccard 0.99 and sequence similarity 0.99; treated as the same underlying item to avoid train-test leakage.,SHUN QI,2026-11-28,"LLM-assisted: labels drafted by ChatGPT, Gemini and Claude; scope rules and final decisions by the author"

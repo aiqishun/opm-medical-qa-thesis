@@ -3,51 +3,119 @@
 \updateheader{Chapter 5. Experimental Setup}
 
 %==============================================================================
-% 写作时间：Day 3。参照学长 Ch4 前半部分：概述 → 数据 → 指标 → 实现细节 → 超参数。
-% 每个实验都要回答 Ch1 的某个 RQ。
+% 进度稿版本（2026-11-28）：本章是实验计划。实验前冻结的内容（语料、prompt、
+% 指标定义、抽样规则）定下来后再把 TODO 改成实际值。
 %==============================================================================
 
+\todo{Progress draft: this chapter is the experimental plan. Values marked TODO will be fixed before the first run on the evaluation set.}
+
+This chapter describes how the research questions of Section~\ref{sec:research_questions} are tested. Section~\ref{sec:exp_overview} maps each question to a comparison. The following sections describe the data, the evidence corpus, the compared conditions, the metrics, the human evaluation, the statistical analysis, and the measures taken for reproducibility.
+
+%==============================================================================
 \section{Experimental Overview}
 \label{sec:exp_overview}
-% 一张表：RQ → 对比条件 → 指标。
-\todo{Write this section.}
 
+Table~\ref{tab:rq_map} links each research question to the conditions compared and the main metrics.
+
+\begin{table}[H]
+\centering
+\caption{Research questions, compared conditions, and main metrics.}
+\label{tab:rq_map}
+\small
+\begin{tabularx}{\linewidth}{l l >{\raggedright\arraybackslash}X}
+\toprule
+Question & Comparison & Main metrics \\
+\midrule
+RQ1 & C1 vs.\ C2 & Answer accuracy; supported-claim rate \\
+RQ2 & C2 vs.\ C3 & Supported-relation rate; answer--graph consistency; structural validity \\
+RQ3 & C4 vs.\ C3 & Change in all metrics after repair; repair success and regressions; calls, tokens, latency \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+All conditions use the same language model, the same evidence passages for each question, and the same output schema where applicable. The inherited rule-based prototype is reported as a reference only, because it selects topics rather than answer options.
+
+%==============================================================================
 \section{Evaluation Data}
 \label{sec:eval_data}
-% 引用 Chapter~\ref{chap:problem_data}；最终测试集大小、版本 tag。
-\todo{Final evaluation set size and version.}
 
-\section{Evidence Corpus}
+All final results are reported on the 28 questions of the frozen evaluation set \texttt{thesis-v0.2} described in Chapter~\ref{chap:problem_data}. Prompts, retrieval settings, and agent logic are developed only on the 20-question development pilot. The system configuration is frozen and tagged in the code repository before the first run on the evaluation set, and the evaluation set is run once per condition.
+
+With 28 questions, differences of a few questions between conditions are within the range of chance. The experiments are therefore designed to estimate effects with their uncertainty and to support a qualitative analysis of errors, not to establish definitive performance differences.
+
+%==============================================================================
+\section{Evidence Corpus and Retrieval}
 \label{sec:corpus}
-% MedQA 附带的英文教科书；心血管相关部分的选取规则；切块大小；BM25 参数；
-% 语料 hash；确认参考答案和题解不在语料中。
-\todo{Write this section.}
 
+The evidence corpus consists of the 18 English medical textbooks distributed with MedQA~\cite{jin_medqa_2021}, covering anatomy, physiology, pathology, pharmacology, internal medicine, pediatrics, surgery, and other subjects. All textbooks are used. Selecting cardiovascular chapters was considered but rejected, because the text files carry no reliable chapter markup and any selection rule would introduce an additional, subjective choice; using the full set also follows the textbook corpus of MedRAG~\cite{xiong_medrag_2024}.
+
+The text is split into passages by packing whole paragraphs up to 200 words; paragraphs longer than 200 words are split into windows that overlap by 30 words. Each passage receives a stable identifier composed of the textbook name and its position. The corpus version, the checksum of every source file, and the checksum of the passage file are recorded in a corpus manifest. \todo{Report the number of passages per textbook and in total.}
+
+For each question, the passage set $E_q$ is retrieved once with Okapi BM25~\cite{robertson_bm25_2009} ($k_1 = 1.5$, $b = 0.75$), using the question stem and the four option texts as the query, and contains the top $k = 10$ passages. Tokens are lower-cased alphanumeric words after removal of a fixed list of stop words, without stemming; ties are broken by corpus position. The same $E_q$ is given to every condition. Only passage identifiers and scores are stored with the results, because the passages are copyrighted textbook text.
+
+The corpus contains no reference answers or question explanations. As an additional check, the first 120 normalized characters of every pilot and evaluation question are searched for in the normalized corpus. \todo{Report the outcome of the verbatim-stem check.}
+
+%==============================================================================
 \section{Compared Conditions}
 \label{sec:conditions}
-% C1 单 agent + 文字解释；C2 单 agent + OPM 图；C3 三 agent + 有界修复；
-% C4 = C3 的第一轮输出（无修复，不需要额外调用）。
-% 同一模型、同一语料、固定检索段落；继承的规则方法只作参考。
-\todo{Table of conditions with what is held fixed.}
 
+Four conditions are compared (Table~\ref{tab:conditions}).
+
+\begin{table}[H]
+\centering
+\caption{Compared conditions. All use the same model and the same passages $E_q$.}
+\label{tab:conditions}
+\small
+\begin{tabularx}{\linewidth}{l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+Condition & Description & Output \\
+\midrule
+C1 & Single agent: answers from $E_q$ with a free-text explanation that cites passage identifiers & Answer, explanation \\
+C2 & Single agent: answers from $E_q$ and builds an evidence-linked OPM graph (Definition~\ref{def:graph}); validators run, no repair & Answer, explanation, graph \\
+C3 & Full system: Evidence, Reasoning and Verification agents with at most two repair rounds (Chapter~\ref{chap:method}) & Answer, explanation, graph, trace \\
+C4 & C3 without repair: the round-0 output of C3 & Answer, explanation, graph \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+C4 is taken from the stored round-0 output of C3 rather than from a separate run. This removes run-to-run variation from the comparison between C3 and C4. Because C3 uses more model calls than C1 and C2, its cost is reported alongside its quality, and differences are interpreted in the light of the additional computation.
+
+%==============================================================================
 \section{Evaluation Metrics}
 \label{sec:metrics}
-% 答案准确率；结构合法性；证据支持的关系比例；解释完整度（防止删关系刷支持率）；
-% 答案-图一致性；修复成功与回退；调用次数/token/延迟；弃答和无效输出单独计数。
-\todo{Table with metric definitions and formulas.}
 
+Let $N = 28$ be the number of evaluation questions. Abstentions, outputs that cannot be parsed, and missing outputs are counted explicitly and are never removed from the denominator.
+
+\begin{description}[leftmargin=0.6cm, style=nextline]
+  \item[Answer accuracy] The share of questions for which the selected option equals the reference answer. Abstentions and invalid outputs count as incorrect; the abstention rate is reported separately.
+  \item[Structural validity] The share of graphs that pass all deterministic checks in Table~\ref{tab:checks}.
+  \item[Supported-relation rate] For graphs, the share of relations whose cited passages support the relation; for C1, the share of explanation sentences whose cited passages support them (supported-claim rate). Relations or sentences without a citation count as unsupported.
+  \item[Finding coverage] The share of the key findings of the question that appear in the graph or explanation. The key findings of each question are extracted once, before the runs, and are shared by all conditions. This metric prevents a system from raising its support rate by omitting difficult content.
+  \item[Answer--graph consistency] The share of graphs that contain a connected path from a question finding to the selected option and whose path supports the selected option rather than another option.
+  \item[Repair outcomes] For C3: the number of questions that entered repair, the number of findings resolved, and the number of \emph{regressions}, in which repair changed a correct answer to an incorrect one or turned a supported relation into an unsupported one.
+  \item[Cost] Model calls, input and output tokens, and wall-clock latency per question.
+\end{description}
+
+Support and consistency are judged automatically by an LLM judge that receives the element, the cited passages, and the question, but not the system's reasoning trace or the reference answer. \todo{Judge model and prompt; whether it differs from the system model.} The automatic judgments are checked against human judgments on a sample (Section~\ref{sec:human_eval}).
+
+These metrics measure whether explanations are supported by the cited evidence and consistent with the answer. They do not measure whether an explanation reflects the internal computation of the model, which is a stronger property~\cite{lyu_faithful_2024}.
+
+%==============================================================================
 \section{Human Evaluation Protocol}
 \label{sec:human_eval}
-% 事先确定的抽样规则；评审者的真实资质；评审维度；
-% 生成系统的 verifier 不能作为独立评估者。
-\todo{Write this section.}
 
+A sample of outputs is evaluated by the author. The sample is drawn before any output is inspected: \todo{n} questions are selected from the evaluation set with a fixed random seed, and the outputs of C2 and C3 for these questions are presented in random order without the condition name. For each relation, the reviewer judges whether the cited passages support it; for each graph, the reviewer judges answer--graph consistency and notes the dominant error type.
+
+The reviewer is the author, who has no clinical training. The human evaluation therefore checks the agreement between the automatic judge and a careful non-expert reading of the cited passages; it is not a clinical validation. Agreement between the human and the automatic judgments is reported as raw agreement and Cohen's $\kappa$.
+
+%==============================================================================
 \section{Statistical Analysis}
 \label{sec:statistics}
-% 小样本：bootstrap 95% 置信区间；配对比较用 McNemar 检验；不把小样本结论说成定论。
-\todo{Write this section.}
 
-\section{Implementation and Reproducibility}
+For each metric and condition, the mean over questions is reported with a 95\% confidence interval from a percentile bootstrap over questions (10{,}000 resamples). Paired differences between conditions are estimated in the same way, resampling questions jointly for both conditions. For answer accuracy, paired comparisons additionally use the exact McNemar test. Because several metrics are compared on a small sample, the analysis is exploratory: results are reported as estimates with their uncertainty, and no single comparison is presented as confirmatory.
+
+%==============================================================================
+\section{Reproducibility}
 \label{sec:reproducibility}
-% 硬件/软件、模型版本、代码 commit、数据版本、配置与输出路径。
-\todo{Write this section.}
+
+Every run records the dataset version, the corpus checksum, the retrieval parameters, the model identifier, the decoding parameters, the hashes of all prompt files, and the code commit. Raw model outputs are stored unchanged, and all metrics are computed from these stored outputs by separate scripts. \todo{Hardware, software versions, and the tag of the frozen configuration.}
