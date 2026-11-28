@@ -12,6 +12,7 @@ from agents.base import Condition, ModelConfig
 
 CONDITIONS = {
     "C1": "agents.c1:C1Agent",
+    "C2": "agents.c2:C2Agent",
 }
 
 

@@ -1,0 +1,324 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "answer",
+    "explanation",
+    "graph"
+  ],
+  "properties": {
+    "answer": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "abstain"
+      ],
+      "description": "The selected option label, or \"abstain\"."
+    },
+    "explanation": {
+      "type": "array",
+      "description": "The explanation, one entry per sentence, in reading order.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sentence",
+          "grounding",
+          "question_quote",
+          "passage_ids"
+        ],
+        "properties": {
+          "sentence": {
+            "type": "string",
+            "description": "One sentence of the explanation."
+          },
+          "grounding": {
+            "type": "string",
+            "enum": [
+              "question",
+              "passages",
+              "none"
+            ],
+            "description": "question: restates information from the question stem; passages: supported by the cited passages; none: neither (own knowledge)."
+          },
+          "question_quote": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 300,
+            "description": "For grounding=question: the shortest verbatim contiguous span of the question stem that supports the sentence (at most one sentence, at most 300 characters). Otherwise null."
+          },
+          "passage_ids": {
+            "type": "array",
+            "description": "Identifiers of the provided passages that support this sentence. At least one for grounding=passages; empty for grounding=none.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "graph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "objects",
+        "processes",
+        "states",
+        "relations",
+        "answer_element_id",
+        "support_path"
+      ],
+      "properties": {
+        "objects": {
+          "type": "array",
+          "description": "OPM objects (things that exist).",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "label",
+              "is_question_finding",
+              "grounding",
+              "question_quote",
+              "passage_ids"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Short stable identifier, unique within the graph (e.g. o1, p1, s1, r1)."
+              },
+              "label": {
+                "type": "string",
+                "description": "Short label."
+              },
+              "is_question_finding": {
+                "type": "boolean",
+                "description": "True if this object is a finding stated in the question."
+              },
+              "grounding": {
+                "type": "string",
+                "enum": [
+                  "question",
+                  "passages",
+                  "none"
+                ],
+                "description": "question: restates the question stem; passages: supported by the cited passages; none: neither (own knowledge)."
+              },
+              "question_quote": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 300,
+                "description": "For grounding=question: the shortest verbatim contiguous span of the question stem that supports this item (at most one sentence, at most 300 characters). Otherwise null."
+              },
+              "passage_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identifiers of the provided passages that support this item. At least one for grounding=passages; empty for grounding=none."
+              }
+            }
+          }
+        },
+        "processes": {
+          "type": "array",
+          "description": "OPM processes (things that happen and transform objects).",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "label",
+              "grounding",
+              "question_quote",
+              "passage_ids"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Short stable identifier, unique within the graph (e.g. o1, p1, s1, r1)."
+              },
+              "label": {
+                "type": "string",
+                "description": "Short label."
+              },
+              "grounding": {
+                "type": "string",
+                "enum": [
+                  "question",
+                  "passages",
+                  "none"
+                ],
+                "description": "question: restates the question stem; passages: supported by the cited passages; none: neither (own knowledge)."
+              },
+              "question_quote": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 300,
+                "description": "For grounding=question: the shortest verbatim contiguous span of the question stem that supports this item (at most one sentence, at most 300 characters). Otherwise null."
+              },
+              "passage_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identifiers of the provided passages that support this item. At least one for grounding=passages; empty for grounding=none."
+              }
+            }
+          }
+        },
+        "states": {
+          "type": "array",
+          "description": "OPM states. Each state belongs to exactly one object.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "label",
+              "owner_object_id",
+              "is_question_finding",
+              "grounding",
+              "question_quote",
+              "passage_ids"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Short stable identifier, unique within the graph (e.g. o1, p1, s1, r1)."
+              },
+              "label": {
+                "type": "string",
+                "description": "Short label."
+              },
+              "owner_object_id": {
+                "type": "string",
+                "description": "Id of the object that has this state."
+              },
+              "is_question_finding": {
+                "type": "boolean",
+                "description": "True if this state is a finding stated in the question."
+              },
+              "grounding": {
+                "type": "string",
+                "enum": [
+                  "question",
+                  "passages",
+                  "none"
+                ],
+                "description": "question: restates the question stem; passages: supported by the cited passages; none: neither (own knowledge)."
+              },
+              "question_quote": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 300,
+                "description": "For grounding=question: the shortest verbatim contiguous span of the question stem that supports this item (at most one sentence, at most 300 characters). Otherwise null."
+              },
+              "passage_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identifiers of the provided passages that support this item. At least one for grounding=passages; empty for grounding=none."
+              }
+            }
+          }
+        },
+        "relations": {
+          "type": "array",
+          "description": "Typed OPM links between elements.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "type",
+              "source_id",
+              "target_id",
+              "grounding",
+              "question_quote",
+              "passage_ids"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Short stable identifier, unique within the graph (e.g. o1, p1, s1, r1)."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "consumption",
+                  "result",
+                  "effect",
+                  "instrument",
+                  "input_state",
+                  "output_state",
+                  "invocation",
+                  "aggregation",
+                  "exhibition",
+                  "generalization"
+                ]
+              },
+              "source_id": {
+                "type": "string"
+              },
+              "target_id": {
+                "type": "string"
+              },
+              "grounding": {
+                "type": "string",
+                "enum": [
+                  "question",
+                  "passages",
+                  "none"
+                ],
+                "description": "question: restates the question stem; passages: supported by the cited passages; none: neither (own knowledge)."
+              },
+              "question_quote": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 300,
+                "description": "For grounding=question: the shortest verbatim contiguous span of the question stem that supports this item (at most one sentence, at most 300 characters). Otherwise null."
+              },
+              "passage_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Identifiers of the provided passages that support this item. At least one for grounding=passages; empty for grounding=none."
+              }
+            }
+          }
+        },
+        "answer_element_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Id of the element that represents the selected option; null only when abstaining."
+        },
+        "support_path": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ordered ids alternating element, relation, element, ..., from a question-finding element to answer_element_id; empty only when abstaining."
+        }
+      }
+    }
+  }
+}

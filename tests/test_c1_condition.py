@@ -84,7 +84,8 @@ def _run(fake_data, extra: list[str] | None = None, responder=None):
 def test_runner_and_agent_sources_never_mention_evaluator_only():
     sources = [ROOT / "scripts/run_condition.py", ROOT / "scripts/check_model_params.py",
                *sorted((ROOT / "src/agents").glob("*.py")), *sorted((ROOT / "src/llm").glob("*.py")),
-               *sorted((ROOT / "src/experiment").glob("*.py")), *sorted((ROOT / "prompts").rglob("*"))]
+               *sorted((ROOT / "src/experiment").glob("*.py")), *sorted((ROOT / "src/evidence_graph").glob("*.py")),
+               ROOT / "scripts/render_graph.py", *sorted((ROOT / "prompts").rglob("*"))]
     offenders = [str(p.relative_to(ROOT)) for p in sources if p.is_file() and "evaluator_only" in p.read_text()]
     assert len(sources) > 5
     assert offenders == []
@@ -155,7 +156,7 @@ def test_c1_schema_requires_grounding_fields():
     ({"grounding": "question", "question_quote": "x", "passage_ids": []}, []),
     ({"grounding": "question", "question_quote": " ", "passage_ids": []}, ["question_without_quote"]),
     ({"grounding": "passages", "question_quote": None, "passage_ids": []}, ["passages_without_citation"]),
-    ({"grounding": "passages", "question_quote": "q", "passage_ids": ["a"]}, ["quote_on_non_question_sentence"]),
+    ({"grounding": "passages", "question_quote": "q", "passage_ids": ["a"]}, ["quote_on_non_question_item"]),
     ({"grounding": "none", "question_quote": None, "passage_ids": ["a"]}, ["none_with_citation"]),
 ])
 def test_grounding_rules(sentence, expected):

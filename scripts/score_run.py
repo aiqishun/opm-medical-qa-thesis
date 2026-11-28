@@ -10,11 +10,14 @@ modifies the run directory. Counting rules (thesis protocol):
   invalid outputs and missing predictions all count as incorrect;
 * citation validity = share of cited passage ids that belong to that
   question's fixed passage set E_q (computed over valid outputs);
-* grounding (C1): every explanation sentence is labelled question / passages /
-  none. ``question_quote`` must occur verbatim in the question stem after
-  normalization (NFKC, case-fold, unified quotes and dashes, collapsed
-  whitespace, outer punctuation stripped). Rule violations are reported, but they do
-  not make an output invalid: the answer is still scored;
+* grounding: every explanation sentence (and, for C2, every graph element and
+  relation) is labelled question / passages / none. ``question_quote`` must
+  occur verbatim in the question stem after normalization (NFKC, case-fold,
+  unified quotes and dashes, collapsed whitespace, outer punctuation stripped).
+  Rule violations are reported, but they do not make an output invalid;
+* graphs (C2): pass rates of the deterministic validator checks recorded at run
+  time, graph sizes, and the share of valid support paths. A graph that fails
+  validation is still a valid output; denominators are valid outputs with a graph;
 * cost = input tokens x $2/M + output tokens x $10/M. Output tokens include
   reasoning tokens (OpenAI usage convention), which are also reported separately.
 
@@ -25,18 +28,24 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import statistics
 import sys
-import unicodedata
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(ROOT / "src"))
+
+from evidence_graph.grounding import GROUNDINGS, grounding_violations, normalize_text, quote_in_stem  # noqa: E402,F401
+from evidence_graph.validate import CHECKS  # noqa: E402
+
 DATASET_DIR = ROOT / "data/versions/thesis-v0.2"
 GOLD_FILES = {"pilot": "evaluator_only/pilot_gold.jsonl", "test": "evaluator_only/test_answers.jsonl"}
 PRICE_INPUT_PER_M = 2.0
 PRICE_OUTPUT_PER_M = 10.0
+
+sentence_violations = grounding_violations  # name used by the C1 scorer
 
 
 def read_json(path: Path) -> Any:
@@ -51,36 +60,6 @@ def load_gold(split: str, dataset_dir: Path) -> dict[str, str]:
                 record = json.loads(line)
                 gold[record["id"]] = record["answer_idx"]
     return gold
-
-
-_TRANSLATE = str.maketrans({"\u2018": "'", "\u2019": "'", "\u201c": '"', "\u201d": '"',
-                            "\u2013": "-", "\u2014": "-", "\u2212": "-", "\u00a0": " "})
-GROUNDINGS = ("question", "passages", "none")
-
-
-def normalize_text(text: str) -> str:
-    text = unicodedata.normalize("NFKC", text).translate(_TRANSLATE).casefold()
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def quote_in_stem(quote: str, stem: str) -> bool:
-    core = normalize_text(quote).strip(" .,;:!?\"'()[]")
-    return bool(core) and core in normalize_text(stem)
-
-
-def sentence_violations(sentence: dict[str, Any]) -> list[str]:
-    """Grounding rules of the C1 prompt that a well-formed sentence must follow."""
-    grounding, quote, ids = sentence.get("grounding"), sentence.get("question_quote"), sentence["passage_ids"]
-    problems = []
-    if grounding == "question" and not (quote and quote.strip()):
-        problems.append("question_without_quote")
-    if grounding != "question" and quote is not None:
-        problems.append("quote_on_non_question_sentence")
-    if grounding == "passages" and not ids:
-        problems.append("passages_without_citation")
-    if grounding == "none" and ids:
-        problems.append("none_with_citation")
-    return problems
 
 
 def load_stems(path: Path) -> dict[str, str]:
@@ -104,6 +83,72 @@ def _sum(values: list[int | None]) -> int:
     return sum(v for v in values if v is not None)
 
 
+def _ratio(num: int, den: int) -> float | None:
+    return num / den if den else None
+
+
+class GroundingTally:
+    """Grounding statistics over a set of grounded items (sentences, elements or relations)."""
+
+    def __init__(self) -> None:
+        self.counts = {g: 0 for g in GROUNDINGS}
+        self.unlabelled = 0
+        self.quotes_checked = self.quotes_verbatim = 0
+        self.quote_lengths: list[int] = []
+        self.p_items = self.p_items_all_legal = self.p_cited = self.p_cited_legal = 0
+        self.violations: dict[str, int] = {}
+
+    def add(self, items: Iterable[dict[str, Any]], stem: str, allowed: set[str]) -> list[str]:
+        """Tally items; returns the quotes that are not verbatim in the stem."""
+        bad_quotes = []
+        for item in items:
+            grounding = item.get("grounding")
+            if grounding in self.counts:
+                self.counts[grounding] += 1
+            else:
+                self.unlabelled += 1
+            for problem in grounding_violations(item):
+                self.violations[problem] = self.violations.get(problem, 0) + 1
+            if grounding == "question" and item.get("question_quote"):
+                self.quotes_checked += 1
+                self.quote_lengths.append(len(item["question_quote"]))
+                if quote_in_stem(item["question_quote"], stem):
+                    self.quotes_verbatim += 1
+                else:
+                    bad_quotes.append(item["question_quote"])
+            if grounding == "passages":
+                ids = item["passage_ids"]
+                legal = sum(1 for pid in ids if pid in allowed)
+                self.p_items += 1
+                self.p_cited += len(ids)
+                self.p_cited_legal += legal
+                self.p_items_all_legal += bool(ids) and legal == len(ids)
+        return bad_quotes
+
+    def summary(self, unit: str) -> dict[str, Any]:
+        total = sum(self.counts.values()) + self.unlabelled
+        return {
+            unit: total,
+            "counts": self.counts,
+            "unlabelled": self.unlabelled,
+            "shares": {g: _ratio(v, total) for g, v in self.counts.items()},
+            "question_quotes_checked": self.quotes_checked,
+            "question_quotes_verbatim": self.quotes_verbatim,
+            "question_quote_verbatim_rate": _ratio(self.quotes_verbatim, self.quotes_checked),
+            "question_quote_length_chars": _distribution(self.quote_lengths),
+            f"passages_{unit}": self.p_items,
+            f"passages_{unit}_all_ids_in_Eq": self.p_items_all_legal,
+            "passages_cited_ids": self.p_cited,
+            "passages_cited_ids_in_Eq": self.p_cited_legal,
+            "passages_citation_validity_rate": _ratio(self.p_cited_legal, self.p_cited),
+            "rule_violations": self.violations,
+        }
+
+
+def _graph_items(graph: dict[str, Any], keys: tuple[str, ...]) -> list[dict[str, Any]]:
+    return [item for key in keys for item in graph.get(key, [])]
+
+
 def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
     manifest = read_json(run_dir / "manifest.json")
     split = manifest["split"]
@@ -121,16 +166,12 @@ def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
     stems = load_stems(stem_path if stem_path.is_absolute() else ROOT / stem_path)
 
     per_question = []
-    g_counts = {g: 0 for g in GROUNDINGS}
-    g_unlabelled = 0
-    quotes_checked = quotes_verbatim = 0
-    quote_lengths: list[int] = []
-    p_cited_total = p_cited_legal = p_sentences = p_sentences_all_legal = 0
-    violations: dict[str, int] = {}
+    sentences_tally, elements_tally, relations_tally = GroundingTally(), GroundingTally(), GroundingTally()
     correct = abstain = invalid = missing = 0
     cited_total = cited_legal = 0
     sentences_total = sentences_cited = 0
     outputs_all_legal = outputs_with_citations = 0
+    graphs: list[dict[str, Any]] = []
     for qid in question_ids:
         if qid not in gold:
             raise KeyError(f"question {qid} has no reference answer in {GOLD_FILES[split]}")
@@ -150,33 +191,10 @@ def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
         is_correct = pred["answer"] == gold[qid]
         correct += is_correct
         abstain += pred["answer"] == "abstain"
-        sentences = pred["output"]["explanation"]
-        allowed = passage_sets[qid]
+        output, allowed, stem = pred["output"], passage_sets[qid], stems[qid]
+        sentences = output["explanation"]
         cited = [pid for sentence in sentences for pid in sentence["passage_ids"]]
         illegal = [pid for pid in cited if pid not in allowed]
-        bad_quotes = []
-        for sentence in sentences:
-            grounding = sentence.get("grounding")
-            if grounding in g_counts:
-                g_counts[grounding] += 1
-            else:
-                g_unlabelled += 1
-            for problem in sentence_violations(sentence):
-                violations[problem] = violations.get(problem, 0) + 1
-            if grounding == "question" and sentence.get("question_quote"):
-                quotes_checked += 1
-                quote_lengths.append(len(sentence["question_quote"]))
-                if quote_in_stem(sentence["question_quote"], stems[qid]):
-                    quotes_verbatim += 1
-                else:
-                    bad_quotes.append(sentence["question_quote"])
-            if grounding == "passages":
-                ids = sentence["passage_ids"]
-                p_sentences += 1
-                p_cited_total += len(ids)
-                legal = sum(1 for pid in ids if pid in allowed)
-                p_cited_legal += legal
-                p_sentences_all_legal += bool(ids) and legal == len(ids)
         sentences_total += len(sentences)
         sentences_cited += sum(1 for s in sentences if s["passage_ids"])
         cited_total += len(cited)
@@ -184,9 +202,22 @@ def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
         if cited:
             outputs_with_citations += 1
             outputs_all_legal += not illegal
+        bad_quotes = sentences_tally.add(sentences, stem, allowed)
         entry.update(status="abstain" if pred["answer"] == "abstain" else "answered", correct=is_correct,
                      n_sentences=len(sentences), n_citations=len(cited), illegal_citations=illegal,
-                     grounding=[s_.get("grounding") for s_ in sentences], non_verbatim_quotes=bad_quotes)
+                     grounding=[s.get("grounding") for s in sentences], non_verbatim_quotes=bad_quotes)
+        if "graph" in output:
+            graph = output["graph"]
+            validation = pred.get("extra", {}).get("validation")
+            elements_tally.add(_graph_items(graph, ("objects", "processes", "states")), stem, allowed)
+            relations_tally.add(graph["relations"], stem, allowed)
+            graphs.append({"graph": graph, "validation": validation})
+            entry["graph"] = {
+                "size": {key: len(graph[key]) for key in ("objects", "processes", "states", "relations")},
+                "all_checks_passed": validation["all_passed"] if validation else None,
+                "failed_checks": [n for n, c in validation["checks"].items() if not c["passed"]] if validation else None,
+                "support_path_valid": validation["support_path_valid"] if validation else None,
+            }
         per_question.append(entry)
 
     n = len(question_ids)
@@ -196,18 +227,17 @@ def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
     reasoning_tokens = _sum([u["reasoning_tokens"] for u in usage])
     cached_tokens = _sum([u.get("cached_input_tokens") for u in usage])
     latencies = [c["total_latency_s"] for c in calls]
+    cost = input_tokens / 1e6 * PRICE_INPUT_PER_M + output_tokens / 1e6 * PRICE_OUTPUT_PER_M
     reasoning_per_question: dict[str, int] = {}
-    for c in calls:
-        if c["usage"]["reasoning_tokens"] is not None:
-            reasoning_per_question[c["question_id"]] = (reasoning_per_question.get(c["question_id"], 0)
-                                                        + c["usage"]["reasoning_tokens"])
     output_per_question: dict[str, int] = {}
     for c in calls:
-        if c["usage"]["output_tokens"] is not None:
-            output_per_question[c["question_id"]] = output_per_question.get(c["question_id"], 0) + c["usage"]["output_tokens"]
-    cost = input_tokens / 1e6 * PRICE_INPUT_PER_M + output_tokens / 1e6 * PRICE_OUTPUT_PER_M
+        u = c["usage"]
+        if u["reasoning_tokens"] is not None:
+            reasoning_per_question[c["question_id"]] = reasoning_per_question.get(c["question_id"], 0) + u["reasoning_tokens"]
+        if u["output_tokens"] is not None:
+            output_per_question[c["question_id"]] = output_per_question.get(c["question_id"], 0) + u["output_tokens"]
 
-    return {
+    score: dict[str, Any] = {
         "run_id": manifest["run_id"],
         "condition": manifest["condition"],
         "split": split,
@@ -227,22 +257,7 @@ def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
             "outputs_with_citations": outputs_with_citations,
             "outputs_all_citations_valid": outputs_all_legal,
         },
-        "grounding": {
-            "sentences": sentences_total,
-            "counts": g_counts,
-            "unlabelled": g_unlabelled,
-            "shares": {g: (v / sentences_total if sentences_total else None) for g, v in g_counts.items()},
-            "question_quotes_checked": quotes_checked,
-            "question_quotes_verbatim": quotes_verbatim,
-            "question_quote_verbatim_rate": quotes_verbatim / quotes_checked if quotes_checked else None,
-            "question_quote_length_chars": _distribution(quote_lengths),
-            "passages_sentences": p_sentences,
-            "passages_sentences_all_ids_in_Eq": p_sentences_all_legal,
-            "passages_cited_ids": p_cited_total,
-            "passages_cited_ids_in_Eq": p_cited_legal,
-            "passages_citation_validity_rate": p_cited_legal / p_cited_total if p_cited_total else None,
-            "rule_violations": violations,
-        },
+        "grounding": sentences_tally.summary("sentences"),
         "cost": {
             "calls": len(calls),
             "api_errors": sum(1 for c in calls if not c["api_ok"]),
@@ -265,6 +280,46 @@ def score_run(run_dir: Path, dataset_dir: Path = DATASET_DIR) -> dict[str, Any]:
         },
         "per_question": per_question,
     }
+    if graphs:
+        score["graph"] = _graph_summary(graphs, elements_tally, relations_tally)
+    return score
+
+
+def _graph_summary(graphs: list[dict[str, Any]], elements: GroundingTally,
+                   relations: GroundingTally) -> dict[str, Any]:
+    validated = [g["validation"] for g in graphs if g["validation"]]
+    checks = {}
+    for name in CHECKS:
+        passed = sum(1 for v in validated if v["checks"][name]["passed"])
+        checks[name] = {"passed": passed, "of": len(validated), "rate": _ratio(passed, len(validated)),
+                        "issues": sum(len(v["checks"][name]["issues"]) for v in validated)}
+    paths = [v["support_path_valid"] for v in validated]
+    path_applicable = [p for p in paths if p is not None]
+    return {
+        "graphs": len(graphs),
+        "validated": len(validated),
+        "all_checks_passed": sum(1 for v in validated if v["all_passed"]),
+        "checks": checks,
+        "support_path_valid": sum(1 for p in path_applicable if p),
+        "support_path_applicable": len(path_applicable),
+        "support_path_valid_rate": _ratio(sum(1 for p in path_applicable if p), len(path_applicable)),
+        "size": {key: _distribution([len(g["graph"][key]) for g in graphs])
+                 for key in ("objects", "processes", "states", "relations")},
+        "question_findings": _distribution([
+            sum(1 for o in g["graph"]["objects"] if o["is_question_finding"])
+            + sum(1 for s in g["graph"]["states"] if s["is_question_finding"]) for g in graphs]),
+        "relation_types": _type_counts(graphs),
+        "element_grounding": elements.summary("items"),
+        "relation_grounding": relations.summary("items"),
+    }
+
+
+def _type_counts(graphs: list[dict[str, Any]]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for g in graphs:
+        for rel in g["graph"]["relations"]:
+            counts[rel["type"]] = counts.get(rel["type"], 0) + 1
+    return dict(sorted(counts.items(), key=lambda kv: -kv[1]))
 
 
 def _pct(x: float | None) -> str:
@@ -281,14 +336,14 @@ def _len_text(d: dict[str, Any]) -> str:
     return "n/a" if not d.get("n") else f"min {d['min']}, median {d['median']}, max {d['max']}"
 
 
-def _grounding_line(g: dict[str, Any]) -> str:
+def _grounding_line(g: dict[str, Any], title: str, unit: str) -> str:
     c, sh = g["counts"], g["shares"]
-    return (f"Grounding ({g['sentences']} sentences): question {c['question']} ({_pct(sh['question'])}), "
+    return (f"{title} ({g[unit]} {unit}): question {c['question']} ({_pct(sh['question'])}), "
             f"passages {c['passages']} ({_pct(sh['passages'])}), none {c['none']} ({_pct(sh['none'])})"
             + (f", unlabelled {g['unlabelled']}" if g["unlabelled"] else "")
             + f"\n  question_quote verbatim in stem: {g['question_quotes_verbatim']}/{g['question_quotes_checked']}"
               f" ({_pct(g['question_quote_verbatim_rate'])}); length chars: {_len_text(g['question_quote_length_chars'])}"
-            + f"\n  passages sentences: {g['passages_sentences_all_ids_in_Eq']}/{g['passages_sentences']} with all ids in E_q;"
+            + f"\n  passages {unit}: {g[f'passages_{unit}_all_ids_in_Eq']}/{g[f'passages_{unit}']} with all ids in E_q;"
               f" ids {g['passages_cited_ids_in_Eq']}/{g['passages_cited_ids']} ({_pct(g['passages_citation_validity_rate'])})"
             + f"\n  rule violations: {g['rule_violations'] or 'none'}")
 
@@ -305,7 +360,22 @@ def format_summary(score: dict[str, Any]) -> str:
         + (f"{rate:.3f}" if rate is not None else "n/a")
         + f"; {c['sentences_with_citation']}/{c['sentences']} sentences cite something; "
           f"{c['outputs_all_citations_valid']}/{c['outputs_with_citations']} outputs fully valid",
-        _grounding_line(score["grounding"]),
+        _grounding_line(score["grounding"], "Grounding", "sentences"),
+    ]
+    if "graph" in score:
+        g = score["graph"]
+        lines.append(f"Graphs: {g['graphs']} (validated {g['validated']}); all checks passed "
+                     f"{g['all_checks_passed']}/{g['validated']}; support_path valid "
+                     f"{g['support_path_valid']}/{g['support_path_applicable']} ({_pct(g['support_path_valid_rate'])})")
+        for name, check in g["checks"].items():
+            lines.append(f"  check {name:<18} {check['passed']}/{check['of']} ({_pct(check['rate'])}), issues {check['issues']}")
+        for key, dist in g["size"].items():
+            lines.append(f"  size {key:<10} {_dist_text(dist)}")
+        lines.append(f"  question findings per graph: {_dist_text(g['question_findings'])}")
+        lines.append(f"  relation types: {g['relation_types']}")
+        lines.append(_grounding_line(g["element_grounding"], "Element grounding", "items"))
+        lines.append(_grounding_line(g["relation_grounding"], "Relation grounding", "items"))
+    lines += [
         f"Calls: {k['calls']} (api errors {k['api_errors']}, retries {k['retries']})",
         f"Tokens: input {k['input_tokens']}, output {k['output_tokens_incl_reasoning']} "
         f"(of which reasoning {k['reasoning_tokens']})",

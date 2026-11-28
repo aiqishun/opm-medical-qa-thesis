@@ -26,12 +26,17 @@ SCHEMA = {"type": "object", "additionalProperties": False, "required": ["ok"], "
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=ROOT / "configs/c1.json")
+    parser.add_argument("--schema", type=Path,
+                        help="send this response schema instead of the trivial one, to confirm strict mode accepts it")
     args = parser.parse_args(argv)
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    schema = json.loads(args.schema.read_text(encoding="utf-8")) if args.schema else SCHEMA
+    system = ("Return a minimal JSON object that satisfies the response schema; use empty lists where allowed."
+              if args.schema else "Reply with the JSON object {\"ok\": true}.")
     request = LLMRequest(model=config["model"], reasoning_effort=config["reasoning_effort"],
                          max_output_tokens=config["max_output_tokens"],
-                         system_prompt="Reply with the JSON object {\"ok\": true}.", user_prompt="ping",
-                         schema_name="param_check", schema=SCHEMA)
+                         system_prompt=system, user_prompt="ping",
+                         schema_name="schema_check" if args.schema else "param_check", schema=schema)
     response = OpenAIResponsesClient().complete(request)
     print(json.dumps({
         "parameters_sent": request.api_parameters(),

@@ -1,0 +1,6 @@
+{
+  "condition": "C2",
+  "model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "max_output_tokens": 16000
+}
