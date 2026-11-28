@@ -1,0 +1,42 @@
+{
+  "answer": "C",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "An ECG shows ST-segment elevation in leads avF and V1-V3.",
+        "sentence": "The patient presents with prolonged severe chest pain unrelieved by nitroglycerin and ST-segment elevation."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathoma_Husain:000106",
+          "First_Aid_Step1:000191"
+        ],
+        "question_quote": null,
+        "sentence": "This presentation is consistent with acute myocardial infarction rather than his usual angina."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "He comes back 3 weeks later for follow-up.",
+        "sentence": "The follow-up is three weeks after discharge, placing it roughly three to five weeks after the infarction."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "By this stage, collagen deposition is replacing the red granulation tissue with a gray-white scar, making white scar tissue the best option even though the scar is not yet fully mature."
+      }
+    ]
+  },
+  "question_id": "mq_47eddb8c1ef111f8ab49f71f3e74f74d5e1fcc9642140582cb3ce5bf9ef2fe57",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

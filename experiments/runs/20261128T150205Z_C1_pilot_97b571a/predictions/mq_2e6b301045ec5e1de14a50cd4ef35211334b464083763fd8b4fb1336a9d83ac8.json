@@ -1,0 +1,39 @@
+{
+  "answer": "C",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Cardiac catheterization shows 96% occlusion of the left anterior descending artery.",
+        "sentence": "Before revascularization, the patient had septal and apical hypokinesis with 96% occlusion of the left anterior descending artery."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "follow-up echocardiography one week later shows normal regional contractile function",
+        "sentence": "Regional contractile function returned to normal one week after angioplasty and stenting."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Hibernating myocardium is viable heart muscle that contracts less under chronically limited blood supply and can recover after revascularization."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Recovery of contraction in the affected territory after blood flow was restored favors hibernating myocardium rather than structural cardiac remodeling."
+      }
+    ]
+  },
+  "question_id": "mq_2e6b301045ec5e1de14a50cd4ef35211334b464083763fd8b4fb1336a9d83ac8",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

@@ -1,0 +1,219 @@
+{
+  "answer": "C",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "He has ST elevations on his EKG and elevated cardiac enzymes.",
+        "sentence": "The patient has sudden chest pain radiating to the left shoulder, with ST elevations and elevated cardiac enzymes."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "This presentation indicates an acute ST-elevation myocardial infarction."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pediatrics_Nelson:000562",
+          "InternalMed_Harrison:001220"
+        ],
+        "question_quote": null,
+        "sentence": "When infarction impairs ventricular contractility, stroke volume falls, lowering cardiac output."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:002001"
+        ],
+        "question_quote": null,
+        "sentence": "Reduced effective arterial perfusion triggers sympathetic vasoconstriction, raising systemic vascular resistance."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The expected pattern is therefore decreased cardiac output with increased systemic vascular resistance (C), even though the stem does not establish overt shock."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "s3",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "ECG ST segments",
+          "passage_ids": [],
+          "question_quote": "ST elevations on his EKG"
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Circulating cardiac enzymes",
+          "passage_ids": [],
+          "question_quote": "elevated cardiac enzymes"
+        },
+        {
+          "grounding": "none",
+          "id": "o3",
+          "is_question_finding": false,
+          "label": "Systemic hemodynamics",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "none",
+          "id": "p1",
+          "label": "Acute ST-elevation myocardial infarction",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p2",
+          "label": "Reduced ventricular pumping with compensatory sympathetic vasoconstriction",
+          "passage_ids": [
+            "InternalMed_Harrison:001220",
+            "InternalMed_Harrison:002001"
+          ],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "none",
+          "id": "r1",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r2",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r3",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "passages",
+          "id": "r4",
+          "passage_ids": [
+            "InternalMed_Harrison:001220",
+            "InternalMed_Harrison:002001"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s3",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "question",
+          "id": "s1",
+          "is_question_finding": true,
+          "label": "Elevated",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": "ST elevations on his EKG"
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "Elevated",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "elevated cardiac enzymes"
+        },
+        {
+          "grounding": "passages",
+          "id": "s3",
+          "is_question_finding": false,
+          "label": "Decreased cardiac output and increased systemic vascular resistance",
+          "owner_object_id": "o3",
+          "passage_ids": [
+            "InternalMed_Harrison:002001",
+            "InternalMed_Harrison:014497"
+          ],
+          "question_quote": null
+        }
+      ],
+      "support_path": [
+        "s1",
+        "r1",
+        "p1",
+        "r3",
+        "p2",
+        "r4",
+        "s3"
+      ]
+    }
+  },
+  "question_id": "mq_d0dbcbb478f3548638334d83780af44bdc4844c7c72d5b502a8ec4170481ef2f",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

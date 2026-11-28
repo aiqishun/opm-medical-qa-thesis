@@ -1,0 +1,42 @@
+{
+  "answer": "A",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Physical exam is significant for a normal heart exam with a few crackles heard at the bases of both lungs.",
+        "sentence": "He has progressive exertional dyspnea and orthopnea, with bibasilar crackles and bilateral leg edema on examination."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step2:000015",
+          "Pharmacology_Katzung:000835"
+        ],
+        "question_quote": null,
+        "sentence": "This pattern is consistent with congestive heart failure, and cardiomegaly favors dilated cardiomyopathy over isolated diastolic dysfunction."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Nightly drinking and prior hospitalizations for “the shakes” suggest a history of heavy alcohol use with withdrawal, making alcohol-induced toxic cardiomyopathy the most likely cause."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The coronary arteries were patent when cardiac enlargement was already present, making ischemic cardiomyopathy less likely."
+      }
+    ]
+  },
+  "question_id": "mq_1f491476867b7a387d05dd57fc761ef8a1063019c7fd6d3cfda3c13e6cabe9cf",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

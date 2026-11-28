@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 5,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 5.22,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_b4c1b4472d00f975f8e8529c07f9602b883ce161f858419d985c3bbde400177d",
+  "raw_text": "{\n  \"answer\": \"B\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The key examination finding is a holosystolic murmur at the apex that radiates to the axilla, accompanied by a midsystolic click.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"a 3/6 holosystolic murmur that is loudest at the apex and radiates to the axilla with a mid-systolic click\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"The murmur identifies mitral regurgitation, while the midsystolic click points to mitral valve prolapse as its cause.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"First_Aid_Step1:000178\", \"Pediatrics_Nelson:001990\"]\n    },\n    {\n      \"sentence\": \"Myxomatous degeneration makes the mitral leaflets floppy, allowing them to billow into the left atrium during systole.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Pathoma_Husain:000117\"]\n    },\n    {\n      \"sentence\": \"The dyspnea and bilateral crackles suggest pulmonary congestion from mitral regurgitation.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Prompt penicillin treatment of the prior streptococcal pharyngitis makes rheumatic valve disease less likely.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5",
+    "user": "8bee1a1ddd7fcc33df6af99d7f8425c119af3c0b20bf98fb04bf6f3b21cc3bb6"
+  },
+  "response_id": "resp_0b1efb2cd48a8871016b0aed01e4b487d0ae217cbb043abd4e",
+  "round": 0,
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "schema_sha256": "47aaa2d1e30efdc734fc5db27acbbef41c6d98b979cae91ded7120f18e2e0705",
+  "status": "completed",
+  "total_latency_s": 5.22,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3935,
+    "output_tokens": 376,
+    "reasoning_tokens": 0
+  }
+}

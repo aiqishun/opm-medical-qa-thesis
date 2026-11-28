@@ -1,0 +1,59 @@
+{
+  "agent": "c2_single_graph",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 5,
+  "condition": "C2",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 20.93,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c2_answer_with_evidence_linked_opm_graph",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_b4c1b4472d00f975f8e8529c07f9602b883ce161f858419d985c3bbde400177d",
+  "raw_text": "{\n  \"answer\": \"B\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The key examination finding is an apical holosystolic murmur radiating to the axilla with a midsystolic click.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"a 3/6 holosystolic murmur that is loudest at the apex and radiates to the axilla with a mid-systolic click\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"The murmur indicates mitral regurgitation, while the midsystolic click points to mitral valve prolapse as its cause.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"First_Aid_Step1:000178\"]\n    },\n    {\n      \"sentence\": \"Myxomatous degeneration makes the mitral leaflets floppy, allowing them to bow into the left atrium during systole and abruptly tense the chordae, producing the click.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Pathoma_Husain:000117\", \"First_Aid_Step1:000178\"]\n    },\n    {\n      \"sentence\": \"The dyspnea and bilateral fine crackles are consistent with pulmonary congestion from mitral regurgitation.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"The prompt penicillin treatment makes rheumatic valve disease less likely despite the history of streptococcal pharyngitis.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ],\n  \"graph\": {\n    \"objects\": [\n      {\n        \"id\": \"o1\",\n        \"label\": \"Mitral valve leaflets\",\n        \"is_question_finding\": false,\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pathoma_Husain:000117\"]\n      },\n      {\n        \"id\": \"o2\",\n        \"label\": \"Midsystolic click\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a mid-systolic click\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o3\",\n        \"label\": \"Apical holosystolic murmur radiating to the axilla\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a 3/6 holosystolic murmur that is loudest at the apex and radiates to the axilla\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o4\",\n        \"label\": \"Bilateral fine crackles\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"Bilateral fine crackles\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o5\",\n        \"label\": \"Dyspnea\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"difficulty breathing\",\n        \"passage_ids\": []\n      }\n    ],\n    \"processes\": [\n      {\n        \"id\": \"p1\",\n        \"label\": \"Myxomatous valve degeneration\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pathoma_Husain:000117\"]\n      },\n      {\n        \"id\": \"p2\",\n        \"label\": \"Systolic mitral leaflet prolapse with abrupt chordal tensing\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"First_Aid_Step1:000178\"]\n      },\n      {\n        \"id\": \"p3\",\n        \"label\": \"Mitral regurgitation\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"First_Aid_Step1:000178\"]\n      },\n      {\n        \"id\": \"p4\",\n        \"label\": \"Pulmonary congestion from elevated left atrial pressure\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"states\": [\n      {\n        \"id\": \"s1\",\n        \"label\": \"Floppy\",\n        \"owner_object_id\": \"o1\",\n        \"is_question_finding\": false,\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pathoma_Husain:000117\"]\n      },\n      {\n        \"id\": \"s2\",\n        \"label\": \"Prolapsed into the left atrium during systole\",\n        \"owner_object_id\": \"o1\",\n        \"is_question_finding\": false,\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pathoma_Husain:000117\"]\n      }\n    ],\n    \"relations\": [\n      {\n        \"id\": \"r1\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"s1\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pathoma_Husain:000117\"]\n      },\n      {\n        \"id\": \"r2\",\n        \"type\": \"input_state\",\n        \"source_id\": \"s1\",\n        \"target_id\": \"p2\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pathoma_Husain:000117\"]\n      },\n      {\n        \"id\": \"r3\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"s2\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pathoma_Husain:000117\"]\n      },\n      {\n        \"id\": \"r4\",\n        \"type\": \"result\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"o2\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"First_Aid_Step1:000178\"]\n      },\n      {\n        \"id\": \"r5\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"p3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"First_Aid_Step1:000178\"]\n      },\n      {\n        \"id\": \"r6\",\n        \"type\": \"result\",\n        \"source_id\": \"p3\",\n        \"target_id\": \"o3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"First_Aid_Step1:000178\"]\n      },\n      {\n        \"id\": \"r7\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p3\",\n        \"target_id\": \"p4\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r8\",\n        \"type\": \"result\",\n        \"source_id\": \"p4\",\n        \"target_id\": \"o4\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r9\",\n        \"type\": \"result\",\n        \"source_id\": \"p4\",\n        \"target_id\": \"o5\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"answer_element_id\": \"p1\",\n    \"support_path\": [\"o2\", \"r4\", \"p2\", \"r2\", \"s1\", \"r1\", \"p1\"]\n  }\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6",
+    "user": "8bee1a1ddd7fcc33df6af99d7f8425c119af3c0b20bf98fb04bf6f3b21cc3bb6"
+  },
+  "response_id": "resp_051bae4186072718016b0aebb788b487d08626c483d1e995fa",
+  "round": 0,
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "schema_sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8",
+  "status": "completed",
+  "total_latency_s": 20.93,
+  "usage": {
+    "cached_input_tokens": 3398,
+    "input_tokens": 6608,
+    "output_tokens": 1769,
+    "reasoning_tokens": 0
+  }
+}

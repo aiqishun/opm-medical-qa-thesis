@@ -1,0 +1,243 @@
+{
+  "answer": "C",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "96% occlusion of the left anterior descending artery",
+        "sentence": "Before revascularization, echocardiography showed left ventricular septal and apical hypokinesis, and catheterization showed 96% occlusion of the left anterior descending artery."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "follow-up echocardiography one week later shows normal regional contractile function",
+        "sentence": "One week after angioplasty and stenting, regional contractile function was normal."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:013250"
+        ],
+        "question_quote": null,
+        "sentence": "Myocardial ischemia can cause reversible regional wall-motion abnormalities on echocardiography."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The rapid recovery after restoring blood flow is characteristic of hibernating myocardium: viable muscle with chronically reduced contraction that improves after revascularization."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "p2",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Left anterior descending artery",
+          "passage_ids": [],
+          "question_quote": "left anterior descending artery"
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Left ventricular septal and apical myocardium",
+          "passage_ids": [],
+          "question_quote": "left ventricular septal and apical hypokinesis"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "none",
+          "id": "p1",
+          "label": "Chronic myocardial ischemia",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "p2",
+          "label": "Myocardial hibernation",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "p3",
+          "label": "Angioplasty and stent placement",
+          "passage_ids": [],
+          "question_quote": "angioplasty and placement of a stent"
+        },
+        {
+          "grounding": "none",
+          "id": "p4",
+          "label": "Contractile recovery after restoration of coronary flow",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "none",
+          "id": "r1",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r2",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s3",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r3",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "s1",
+          "target_id": "p3",
+          "type": "input_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r4",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r5",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "p4",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r6",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "s3",
+          "target_id": "p4",
+          "type": "input_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r7",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p4",
+          "target_id": "s4",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "question",
+          "id": "s1",
+          "is_question_finding": true,
+          "label": "96% occluded",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": "96% occlusion of the left anterior descending artery"
+        },
+        {
+          "grounding": "none",
+          "id": "s2",
+          "is_question_finding": false,
+          "label": "Reopened",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "s3",
+          "is_question_finding": true,
+          "label": "Hypokinetic before revascularization",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "left ventricular septal and apical hypokinesis"
+        },
+        {
+          "grounding": "question",
+          "id": "s4",
+          "is_question_finding": true,
+          "label": "Normal regional contractility one week later",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "follow-up echocardiography one week later shows normal regional contractile function"
+        }
+      ],
+      "support_path": [
+        "s4",
+        "r7",
+        "p4",
+        "r6",
+        "s3",
+        "r2",
+        "p2"
+      ]
+    }
+  },
+  "question_id": "mq_2e6b301045ec5e1de14a50cd4ef35211334b464083763fd8b4fb1336a9d83ac8",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

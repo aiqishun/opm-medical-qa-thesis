@@ -1,0 +1,33 @@
+{
+  "answer": "D",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "D",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "low-set ears, upslanting palpebral fissures, and a hypoplastic fifth finger",
+        "sentence": "The newborn has low-set ears, upslanting palpebral fissures, and a hypoplastic fifth finger."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "This combination of findings suggests Down syndrome (trisomy 21)."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "A complete atrioventricular septal defect is the congenital heart defect most strongly associated with Down syndrome among the listed options."
+      }
+    ]
+  },
+  "question_id": "mq_414d830c6b8b392665b2244ba24d85ad6c4b1f7f07acf6f4a6c0e0fcfcba30e6",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

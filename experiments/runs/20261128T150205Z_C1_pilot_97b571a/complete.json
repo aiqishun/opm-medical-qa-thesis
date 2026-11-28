@@ -1,0 +1,11 @@
+{
+  "counts": {
+    "abstain": 0,
+    "calls": 20,
+    "invalid": 0,
+    "questions": 20,
+    "valid": 20
+  },
+  "finished_at": "2026-11-28T15:03:40.108075+00:00",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a"
+}

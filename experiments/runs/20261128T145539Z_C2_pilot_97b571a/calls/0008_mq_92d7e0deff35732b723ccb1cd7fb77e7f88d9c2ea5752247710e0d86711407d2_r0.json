@@ -1,0 +1,59 @@
+{
+  "agent": "c2_single_graph",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 8,
+  "condition": "C2",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 16.729,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c2_answer_with_evidence_linked_opm_graph",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_92d7e0deff35732b723ccb1cd7fb77e7f88d9c2ea5752247710e0d86711407d2",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The patient has three days of sore throat and fever, with purulent tonsillar exudate and tender cervical lymphadenopathy.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"enlarged tonsils with purulent exudate\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"The abrupt onset and purulent exudate favor group A streptococcal pharyngitis, although clinical findings alone cannot confirm it.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:008162\", \"Pediatrics_Nelson:001478\"]\n    },\n    {\n      \"sentence\": \"Streptococcal toxic shock syndrome is the best listed answer: it is a rare complication of severe group A streptococcal infection, not an expected outcome of uncomplicated pharyngitis.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:001148\"]\n    },\n    {\n      \"sentence\": \"Erythema multiforme has been reported with infectious mononucleosis, but mononucleosis more often has a longer prodrome and posterior cervical lymphadenopathy.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:010011\"]\n    }\n  ],\n  \"graph\": {\n    \"objects\": [\n      {\n        \"id\": \"o1\",\n        \"label\": \"Tonsils\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"tonsils\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o2\",\n        \"label\": \"Cervical lymph nodes\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"tender cervical lymphadenopathy\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o3\",\n        \"label\": \"Febrile sore throat\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"3-day history of a sore throat and fever\",\n        \"passage_ids\": []\n      }\n    ],\n    \"processes\": [\n      {\n        \"id\": \"p1\",\n        \"label\": \"Acute group A streptococcal pharyngitis\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:008162\", \"Pediatrics_Nelson:001478\"]\n      },\n      {\n        \"id\": \"p2\",\n        \"label\": \"Progression to severe invasive group A streptococcal infection\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"p3\",\n        \"label\": \"Streptococcal toxic shock syndrome\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:001148\"]\n      }\n    ],\n    \"states\": [\n      {\n        \"id\": \"s1\",\n        \"label\": \"Enlarged with purulent exudate\",\n        \"owner_object_id\": \"o1\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"enlarged tonsils with purulent exudate\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s2\",\n        \"label\": \"Tender and enlarged\",\n        \"owner_object_id\": \"o2\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"tender cervical lymphadenopathy\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s3\",\n        \"label\": \"Acute, present for three days\",\n        \"owner_object_id\": \"o3\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"3-day history of a sore throat and fever\",\n        \"passage_ids\": []\n      }\n    ],\n    \"relations\": [\n      {\n        \"id\": \"r1\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"s1\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:008162\", \"Pediatrics_Nelson:001478\"]\n      },\n      {\n        \"id\": \"r2\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"s2\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:008162\"]\n      },\n      {\n        \"id\": \"r3\",\n        \"type\": \"result\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"o3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pediatrics_Nelson:001478\"]\n      },\n      {\n        \"id\": \"r4\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"p2\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r5\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"p3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:001148\"]\n      }\n    ],\n    \"answer_element_id\": \"p3\",\n    \"support_path\": [\"o3\", \"r3\", \"p1\", \"r4\", \"p2\", \"r5\", \"p3\"]\n  }\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6",
+    "user": "482dc1f6d341c48fc3a30fecf472cb01656629191254d76c7ef548b9a413d99a"
+  },
+  "response_id": "resp_0b41aea3ce423ef4016b0aebeb2c4c87d0a481b5af3ffe0e76",
+  "round": 0,
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "schema_sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8",
+  "status": "completed",
+  "total_latency_s": 16.729,
+  "usage": {
+    "cached_input_tokens": 3398,
+    "input_tokens": 6430,
+    "output_tokens": 1401,
+    "reasoning_tokens": 51
+  }
+}

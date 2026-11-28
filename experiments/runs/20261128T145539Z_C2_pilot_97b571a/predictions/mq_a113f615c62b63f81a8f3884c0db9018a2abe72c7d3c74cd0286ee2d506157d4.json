@@ -1,0 +1,239 @@
+{
+  "answer": "A",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "a systolic murmur best heard at the lower left sternal border",
+        "sentence": "This 20-year-old athlete has recurrent exertional syncope and a systolic murmur loudest at the lower left sternal border."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step2:000746",
+          "InternalMed_Harrison:002032"
+        ],
+        "question_quote": null,
+        "sentence": "The murmur location favors hypertrophic obstructive cardiomyopathy over aortic stenosis, which is usually loudest at the right upper sternal border and radiates to the carotids."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:002020"
+        ],
+        "question_quote": null,
+        "sentence": "Despite the history of untreated streptococcal pharyngitis, mitral stenosis is unlikely because it produces a diastolic rumble, not a systolic murmur."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Squatting increases left ventricular filling, which reduces dynamic outflow tract obstruction and makes the murmur softer."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "s2",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": true,
+          "label": "Systolic heart murmur",
+          "passage_ids": [],
+          "question_quote": "a systolic murmur"
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": true,
+          "label": "Exertional syncope",
+          "passage_ids": [],
+          "question_quote": "he fainted during a competition"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "none",
+          "id": "p1",
+          "label": "Dynamic left ventricular outflow obstruction in hypertrophic cardiomyopathy",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "p2",
+          "label": "Transient reduction in cerebral perfusion during exertion",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "p3",
+          "label": "Squatting",
+          "passage_ids": [],
+          "question_quote": "he squats"
+        },
+        {
+          "grounding": "none",
+          "id": "p4",
+          "label": "Increase in left ventricular filling",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "p5",
+          "label": "Reduction in dynamic outflow obstruction",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "none",
+          "id": "r1",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r2",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r3",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "o2",
+          "type": "result"
+        },
+        {
+          "grounding": "none",
+          "id": "r4",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "p4",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r5",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p4",
+          "target_id": "p5",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r6",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "s1",
+          "target_id": "p5",
+          "type": "input_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r7",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p5",
+          "target_id": "s2",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "question",
+          "id": "s1",
+          "is_question_finding": true,
+          "label": "Loudest at the lower left sternal border with axillary radiation",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": "best heard at the lower left sternal border that radiates to the axilla"
+        },
+        {
+          "grounding": "none",
+          "id": "s2",
+          "is_question_finding": false,
+          "label": "Softer with squatting in hypertrophic obstructive cardiomyopathy",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "support_path": [
+        "o2",
+        "r3",
+        "p2",
+        "r2",
+        "p1",
+        "r1",
+        "s1",
+        "r6",
+        "p5",
+        "r7",
+        "s2"
+      ]
+    }
+  },
+  "question_id": "mq_a113f615c62b63f81a8f3884c0db9018a2abe72c7d3c74cd0286ee2d506157d4",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

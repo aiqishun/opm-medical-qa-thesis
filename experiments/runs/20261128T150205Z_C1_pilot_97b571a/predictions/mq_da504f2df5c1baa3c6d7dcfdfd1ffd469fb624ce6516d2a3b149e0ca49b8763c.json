@@ -1,0 +1,39 @@
+{
+  "answer": "D",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "D",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "The chest pain occurs after climbing more than 2 flight of stairs or walking for more than 10 minutes and resolves with rest.",
+        "sentence": "His chest pain comes on predictably with stair climbing or prolonged walking and resolves with rest."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:000933",
+          "Pathology_Robbins:001460"
+        ],
+        "question_quote": null,
+        "sentence": "This pattern is characteristic of stable angina, in which a fixed atherosclerotic stenosis greater than 70% limits coronary blood flow when myocardial oxygen demand increases during exertion."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathoma_Husain:000106",
+          "InternalMed_Harrison:000933"
+        ],
+        "question_quote": null,
+        "sentence": "In contrast, vasospastic angina is usually unrelated to exertion, a nonocclusive thrombus can cause unstable angina, and acute thrombotic occlusion typically causes myocardial infarction."
+      }
+    ]
+  },
+  "question_id": "mq_da504f2df5c1baa3c6d7dcfdfd1ffd469fb624ce6516d2a3b149e0ca49b8763c",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

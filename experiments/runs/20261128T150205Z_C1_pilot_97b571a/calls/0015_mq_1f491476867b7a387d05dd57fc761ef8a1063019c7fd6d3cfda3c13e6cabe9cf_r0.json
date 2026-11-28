@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 15,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.907,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_1f491476867b7a387d05dd57fc761ef8a1063019c7fd6d3cfda3c13e6cabe9cf",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"He has progressive exertional dyspnea and orthopnea, with bibasilar crackles and bilateral leg edema on examination.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"Physical exam is significant for a normal heart exam with a few crackles heard at the bases of both lungs.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"This pattern is consistent with congestive heart failure, and cardiomegaly favors dilated cardiomyopathy over isolated diastolic dysfunction.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"First_Aid_Step2:000015\", \"Pharmacology_Katzung:000835\"]\n    },\n    {\n      \"sentence\": \"Nightly drinking and prior hospitalizations for “the shakes” suggest a history of heavy alcohol use with withdrawal, making alcohol-induced toxic cardiomyopathy the most likely cause.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"The coronary arteries were patent when cardiac enlargement was already present, making ischemic cardiomyopathy less likely.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5",
+    "user": "23828ade78aee63212d59cdc357a6296520cf27830f4649a5b1e565ca68235d7"
+  },
+  "response_id": "resp_07574f259303aad7016b0aed2faa7487d0a96d68c7085b2141",
+  "round": 0,
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "schema_sha256": "47aaa2d1e30efdc734fc5db27acbbef41c6d98b979cae91ded7120f18e2e0705",
+  "status": "completed",
+  "total_latency_s": 4.907,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3847,
+    "output_tokens": 307,
+    "reasoning_tokens": 0
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "answer": "A",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "a reduced ejection fraction, a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery",
+        "sentence": "The patient has new chest pain and diabetes, and angiography shows reduced ejection fraction with stenoses in both the left anterior descending and left circumflex arteries."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:012702",
+          "InternalMed_Harrison:013298"
+        ],
+        "question_quote": null,
+        "sentence": "CABG is considered for multivessel coronary disease with impaired left ventricular function, whereas PCI is generally favored for suitable two-vessel disease when ventricular function is normal."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Although the stem does not specify whether the LAD lesion is proximal, the combination of diabetes, LAD-involving multivessel disease, and reduced ejection fraction makes CABG the best choice among the listed options."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Heparin may be used in acute coronary syndrome and nitrates can relieve angina, but neither provides definitive revascularization."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "o5",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": true,
+          "label": "LAD and left circumflex stenoses",
+          "passage_ids": [],
+          "question_quote": "a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery"
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": true,
+          "label": "Reduced ejection fraction",
+          "passage_ids": [],
+          "question_quote": "a reduced ejection fraction"
+        },
+        {
+          "grounding": "question",
+          "id": "o3",
+          "is_question_finding": true,
+          "label": "Diabetes mellitus",
+          "passage_ids": [],
+          "question_quote": "diabetes mellitus"
+        },
+        {
+          "grounding": "question",
+          "id": "o4",
+          "is_question_finding": true,
+          "label": "New chest pain",
+          "passage_ids": [],
+          "question_quote": "new chest pain"
+        },
+        {
+          "grounding": "none",
+          "id": "o5",
+          "is_question_finding": false,
+          "label": "Recommendation for coronary artery bypass grafting (CABG)",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "passages",
+          "id": "p1",
+          "label": "Selecting a coronary revascularization strategy",
+          "passage_ids": [
+            "InternalMed_Harrison:013298"
+          ],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "passages",
+          "id": "r1",
+          "passage_ids": [
+            "InternalMed_Harrison:013298"
+          ],
+          "question_quote": null,
+          "source_id": "o1",
+          "target_id": "p1",
+          "type": "instrument"
+        },
+        {
+          "grounding": "passages",
+          "id": "r2",
+          "passage_ids": [
+            "InternalMed_Harrison:013298",
+            "InternalMed_Harrison:012702"
+          ],
+          "question_quote": null,
+          "source_id": "o2",
+          "target_id": "p1",
+          "type": "instrument"
+        },
+        {
+          "grounding": "passages",
+          "id": "r3",
+          "passage_ids": [
+            "InternalMed_Harrison:013298"
+          ],
+          "question_quote": null,
+          "source_id": "o3",
+          "target_id": "p1",
+          "type": "instrument"
+        },
+        {
+          "grounding": "none",
+          "id": "r4",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "o4",
+          "target_id": "p1",
+          "type": "instrument"
+        },
+        {
+          "grounding": "none",
+          "id": "r5",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "o5",
+          "type": "result"
+        }
+      ],
+      "states": [],
+      "support_path": [
+        "o1",
+        "r1",
+        "p1",
+        "r5",
+        "o5"
+      ]
+    }
+  },
+  "question_id": "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+  "run_id": "20261128T143419Z_C2_pilot_3f4bf84",
+  "validity": "valid"
+}

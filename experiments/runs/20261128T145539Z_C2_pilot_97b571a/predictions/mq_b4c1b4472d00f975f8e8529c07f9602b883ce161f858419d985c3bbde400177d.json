@@ -1,0 +1,300 @@
+{
+  "answer": "B",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "a 3/6 holosystolic murmur that is loudest at the apex and radiates to the axilla with a mid-systolic click",
+        "sentence": "The key examination finding is an apical holosystolic murmur radiating to the axilla with a midsystolic click."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step1:000178"
+        ],
+        "question_quote": null,
+        "sentence": "The murmur indicates mitral regurgitation, while the midsystolic click points to mitral valve prolapse as its cause."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathoma_Husain:000117",
+          "First_Aid_Step1:000178"
+        ],
+        "question_quote": null,
+        "sentence": "Myxomatous degeneration makes the mitral leaflets floppy, allowing them to bow into the left atrium during systole and abruptly tense the chordae, producing the click."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The dyspnea and bilateral fine crackles are consistent with pulmonary congestion from mitral regurgitation."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The prompt penicillin treatment makes rheumatic valve disease less likely despite the history of streptococcal pharyngitis."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "p1",
+      "objects": [
+        {
+          "grounding": "passages",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Mitral valve leaflets",
+          "passage_ids": [
+            "Pathoma_Husain:000117"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": true,
+          "label": "Midsystolic click",
+          "passage_ids": [],
+          "question_quote": "a mid-systolic click"
+        },
+        {
+          "grounding": "question",
+          "id": "o3",
+          "is_question_finding": true,
+          "label": "Apical holosystolic murmur radiating to the axilla",
+          "passage_ids": [],
+          "question_quote": "a 3/6 holosystolic murmur that is loudest at the apex and radiates to the axilla"
+        },
+        {
+          "grounding": "question",
+          "id": "o4",
+          "is_question_finding": true,
+          "label": "Bilateral fine crackles",
+          "passage_ids": [],
+          "question_quote": "Bilateral fine crackles"
+        },
+        {
+          "grounding": "question",
+          "id": "o5",
+          "is_question_finding": true,
+          "label": "Dyspnea",
+          "passage_ids": [],
+          "question_quote": "difficulty breathing"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "passages",
+          "id": "p1",
+          "label": "Myxomatous valve degeneration",
+          "passage_ids": [
+            "Pathoma_Husain:000117"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p2",
+          "label": "Systolic mitral leaflet prolapse with abrupt chordal tensing",
+          "passage_ids": [
+            "First_Aid_Step1:000178"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p3",
+          "label": "Mitral regurgitation",
+          "passage_ids": [
+            "First_Aid_Step1:000178"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "p4",
+          "label": "Pulmonary congestion from elevated left atrial pressure",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "passages",
+          "id": "r1",
+          "passage_ids": [
+            "Pathoma_Husain:000117"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r2",
+          "passage_ids": [
+            "Pathoma_Husain:000117"
+          ],
+          "question_quote": null,
+          "source_id": "s1",
+          "target_id": "p2",
+          "type": "input_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r3",
+          "passage_ids": [
+            "Pathoma_Husain:000117"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r4",
+          "passage_ids": [
+            "First_Aid_Step1:000178"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "o2",
+          "type": "result"
+        },
+        {
+          "grounding": "passages",
+          "id": "r5",
+          "passage_ids": [
+            "First_Aid_Step1:000178"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "p3",
+          "type": "invocation"
+        },
+        {
+          "grounding": "passages",
+          "id": "r6",
+          "passage_ids": [
+            "First_Aid_Step1:000178"
+          ],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "o3",
+          "type": "result"
+        },
+        {
+          "grounding": "none",
+          "id": "r7",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "p4",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r8",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p4",
+          "target_id": "o4",
+          "type": "result"
+        },
+        {
+          "grounding": "none",
+          "id": "r9",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p4",
+          "target_id": "o5",
+          "type": "result"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "passages",
+          "id": "s1",
+          "is_question_finding": false,
+          "label": "Floppy",
+          "owner_object_id": "o1",
+          "passage_ids": [
+            "Pathoma_Husain:000117"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "s2",
+          "is_question_finding": false,
+          "label": "Prolapsed into the left atrium during systole",
+          "owner_object_id": "o1",
+          "passage_ids": [
+            "Pathoma_Husain:000117"
+          ],
+          "question_quote": null
+        }
+      ],
+      "support_path": [
+        "o2",
+        "r4",
+        "p2",
+        "r2",
+        "s1",
+        "r1",
+        "p1"
+      ]
+    }
+  },
+  "question_id": "mq_b4c1b4472d00f975f8e8529c07f9602b883ce161f858419d985c3bbde400177d",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

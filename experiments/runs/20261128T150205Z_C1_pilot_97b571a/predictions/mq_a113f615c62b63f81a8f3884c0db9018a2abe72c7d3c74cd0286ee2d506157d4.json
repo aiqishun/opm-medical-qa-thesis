@@ -1,0 +1,42 @@
+{
+  "answer": "A",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Cardiac exam reveals a systolic murmur best heard at the lower left sternal border that radiates to the axilla.",
+        "sentence": "This 20-year-old athlete has recurrent exertional syncope and a systolic murmur best heard at the lower left sternal border."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Recurrent exertional syncope with a systolic murmur in a young athlete suggests hypertrophic obstructive cardiomyopathy."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Squatting increases preload and afterload, reducing dynamic left ventricular outflow tract obstruction and making the murmur softer."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:002020",
+          "InternalMed_Harrison:002032"
+        ],
+        "question_quote": null,
+        "sentence": "Mitral stenosis produces a diastolic rumble, whereas aortic stenosis is typically loudest at the right upper sternal border and radiates to the carotids."
+      }
+    ]
+  },
+  "question_id": "mq_a113f615c62b63f81a8f3884c0db9018a2abe72c7d3c74cd0286ee2d506157d4",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

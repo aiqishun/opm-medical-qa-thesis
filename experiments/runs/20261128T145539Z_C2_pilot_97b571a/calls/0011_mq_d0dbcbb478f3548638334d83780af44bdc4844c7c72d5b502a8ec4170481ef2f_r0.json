@@ -1,0 +1,59 @@
+{
+  "agent": "c2_single_graph",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 11,
+  "condition": "C2",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 16.429,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c2_answer_with_evidence_linked_opm_graph",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_d0dbcbb478f3548638334d83780af44bdc4844c7c72d5b502a8ec4170481ef2f",
+  "raw_text": "{\n  \"answer\": \"C\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The patient has sudden chest pain radiating to the left shoulder, with ST elevations and elevated cardiac enzymes.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"He has ST elevations on his EKG and elevated cardiac enzymes.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"This presentation indicates an acute ST-elevation myocardial infarction.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"When infarction impairs ventricular contractility, stroke volume falls, lowering cardiac output.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Pediatrics_Nelson:000562\", \"InternalMed_Harrison:001220\"]\n    },\n    {\n      \"sentence\": \"Reduced effective arterial perfusion triggers sympathetic vasoconstriction, raising systemic vascular resistance.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:002001\"]\n    },\n    {\n      \"sentence\": \"The expected pattern is therefore decreased cardiac output with increased systemic vascular resistance (C), even though the stem does not establish overt shock.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ],\n  \"graph\": {\n    \"objects\": [\n      {\n        \"id\": \"o1\",\n        \"label\": \"ECG ST segments\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"ST elevations on his EKG\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o2\",\n        \"label\": \"Circulating cardiac enzymes\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"elevated cardiac enzymes\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o3\",\n        \"label\": \"Systemic hemodynamics\",\n        \"is_question_finding\": false,\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"processes\": [\n      {\n        \"id\": \"p1\",\n        \"label\": \"Acute ST-elevation myocardial infarction\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"p2\",\n        \"label\": \"Reduced ventricular pumping with compensatory sympathetic vasoconstriction\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:001220\", \"InternalMed_Harrison:002001\"]\n      }\n    ],\n    \"states\": [\n      {\n        \"id\": \"s1\",\n        \"label\": \"Elevated\",\n        \"owner_object_id\": \"o1\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"ST elevations on his EKG\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s2\",\n        \"label\": \"Elevated\",\n        \"owner_object_id\": \"o2\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"elevated cardiac enzymes\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s3\",\n        \"label\": \"Decreased cardiac output and increased systemic vascular resistance\",\n        \"owner_object_id\": \"o3\",\n        \"is_question_finding\": false,\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:002001\", \"InternalMed_Harrison:014497\"]\n      }\n    ],\n    \"relations\": [\n      {\n        \"id\": \"r1\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"s1\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r2\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"s2\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r3\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"p2\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r4\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"s3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:001220\", \"InternalMed_Harrison:002001\"]\n      }\n    ],\n    \"answer_element_id\": \"s3\",\n    \"support_path\": [\"s1\", \"r1\", \"p1\", \"r3\", \"p2\", \"r4\", \"s3\"]\n  }\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6",
+    "user": "0110195b3719e615c4ef1aa983d908c247717c5d96397fd2f960ecffec17ddbe"
+  },
+  "response_id": "resp_064b965a50a7dbeb016b0aec26243887d097b005667eaa2c8b",
+  "round": 0,
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "schema_sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8",
+  "status": "completed",
+  "total_latency_s": 16.429,
+  "usage": {
+    "cached_input_tokens": 3398,
+    "input_tokens": 5741,
+    "output_tokens": 1344,
+    "reasoning_tokens": 174
+  }
+}

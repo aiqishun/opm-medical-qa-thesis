@@ -1,0 +1,59 @@
+{
+  "agent": "c2_single_graph",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 17,
+  "condition": "C2",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 18.293,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c2_answer_with_evidence_linked_opm_graph",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_aedeb42cd0996b60a1b68b2963cc1818b0520f374615867fc807391552323bf1",
+  "raw_text": "{\n  \"answer\": \"B\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The patient has progressive dyspnea, a loud P2, and right ventricular hypertrophy, with pulmonary artery pressure rising from 24 mmHg at rest to 40 mmHg during exercise.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"Her pulmonary artery pressure is 24 mmHg at rest and 40 mmHg with exercise.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"The loud P2 and right ventricular hypertrophy suggest pulmonary hypertension rather than dyspnea from mild asthma or anxiety alone.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Right heart catheterization is the gold standard for confirming pulmonary hypertension and distinguishing precapillary from postcapillary disease.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:013797\"]\n    },\n    {\n      \"sentence\": \"The gene implicated in heritable pulmonary arterial hypertension is BMPR2, whose normal signaling inhibits pulmonary arterial smooth muscle proliferation.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Loss of this inhibition allows vascular remodeling that raises pulmonary vascular resistance and increases right ventricular afterload.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ],\n  \"graph\": {\n    \"objects\": [\n      {\n        \"id\": \"o1\",\n        \"label\": \"BMPR2 receptor\",\n        \"is_question_finding\": false,\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o2\",\n        \"label\": \"Pulmonary artery pressure\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"pulmonary artery pressure\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o3\",\n        \"label\": \"Right ventricle\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"right ventricular hypertrophy\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o4\",\n        \"label\": \"Pulmonic component of S2\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"P2\",\n        \"passage_ids\": []\n      }\n    ],\n    \"processes\": [\n      {\n        \"id\": \"p1\",\n        \"label\": \"BMPR2-mediated inhibition of pulmonary arterial smooth muscle proliferation (impaired)\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"p2\",\n        \"label\": \"Excess smooth muscle proliferation and pulmonary arterial remodeling\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"p3\",\n        \"label\": \"Pulmonary pressure loading of the right ventricle\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"states\": [\n      {\n        \"id\": \"s1\",\n        \"label\": \"24 mmHg at rest and 40 mmHg with exercise\",\n        \"owner_object_id\": \"o2\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"24 mmHg at rest and 40 mmHg with exercise\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s2\",\n        \"label\": \"Hypertrophied\",\n        \"owner_object_id\": \"o3\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"right ventricular hypertrophy\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s3\",\n        \"label\": \"Loud\",\n        \"owner_object_id\": \"o4\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"loud P2\",\n        \"passage_ids\": []\n      }\n    ],\n    \"relations\": [\n      {\n        \"id\": \"r1\",\n        \"type\": \"instrument\",\n        \"source_id\": \"o1\",\n        \"target_id\": \"p1\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r2\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"p2\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r3\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"s1\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r4\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"p3\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r5\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p3\",\n        \"target_id\": \"s2\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r6\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p3\",\n        \"target_id\": \"s3\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"answer_element_id\": \"p1\",\n    \"support_path\": [\"s2\", \"r5\", \"p3\", \"r4\", \"p2\", \"r2\", \"p1\"]\n  }\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6",
+    "user": "0b46bb5f1941ca3eae6dcf2138de3fa5a6b681acdec900ed2967944df7f4963c"
+  },
+  "response_id": "resp_057c0f9d551e121b016b0aec9eaf3887d09fbd07e89bb138b8",
+  "round": 0,
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "schema_sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8",
+  "status": "completed",
+  "total_latency_s": 18.293,
+  "usage": {
+    "cached_input_tokens": 3398,
+    "input_tokens": 6147,
+    "output_tokens": 1491,
+    "reasoning_tokens": 113
+  }
+}

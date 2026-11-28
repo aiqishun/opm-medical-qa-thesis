@@ -1,0 +1,59 @@
+{
+  "agent": "c2_single_graph",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 15,
+  "condition": "C2",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 22.873,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c2_answer_with_evidence_linked_opm_graph",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_1f491476867b7a387d05dd57fc761ef8a1063019c7fd6d3cfda3c13e6cabe9cf",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"His exertional dyspnea has progressed to orthopnea, and examination shows bibasilar crackles and bilateral leg edema.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"he feels similarly short of breath when lying down\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"This pattern suggests heart failure with both pulmonary and systemic congestion.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Pharmacology_Katzung:000835\", \"First_Aid_Step2:000015\"]\n    },\n    {\n      \"sentence\": \"Nightly alcohol use and two prior admissions for “the shakes,” which may have been alcohol withdrawal, suggest sustained heavy alcohol exposure.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Chronic heavy alcohol exposure can directly injure the myocardium, causing a dilated cardiomyopathy with impaired contraction.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"The prior catheterization showed an enlarged heart despite patent coronary arteries.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"a moderately enlarged heart but patent coronary arteries\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Patent coronaries when enlargement was already present make ischemic cardiomyopathy less likely, and the alcohol history favors toxic cardiomyopathy over isolated diastolic heart failure, although no ejection fraction is provided.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ],\n  \"graph\": {\n    \"objects\": [\n      {\n        \"id\": \"o1\",\n        \"label\": \"Alcohol consumed nightly\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"He currently drinks \\\"a few\\\" drinks per night.\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o2\",\n        \"label\": \"Heart\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a moderately enlarged heart\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o3\",\n        \"label\": \"Coronary arteries\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"patent coronary arteries\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o4\",\n        \"label\": \"Breathing\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"short of breath when lying down\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o5\",\n        \"label\": \"Lower extremities\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"2+ edema present in both lower extremities\",\n        \"passage_ids\": []\n      }\n    ],\n    \"processes\": [\n      {\n        \"id\": \"p1\",\n        \"label\": \"Alcohol-induced myocardial injury (toxic cardiomyopathy)\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"p2\",\n        \"label\": \"Impaired ventricular contraction and dilated remodeling\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"First_Aid_Step2:000015\"]\n      },\n      {\n        \"id\": \"p3\",\n        \"label\": \"Pulmonary and systemic venous congestion\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pharmacology_Katzung:000835\", \"First_Aid_Step2:000015\"]\n      }\n    ],\n    \"states\": [\n      {\n        \"id\": \"s1\",\n        \"label\": \"Moderately enlarged\",\n        \"owner_object_id\": \"o2\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a moderately enlarged heart\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s2\",\n        \"label\": \"Patent at prior catheterization\",\n        \"owner_object_id\": \"o3\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"patent coronary arteries\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s3\",\n        \"label\": \"Dyspneic when supine (orthopnea)\",\n        \"owner_object_id\": \"o4\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"short of breath when lying down\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s4\",\n        \"label\": \"Bilateral 2+ edema\",\n        \"owner_object_id\": \"o5\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"2+ edema present in both lower extremities\",\n        \"passage_ids\": []\n      }\n    ],\n    \"relations\": [\n      {\n        \"id\": \"r1\",\n        \"type\": \"instrument\",\n        \"source_id\": \"o1\",\n        \"target_id\": \"p1\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r2\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"p2\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r3\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"s1\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"First_Aid_Step2:000015\"]\n      },\n      {\n        \"id\": \"r4\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"p3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"First_Aid_Step2:000015\", \"Pharmacology_Katzung:000835\"]\n      },\n      {\n        \"id\": \"r5\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p3\",\n        \"target_id\": \"s3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pharmacology_Katzung:000835\", \"First_Aid_Step2:000015\"]\n      },\n      {\n        \"id\": \"r6\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p3\",\n        \"target_id\": \"s4\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pharmacology_Katzung:000835\", \"First_Aid_Step2:000015\"]\n      },\n      {\n        \"id\": \"r7\",\n        \"type\": \"aggregation\",\n        \"source_id\": \"o2\",\n        \"target_id\": \"o3\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"answer_element_id\": \"p1\",\n    \"support_path\": [\"s1\", \"r3\", \"p2\", \"r2\", \"p1\"]\n  }\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6",
+    "user": "23828ade78aee63212d59cdc357a6296520cf27830f4649a5b1e565ca68235d7"
+  },
+  "response_id": "resp_0e07d3d651e5e66b016b0aec74ef5487d08be3304e8ddbb84a",
+  "round": 0,
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "schema_sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8",
+  "status": "completed",
+  "total_latency_s": 22.873,
+  "usage": {
+    "cached_input_tokens": 3398,
+    "input_tokens": 6520,
+    "output_tokens": 1926,
+    "reasoning_tokens": 203
+  }
+}

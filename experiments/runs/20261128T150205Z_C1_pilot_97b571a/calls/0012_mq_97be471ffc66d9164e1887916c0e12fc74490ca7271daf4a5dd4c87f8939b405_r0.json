@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 12,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.185,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_97be471ffc66d9164e1887916c0e12fc74490ca7271daf4a5dd4c87f8939b405",
+  "raw_text": "{\n  \"answer\": \"C\",\n  \"explanation\": [\n    {\n      \"sentence\": \"He developed acute dyspnea and chest pain with tachycardia and mild tachypnea.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"shortness of breath and chest pain that started a few hours ago\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Recent total hip replacement and a prior deep vein thrombosis make pulmonary thromboembolism the most likely diagnosis despite postoperative heparin prophylaxis.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Pulmonary embolism can present with acute chest pain, dyspnea, and tachypnea despite clear lungs on examination.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Anatomy_Gray:000380\"]\n    },\n    {\n      \"sentence\": \"The absence of fever and sputum production, together with a normal chest radiograph, makes pneumonia less likely.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5",
+    "user": "3b6bcbebe1cc93c49419ea58ba4dd5fe2a6f232a1c3915b335671aed0fa7544e"
+  },
+  "response_id": "resp_092517aa7e589612016b0aed23207c87d0977b6f926d355edb",
+  "round": 0,
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "schema_sha256": "47aaa2d1e30efdc734fc5db27acbbef41c6d98b979cae91ded7120f18e2e0705",
+  "status": "completed",
+  "total_latency_s": 4.185,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3321,
+    "output_tokens": 274,
+    "reasoning_tokens": 0
+  }
+}

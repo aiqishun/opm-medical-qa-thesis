@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 18,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.781,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_a113f615c62b63f81a8f3884c0db9018a2abe72c7d3c74cd0286ee2d506157d4",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"This 20-year-old athlete has recurrent exertional syncope and a systolic murmur best heard at the lower left sternal border.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"Cardiac exam reveals a systolic murmur best heard at the lower left sternal border that radiates to the axilla.\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Recurrent exertional syncope with a systolic murmur in a young athlete suggests hypertrophic obstructive cardiomyopathy.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Squatting increases preload and afterload, reducing dynamic left ventricular outflow tract obstruction and making the murmur softer.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Mitral stenosis produces a diastolic rumble, whereas aortic stenosis is typically loudest at the right upper sternal border and radiates to the carotids.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:002020\", \"InternalMed_Harrison:002032\"]\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5",
+    "user": "11490d2cb24d03a744c58ee3b659dc9cace70349b7aac297cb081881e8a8fd4a"
+  },
+  "response_id": "resp_01d3d6b9081c7b90016b0aed3da60087d08b701e3c93ed66a5",
+  "round": 0,
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "schema_sha256": "47aaa2d1e30efdc734fc5db27acbbef41c6d98b979cae91ded7120f18e2e0705",
+  "status": "completed",
+  "total_latency_s": 4.781,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 4063,
+    "output_tokens": 310,
+    "reasoning_tokens": 0
+  }
+}

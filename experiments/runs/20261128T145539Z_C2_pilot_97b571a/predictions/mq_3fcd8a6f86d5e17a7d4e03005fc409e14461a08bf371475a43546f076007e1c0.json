@@ -1,0 +1,224 @@
+{
+  "answer": "D",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "D",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Approximately 3 weeks ago, he had an anterior ST-elevation myocardial infarction",
+        "sentence": "The patient develops sharp chest pain and dyspnea about three weeks after an anterior ST-elevation myocardial infarction."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Surgery_Schwartz:003699"
+        ],
+        "question_quote": null,
+        "sentence": "The positional pain and scratchy sound at the left sternal border are characteristic of pericarditis."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Widespread concave ST elevation with PR depression favors pericarditis over the persistent regional ST elevation of a ventricular aneurysm."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step2:000746"
+        ],
+        "question_quote": null,
+        "sentence": "The three-week delay is typical of Dressler’s syndrome, an autoimmune complication that occurs two to four weeks after myocardial infarction."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "p2",
+      "objects": [
+        {
+          "grounding": "none",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Pericardium",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "ECG",
+          "passage_ids": [],
+          "question_quote": "ECG"
+        },
+        {
+          "grounding": "question",
+          "id": "o3",
+          "is_question_finding": true,
+          "label": "Left sternal border scratching sound",
+          "passage_ids": [],
+          "question_quote": "a scratching sound is heard on the left sternal border"
+        },
+        {
+          "grounding": "question",
+          "id": "o4",
+          "is_question_finding": false,
+          "label": "Chest pain",
+          "passage_ids": [],
+          "question_quote": "chest pain"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "question",
+          "id": "p1",
+          "label": "Anterior STEMI three weeks earlier",
+          "passage_ids": [],
+          "question_quote": "Approximately 3 weeks ago, he had an anterior ST-elevation myocardial infarction"
+        },
+        {
+          "grounding": "passages",
+          "id": "p2",
+          "label": "Dressler’s syndrome: delayed autoimmune pericarditis",
+          "passage_ids": [
+            "First_Aid_Step2:000746"
+          ],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "passages",
+          "id": "r1",
+          "passage_ids": [
+            "First_Aid_Step2:000746"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r2",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r3",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r4",
+          "passage_ids": [
+            "Surgery_Schwartz:003699"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "o3",
+          "type": "result"
+        },
+        {
+          "grounding": "passages",
+          "id": "r5",
+          "passage_ids": [
+            "Surgery_Schwartz:003699"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s3",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "none",
+          "id": "s1",
+          "is_question_finding": false,
+          "label": "Inflamed",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "Widespread concave precordial ST elevation with PR depression",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "widespread concave ST elevations in the precordial leads and PR depressions in leads V2-V6"
+        },
+        {
+          "grounding": "question",
+          "id": "s3",
+          "is_question_finding": true,
+          "label": "Worse when lying down",
+          "owner_object_id": "o4",
+          "passage_ids": [],
+          "question_quote": "The chest pain increases in intensity with lying down"
+        }
+      ],
+      "support_path": [
+        "s2",
+        "r3",
+        "p2"
+      ]
+    }
+  },
+  "question_id": "mq_3fcd8a6f86d5e17a7d4e03005fc409e14461a08bf371475a43546f076007e1c0",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

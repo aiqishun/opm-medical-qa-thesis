@@ -1,0 +1,42 @@
+{
+  "answer": "A",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "a reduced ejection fraction, a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery",
+        "sentence": "Coronary arteriography shows a reduced ejection fraction and two-vessel disease involving the left anterior descending and left circumflex arteries."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "diabetes mellitus, peripheral vascular disease, and below knee amputation has developed new chest pain",
+        "sentence": "The patient also has diabetes mellitus and has developed new chest pain."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:013298",
+          "InternalMed_Harrison:012702"
+        ],
+        "question_quote": null,
+        "sentence": "Diabetes and reduced left ventricular function favor CABG over stenting for multivessel disease when the anatomy is suitable for bypass."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "CABG is therefore the best definitive treatment among the choices; heparin may be used acutely if an acute coronary syndrome is suspected, and long-acting nitrates can relieve angina, but neither revascularizes the myocardium."
+      }
+    ]
+  },
+  "question_id": "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

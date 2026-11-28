@@ -1,0 +1,59 @@
+{
+  "agent": "c2_single_graph",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 1,
+  "condition": "C2",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 15.031,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c2_answer_with_evidence_linked_opm_graph",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "8b4343d3f56d721002e225564083ef8ea07145dea5d77c961b9f01223757497a"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The patient has new chest pain and diabetes, and angiography shows reduced ejection fraction with stenoses in both the left anterior descending and left circumflex arteries.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"a reduced ejection fraction, a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"CABG is considered for multivessel coronary disease with impaired left ventricular function, whereas PCI is generally favored for suitable two-vessel disease when ventricular function is normal.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:012702\", \"InternalMed_Harrison:013298\"]\n    },\n    {\n      \"sentence\": \"Although the stem does not specify whether the LAD lesion is proximal, the combination of diabetes, LAD-involving multivessel disease, and reduced ejection fraction makes CABG the best choice among the listed options.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Heparin may be used in acute coronary syndrome and nitrates can relieve angina, but neither provides definitive revascularization.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ],\n  \"graph\": {\n    \"objects\": [\n      {\n        \"id\": \"o1\",\n        \"label\": \"LAD and left circumflex stenoses\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o2\",\n        \"label\": \"Reduced ejection fraction\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a reduced ejection fraction\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o3\",\n        \"label\": \"Diabetes mellitus\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"diabetes mellitus\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o4\",\n        \"label\": \"New chest pain\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"new chest pain\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o5\",\n        \"label\": \"Recommendation for coronary artery bypass grafting (CABG)\",\n        \"is_question_finding\": false,\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"processes\": [\n      {\n        \"id\": \"p1\",\n        \"label\": \"Selecting a coronary revascularization strategy\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013298\"]\n      }\n    ],\n    \"states\": [],\n    \"relations\": [\n      {\n        \"id\": \"r1\",\n        \"type\": \"instrument\",\n        \"source_id\": \"o1\",\n        \"target_id\": \"p1\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013298\"]\n      },\n      {\n        \"id\": \"r2\",\n        \"type\": \"instrument\",\n        \"source_id\": \"o2\",\n        \"target_id\": \"p1\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013298\", \"InternalMed_Harrison:012702\"]\n      },\n      {\n        \"id\": \"r3\",\n        \"type\": \"instrument\",\n        \"source_id\": \"o3\",\n        \"target_id\": \"p1\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013298\"]\n      },\n      {\n        \"id\": \"r4\",\n        \"type\": \"instrument\",\n        \"source_id\": \"o4\",\n        \"target_id\": \"p1\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r5\",\n        \"type\": \"result\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"o5\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"answer_element_id\": \"o5\",\n    \"support_path\": [\"o1\", \"r1\", \"p1\", \"r5\", \"o5\"]\n  }\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "8b4343d3f56d721002e225564083ef8ea07145dea5d77c961b9f01223757497a",
+    "user": "54276602e01b59f48d6eb4340dcae9696be20875a28c8ba5cbecd7a6511ebeda"
+  },
+  "response_id": "resp_0a9a099abd50374d016b0ae66befe087d09065046d2a9a1a7f",
+  "round": 0,
+  "run_id": "20261128T143419Z_C2_pilot_3f4bf84",
+  "schema_sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8",
+  "status": "completed",
+  "total_latency_s": 15.031,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 5462,
+    "output_tokens": 1180,
+    "reasoning_tokens": 71
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "answer": "A",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "he presents with fine rales in both lungs, his abdomen is non-distended non-tender, and there is 2+ lower limb pitting edema up to his knees",
+        "sentence": "This patient with a prior myocardial infarction presents with orthopnea, bilateral fine rales, and pitting edema to the knees."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The combination of pulmonary and peripheral congestion points to acute decompensated heart failure rather than volume depletion, despite the elevated BUN and creatinine."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Intravenous furosemide is the best initial therapy because it increases renal sodium and water excretion, relieving congestion."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Normal saline could worsen congestion, and the presentation does not suggest shock requiring norepinephrine or hepatorenal syndrome warranting terlipressin."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "o4",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Pulmonary auscultatory findings",
+          "passage_ids": [],
+          "question_quote": "fine rales in both lungs"
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Lower limbs",
+          "passage_ids": [],
+          "question_quote": "lower limb"
+        },
+        {
+          "grounding": "none",
+          "id": "o3",
+          "is_question_finding": false,
+          "label": "Extracellular fluid volume",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "o4",
+          "is_question_finding": false,
+          "label": "Furosemide",
+          "passage_ids": [],
+          "question_quote": "furosemide"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "none",
+          "id": "p1",
+          "label": "Acute heart failure decompensation with fluid retention",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "p2",
+          "label": "Pulmonary and peripheral congestion",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "p3",
+          "label": "Loop diuresis with renal sodium and water excretion",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "none",
+          "id": "r1",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s3",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r2",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r3",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r4",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r5",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "s3",
+          "target_id": "p3",
+          "type": "input_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r6",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "s4",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r7",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "o4",
+          "target_id": "p3",
+          "type": "instrument"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "question",
+          "id": "s1",
+          "is_question_finding": true,
+          "label": "Fine rales bilaterally",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": "fine rales in both lungs"
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "2+ pitting edema to the knees",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "2+ lower limb pitting edema up to his knees"
+        },
+        {
+          "grounding": "none",
+          "id": "s3",
+          "is_question_finding": false,
+          "label": "Expanded",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "s4",
+          "is_question_finding": false,
+          "label": "Reduced toward euvolemia",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "support_path": [
+        "s2",
+        "r4",
+        "p2",
+        "r2",
+        "p1",
+        "r1",
+        "s3",
+        "r5",
+        "p3",
+        "r7",
+        "o4"
+      ]
+    }
+  },
+  "question_id": "mq_cb2080145674d4b2e286ef9051c2cf6f001b29a4a33de037fcfe8852c1c38f5b",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

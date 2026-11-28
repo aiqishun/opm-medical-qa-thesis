@@ -1,0 +1,239 @@
+{
+  "answer": "D",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "D",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "with decreased cardiac output and high pulmonary capillary wedge pressure",
+        "sentence": "The patient has profound hypotension, cold and clammy skin, decreased cardiac output, and high pulmonary capillary wedge pressure."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Low cardiac output with elevated left-sided filling pressure and signs of poor perfusion indicates cardiogenic shock."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Neurology_Adams:002191"
+        ],
+        "question_quote": null,
+        "sentence": "Acute myocardial infarction and severe aortic stenosis can reduce cardiac output through impaired myocardial function and obstruction to left ventricular outflow, respectively."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Atrial fibrillation with a rapid ventricular response can also precipitate cardiogenic shock by shortening ventricular filling time and eliminating coordinated atrial contraction."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Hemorrhage, pulmonary embolism, and sepsis primarily cause hypovolemic, obstructive, and distributive shock, respectively, so the best answer is I, II, and IV."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "p4",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Cardiac output",
+          "passage_ids": [],
+          "question_quote": "cardiac output"
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Pulmonary capillary wedge pressure",
+          "passage_ids": [],
+          "question_quote": "pulmonary capillary wedge pressure"
+        },
+        {
+          "grounding": "question",
+          "id": "o3",
+          "is_question_finding": false,
+          "label": "Arterial blood pressure",
+          "passage_ids": [],
+          "question_quote": "hypotensive to 70/42 mm Hg"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "passages",
+          "id": "p1",
+          "label": "Acute myocardial infarction impairing ventricular contraction (I)",
+          "passage_ids": [
+            "Neurology_Adams:002191"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "p2",
+          "label": "Rapid atrial fibrillation impairing ventricular filling (II)",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p3",
+          "label": "Severe aortic stenosis restricting left ventricular outflow (IV)",
+          "passage_ids": [
+            "Neurology_Adams:002191"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "p4",
+          "label": "Cardiogenic shock from acute failure of effective cardiac pumping (I, II, or IV)",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "none",
+          "id": "r1",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p4",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r2",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "p4",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r3",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "p4",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r4",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p4",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r5",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p4",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r6",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p4",
+          "target_id": "s3",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "question",
+          "id": "s1",
+          "is_question_finding": true,
+          "label": "Decreased",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": "decreased cardiac output"
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "High",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "high pulmonary capillary wedge pressure"
+        },
+        {
+          "grounding": "question",
+          "id": "s3",
+          "is_question_finding": true,
+          "label": "Low at 70/42 mm Hg",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": "hypotensive to 70/42 mm Hg"
+        }
+      ],
+      "support_path": [
+        "s2",
+        "r5",
+        "p4"
+      ]
+    }
+  },
+  "question_id": "mq_bc1defbfe9631047b557ef5e3b96edfbe24805d776189eb3ed4c6448cf03cf88",
+  "run_id": "20261128T144047Z_C2_pilot_e62d9d8",
+  "validity": "valid"
+}

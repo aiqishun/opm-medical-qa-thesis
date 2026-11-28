@@ -1,0 +1,236 @@
+{
+  "answer": "A",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "enlarged tonsils with purulent exudate",
+        "sentence": "The patient has three days of sore throat and fever, with purulent tonsillar exudate and tender cervical lymphadenopathy."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:008162",
+          "Pediatrics_Nelson:001478"
+        ],
+        "question_quote": null,
+        "sentence": "The abrupt onset and purulent exudate favor group A streptococcal pharyngitis, although clinical findings alone cannot confirm it."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:001148"
+        ],
+        "question_quote": null,
+        "sentence": "Streptococcal toxic shock syndrome is the best listed answer: it is a rare complication of severe group A streptococcal infection, not an expected outcome of uncomplicated pharyngitis."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:010011"
+        ],
+        "question_quote": null,
+        "sentence": "Erythema multiforme has been reported with infectious mononucleosis, but mononucleosis more often has a longer prodrome and posterior cervical lymphadenopathy."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "p3",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Tonsils",
+          "passage_ids": [],
+          "question_quote": "tonsils"
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Cervical lymph nodes",
+          "passage_ids": [],
+          "question_quote": "tender cervical lymphadenopathy"
+        },
+        {
+          "grounding": "question",
+          "id": "o3",
+          "is_question_finding": true,
+          "label": "Febrile sore throat",
+          "passage_ids": [],
+          "question_quote": "3-day history of a sore throat and fever"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "passages",
+          "id": "p1",
+          "label": "Acute group A streptococcal pharyngitis",
+          "passage_ids": [
+            "InternalMed_Harrison:008162",
+            "Pediatrics_Nelson:001478"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "p2",
+          "label": "Progression to severe invasive group A streptococcal infection",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p3",
+          "label": "Streptococcal toxic shock syndrome",
+          "passage_ids": [
+            "InternalMed_Harrison:001148"
+          ],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "passages",
+          "id": "r1",
+          "passage_ids": [
+            "InternalMed_Harrison:008162",
+            "Pediatrics_Nelson:001478"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r2",
+          "passage_ids": [
+            "InternalMed_Harrison:008162"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r3",
+          "passage_ids": [
+            "Pediatrics_Nelson:001478"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "o3",
+          "type": "result"
+        },
+        {
+          "grounding": "none",
+          "id": "r4",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "passages",
+          "id": "r5",
+          "passage_ids": [
+            "InternalMed_Harrison:001148"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "p3",
+          "type": "invocation"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "question",
+          "id": "s1",
+          "is_question_finding": true,
+          "label": "Enlarged with purulent exudate",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": "enlarged tonsils with purulent exudate"
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "Tender and enlarged",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "tender cervical lymphadenopathy"
+        },
+        {
+          "grounding": "question",
+          "id": "s3",
+          "is_question_finding": true,
+          "label": "Acute, present for three days",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": "3-day history of a sore throat and fever"
+        }
+      ],
+      "support_path": [
+        "o3",
+        "r3",
+        "p1",
+        "r4",
+        "p2",
+        "r5",
+        "p3"
+      ]
+    }
+  },
+  "question_id": "mq_92d7e0deff35732b723ccb1cd7fb77e7f88d9c2ea5752247710e0d86711407d2",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

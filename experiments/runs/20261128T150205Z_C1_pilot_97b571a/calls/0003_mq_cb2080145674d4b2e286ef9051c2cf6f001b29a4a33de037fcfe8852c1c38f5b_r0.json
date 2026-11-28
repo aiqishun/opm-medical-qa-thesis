@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 3,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.316,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_cb2080145674d4b2e286ef9051c2cf6f001b29a4a33de037fcfe8852c1c38f5b",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"He presents with orthopnea, bilateral fine rales, and pitting edema to the knees.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"he presents with fine rales in both lungs, his abdomen is non-distended non-tender, and there is 2+ lower limb pitting edema up to his knees\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"This combination points to acute decompensated heart failure with pulmonary and systemic congestion.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Intravenous furosemide is the best initial therapy to relieve congestion; the elevated BUN and creatinine do not establish volume depletion, and normal saline could worsen pulmonary congestion.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"There is no evidence of shock to warrant norepinephrine or of hepatorenal syndrome to warrant terlipressin.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5",
+    "user": "646f6a916ec3f563dc3ce8ad1d93a0c0ecab31d7e289804243cd856764487ad6"
+  },
+  "response_id": "resp_08714f74c1f3ac53016b0aecf8d28c87d08fb5f406e84796a3",
+  "round": 0,
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "schema_sha256": "47aaa2d1e30efdc734fc5db27acbbef41c6d98b979cae91ded7120f18e2e0705",
+  "status": "completed",
+  "total_latency_s": 4.316,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 4333,
+    "output_tokens": 288,
+    "reasoning_tokens": 0
+  }
+}

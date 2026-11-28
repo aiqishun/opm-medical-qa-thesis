@@ -1,0 +1,240 @@
+{
+  "answer": "D",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "D",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "The chest pain occurs after climbing more than 2 flight of stairs or walking for more than 10 minutes and resolves with rest.",
+        "sentence": "His chest pain begins at a predictable level of exertion and resolves with rest."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathology_Robbins:001460",
+          "InternalMed_Harrison:000933"
+        ],
+        "question_quote": null,
+        "sentence": "This is the characteristic pattern of stable angina: a coronary artery with fixed atherosclerotic stenosis greater than 70% cannot supply enough blood to meet the increased myocardial oxygen demand during exertion."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathology_Robbins:001468",
+          "Pathoma_Husain:000106"
+        ],
+        "question_quote": null,
+        "sentence": "Unstable angina more often occurs at rest or with progressively less exertion, whereas vasospastic angina is typically unrelated to exertion."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathology_Robbins:001469",
+          "Pathology_Robbins:001460"
+        ],
+        "question_quote": null,
+        "sentence": "Sudden plaque disruption with an occlusive thrombus typically causes acute myocardial infarction rather than reproducible exertional angina."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "s1",
+      "objects": [
+        {
+          "grounding": "passages",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Coronary artery",
+          "passage_ids": [
+            "Pathology_Robbins:001460"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Chest pain",
+          "passage_ids": [],
+          "question_quote": "chest pain"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "passages",
+          "id": "p1",
+          "label": "Atherosclerotic narrowing of the coronary lumen",
+          "passage_ids": [
+            "InternalMed_Harrison:000933"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p2",
+          "label": "Transient myocardial ischemia when exertional oxygen demand exceeds coronary supply",
+          "passage_ids": [
+            "InternalMed_Harrison:000933",
+            "Pathology_Robbins:001460"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p3",
+          "label": "Relief of demand-induced ischemia with rest",
+          "passage_ids": [
+            "InternalMed_Harrison:000933"
+          ],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "passages",
+          "id": "r1",
+          "passage_ids": [
+            "Pathology_Robbins:001460",
+            "InternalMed_Harrison:000933"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r2",
+          "passage_ids": [
+            "Pathology_Robbins:001460",
+            "InternalMed_Harrison:000933"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "passages",
+          "id": "r3",
+          "passage_ids": [
+            "Pathology_Robbins:001460",
+            "InternalMed_Harrison:000933"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r4",
+          "passage_ids": [
+            "InternalMed_Harrison:000933"
+          ],
+          "question_quote": null,
+          "source_id": "s2",
+          "target_id": "p3",
+          "type": "input_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r5",
+          "passage_ids": [
+            "InternalMed_Harrison:000933"
+          ],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "s3",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "passages",
+          "id": "s1",
+          "is_question_finding": false,
+          "label": "Fixed atherosclerotic stenosis greater than 70%",
+          "owner_object_id": "o1",
+          "passage_ids": [
+            "Pathology_Robbins:001460"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "Provoked by climbing stairs or prolonged walking",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "The chest pain occurs after climbing more than 2 flight of stairs or walking for more than 10 minutes"
+        },
+        {
+          "grounding": "question",
+          "id": "s3",
+          "is_question_finding": true,
+          "label": "Resolved with rest",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "resolves with rest"
+        }
+      ],
+      "support_path": [
+        "s2",
+        "r3",
+        "p2",
+        "r2",
+        "p1",
+        "r1",
+        "s1"
+      ]
+    }
+  },
+  "question_id": "mq_da504f2df5c1baa3c6d7dcfdfd1ffd469fb624ce6516d2a3b149e0ca49b8763c",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

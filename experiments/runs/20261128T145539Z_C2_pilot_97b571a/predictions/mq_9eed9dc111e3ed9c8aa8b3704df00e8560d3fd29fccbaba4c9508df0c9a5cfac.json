@@ -1,0 +1,196 @@
+{
+  "answer": "B",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "a high-pitched, harsh, holosystolic murmur that is best heard at the lower left sternal border",
+        "sentence": "The boy has a harsh holosystolic murmur at the lower left sternal border and no cyanosis."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pediatrics_Nelson:002015"
+        ],
+        "question_quote": null,
+        "sentence": "A holosystolic murmur at this location is characteristic of a ventricular septal defect."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "With a left-to-right shunt, oxygenated blood flows from the higher-pressure left ventricle into the right ventricle, producing a step-up in right ventricular oxygen tension."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Because deoxygenated blood does not enter the left ventricle through this shunt, left ventricular and systemic arterial oxygen tensions remain normal."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "s1",
+      "objects": [
+        {
+          "grounding": "passages",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Ventricular septal defect",
+          "passage_ids": [
+            "Pediatrics_Nelson:002015"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": true,
+          "label": "Harsh holosystolic murmur at the lower left sternal border",
+          "passage_ids": [],
+          "question_quote": "a high-pitched, harsh, holosystolic murmur that is best heard at the lower left sternal border"
+        },
+        {
+          "grounding": "none",
+          "id": "o3",
+          "is_question_finding": false,
+          "label": "Oxygen tension profile",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "o4",
+          "is_question_finding": false,
+          "label": "Clinical coloration",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "none",
+          "id": "p1",
+          "label": "Left-to-right ventricular shunting",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "none",
+          "id": "r1",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "o1",
+          "target_id": "p1",
+          "type": "instrument"
+        },
+        {
+          "grounding": "passages",
+          "id": "r2",
+          "passage_ids": [
+            "Pediatrics_Nelson:002015",
+            "InternalMed_Harrison:012113"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "o2",
+          "type": "result"
+        },
+        {
+          "grounding": "none",
+          "id": "r3",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r4",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s2",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "none",
+          "id": "s1",
+          "is_question_finding": false,
+          "label": "LV normal, RV increased, systemic arterial normal",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "No cyanosis",
+          "owner_object_id": "o4",
+          "passage_ids": [],
+          "question_quote": "No cyanosis is observed"
+        }
+      ],
+      "support_path": [
+        "s2",
+        "r4",
+        "p1",
+        "r3",
+        "s1"
+      ]
+    }
+  },
+  "question_id": "mq_9eed9dc111e3ed9c8aa8b3704df00e8560d3fd29fccbaba4c9508df0c9a5cfac",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

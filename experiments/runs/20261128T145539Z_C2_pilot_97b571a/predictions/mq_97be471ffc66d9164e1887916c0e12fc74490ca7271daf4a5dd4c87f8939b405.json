@@ -1,0 +1,315 @@
+{
+  "answer": "C",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": false,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [
+            {
+              "id": "p3",
+              "input_state_owners": [
+                "o3"
+              ],
+              "output_state_owners": [
+                "o3",
+                "o4"
+              ],
+              "problem": "input_output_state_owner_mismatch",
+              "relations": [
+                "r5",
+                "r6",
+                "r7",
+                "r8"
+              ]
+            }
+          ],
+          "passed": false
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "shortness of breath and chest pain that started a few hours ago",
+        "sentence": "The patient developed acute dyspnea and chest pain with tachycardia and tachypnea."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "3 weeks ago he had surgery for a total hip replacement with a prosthesis.",
+        "sentence": "He underwent total hip replacement three weeks earlier, received heparin prophylaxis until discharge, and has a history of right-leg deep vein thrombosis."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Recent hip replacement and prior deep vein thrombosis make a new venous clot with pulmonary embolization more likely, even after inpatient prophylaxis."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Anatomy_Gray:000380"
+        ],
+        "question_quote": null,
+        "sentence": "Pulmonary embolism can present with acute dyspnea and chest pain despite clear lungs on examination and no radiographic consolidation."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The absence of fever, sputum production, and a radiographic infiltrate makes pneumonia less likely, while the postoperative thrombotic risk favors pulmonary thromboembolism over myocardial infarction."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "p3",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Hip joint",
+          "passage_ids": [],
+          "question_quote": "total hip replacement"
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Deep veins of the right leg",
+          "passage_ids": [],
+          "question_quote": "right leg deep vein thrombosis"
+        },
+        {
+          "grounding": "none",
+          "id": "o3",
+          "is_question_finding": false,
+          "label": "New venous thrombus",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "none",
+          "id": "o4",
+          "is_question_finding": false,
+          "label": "Cardiopulmonary status",
+          "passage_ids": [],
+          "question_quote": null
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "question",
+          "id": "p1",
+          "label": "Total hip replacement",
+          "passage_ids": [],
+          "question_quote": "surgery for a total hip replacement with a prosthesis"
+        },
+        {
+          "grounding": "none",
+          "id": "p2",
+          "label": "Postoperative deep venous thrombosis",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p3",
+          "label": "Pulmonary thromboembolism",
+          "passage_ids": [
+            "Pharmacology_Katzung:002520",
+            "Anatomy_Gray:000380"
+          ],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "question",
+          "id": "r1",
+          "passage_ids": [],
+          "question_quote": "3 weeks ago he had surgery for a total hip replacement with a prosthesis.",
+          "source_id": "p1",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r2",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "none",
+          "id": "r3",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "o3",
+          "type": "result"
+        },
+        {
+          "grounding": "none",
+          "id": "r4",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s3",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r5",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "s3",
+          "target_id": "p3",
+          "type": "input_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r6",
+          "passage_ids": [
+            "Anatomy_Gray:000380"
+          ],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "s4",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r7",
+          "passage_ids": [
+            "Pharmacology_Katzung:002520",
+            "Anatomy_Gray:000380"
+          ],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "s5",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r8",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "s6",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "question",
+          "id": "s1",
+          "is_question_finding": true,
+          "label": "Replaced with a prosthesis three weeks earlier",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": "3 weeks ago he had surgery for a total hip replacement with a prosthesis."
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "Prior thrombosis five years earlier",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "right leg deep vein thrombosis that occurred 5 years ago"
+        },
+        {
+          "grounding": "none",
+          "id": "s3",
+          "is_question_finding": false,
+          "label": "Located in a deep vein",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "s4",
+          "is_question_finding": false,
+          "label": "Lodged in pulmonary arterial circulation",
+          "owner_object_id": "o3",
+          "passage_ids": [
+            "Anatomy_Gray:000380"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "s5",
+          "is_question_finding": true,
+          "label": "Acute dyspnea and chest pain",
+          "owner_object_id": "o4",
+          "passage_ids": [],
+          "question_quote": "shortness of breath and chest pain that started a few hours ago"
+        },
+        {
+          "grounding": "question",
+          "id": "s6",
+          "is_question_finding": true,
+          "label": "Tachycardia and tachypnea",
+          "owner_object_id": "o4",
+          "passage_ids": [],
+          "question_quote": "heart rate 110/min, respiratory rate 22/min"
+        }
+      ],
+      "support_path": [
+        "s1",
+        "r1",
+        "p1",
+        "r2",
+        "p2",
+        "r4",
+        "s3",
+        "r5",
+        "p3"
+      ]
+    }
+  },
+  "question_id": "mq_97be471ffc66d9164e1887916c0e12fc74490ca7271daf4a5dd4c87f8939b405",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

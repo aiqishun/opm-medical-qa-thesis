@@ -1,0 +1,43 @@
+{
+  "answer": "C",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "ST elevations on his EKG and elevated cardiac enzymes",
+        "sentence": "The patient has sudden chest pain radiating to the left shoulder, diaphoresis, ST elevations, and elevated cardiac enzymes."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "This presentation indicates an acute ST-elevation myocardial infarction, which can impair ventricular contractility."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pediatrics_Nelson:000562"
+        ],
+        "question_quote": null,
+        "sentence": "Reduced contractility lowers stroke volume and thereby tends to decrease cardiac output."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:002001"
+        ],
+        "question_quote": null,
+        "sentence": "The fall in effective arterial perfusion triggers sympathetic vasoconstriction, increasing systemic vascular resistance to help maintain arterial pressure."
+      }
+    ]
+  },
+  "question_id": "mq_d0dbcbb478f3548638334d83780af44bdc4844c7c72d5b502a8ec4170481ef2f",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

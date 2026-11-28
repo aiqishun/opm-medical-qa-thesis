@@ -1,0 +1,284 @@
+{
+  "answer": "B",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "pericardial calcifications and small tubular-shaped ventricles",
+        "sentence": "The ultrasound shows pericardial calcifications and small, tubular ventricles."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Anatomy_Gray:000356"
+        ],
+        "question_quote": null,
+        "sentence": "In chronic constrictive pericarditis, the scarred, often calcified pericardium limits ventricular filling during diastole."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Rapid early filling produces the prominent jugular y descent, but filling stops abruptly once the ventricles reach the limit imposed by the rigid pericardium."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:013096"
+        ],
+        "question_quote": null,
+        "sentence": "Jugular venous distention that fails to subside with inspiration (Kussmaul sign) and congestive hepatomegaly are characteristic of chronic constriction."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The calcified pericardium provides a structural explanation for these findings that atrial fibrillation and the listed cardiomyopathies do not."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "p2",
+      "objects": [
+        {
+          "grounding": "passages",
+          "id": "o1",
+          "is_question_finding": false,
+          "label": "Pericardium",
+          "passage_ids": [
+            "Anatomy_Gray:000356"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Ventricles",
+          "passage_ids": [
+            "InternalMed_Harrison:013099"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "o3",
+          "is_question_finding": false,
+          "label": "Jugular venous pressure and pulse",
+          "passage_ids": [
+            "InternalMed_Harrison:013096",
+            "Physiology_Levy:001104"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "o4",
+          "is_question_finding": false,
+          "label": "Liver",
+          "passage_ids": [
+            "InternalMed_Harrison:013096"
+          ],
+          "question_quote": null
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "passages",
+          "id": "p1",
+          "label": "Chronic pericardial scarring and calcification",
+          "passage_ids": [
+            "Anatomy_Gray:000356"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p2",
+          "label": "Constrictive pericarditis: rigid pericardium limits diastolic filling",
+          "passage_ids": [
+            "Anatomy_Gray:000356"
+          ],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "passages",
+          "id": "r1",
+          "passage_ids": [
+            "Anatomy_Gray:000356"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r2",
+          "passage_ids": [
+            "Anatomy_Gray:000356"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "passages",
+          "id": "r3",
+          "passage_ids": [
+            "Anatomy_Gray:000356"
+          ],
+          "question_quote": null,
+          "source_id": "o1",
+          "target_id": "p2",
+          "type": "instrument"
+        },
+        {
+          "grounding": "none",
+          "id": "r4",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r5",
+          "passage_ids": [
+            "Anatomy_Gray:000356",
+            "InternalMed_Harrison:013096"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s3",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r6",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s4",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r7",
+          "passage_ids": [
+            "InternalMed_Harrison:013096"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s5",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "question",
+          "id": "s1",
+          "is_question_finding": true,
+          "label": "Calcified",
+          "owner_object_id": "o1",
+          "passage_ids": [],
+          "question_quote": "pericardial calcifications"
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "Small and tubular",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "small tubular-shaped ventricles"
+        },
+        {
+          "grounding": "question",
+          "id": "s3",
+          "is_question_finding": true,
+          "label": "Distended with no inspiratory fall",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": "jugular venous distention that fails to subside on inspiration"
+        },
+        {
+          "grounding": "question",
+          "id": "s4",
+          "is_question_finding": true,
+          "label": "Prominent y descent",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": "a prominent y descent in her jugular venous pulse"
+        },
+        {
+          "grounding": "question",
+          "id": "s5",
+          "is_question_finding": true,
+          "label": "Enlarged",
+          "owner_object_id": "o4",
+          "passage_ids": [],
+          "question_quote": "hepatomegaly"
+        }
+      ],
+      "support_path": [
+        "s1",
+        "r1",
+        "p1",
+        "r2",
+        "p2"
+      ]
+    }
+  },
+  "question_id": "mq_9319cc7af1469ec1446a27646a3fcf908ed573f6a1c641661050b27e9a655961",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

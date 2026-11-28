@@ -1,0 +1,38 @@
+{
+  "answer": "B",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "The patient complains of recurrent chest pain in the ICU 56 hours post-angioplasty.",
+        "sentence": "The patient develops recurrent chest pain 56 hours after angioplasty for a STEMI."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Biochemistry_Lippincott:000166",
+          "Pathoma_Husain:000107"
+        ],
+        "question_quote": null,
+        "sentence": "CK-MB typically returns to baseline within 48–72 hours, so a new rise after an initial decline helps identify reinfarction."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathoma_Husain:000107"
+        ],
+        "question_quote": null,
+        "sentence": "Troponin I can remain elevated for 7–10 days after the initial infarction, so a single elevated value at 56 hours does not distinguish the original infarct from a new one."
+      }
+    ]
+  },
+  "question_id": "mq_f695f91b4e9e76bafba22043becd2a46a85fe4575688c4bb149299edb8699cf3",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

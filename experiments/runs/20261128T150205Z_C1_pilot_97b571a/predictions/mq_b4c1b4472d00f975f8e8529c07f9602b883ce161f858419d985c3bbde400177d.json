@@ -1,0 +1,50 @@
+{
+  "answer": "B",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "B",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "a 3/6 holosystolic murmur that is loudest at the apex and radiates to the axilla with a mid-systolic click",
+        "sentence": "The key examination finding is a holosystolic murmur at the apex that radiates to the axilla, accompanied by a midsystolic click."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "First_Aid_Step1:000178",
+          "Pediatrics_Nelson:001990"
+        ],
+        "question_quote": null,
+        "sentence": "The murmur identifies mitral regurgitation, while the midsystolic click points to mitral valve prolapse as its cause."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pathoma_Husain:000117"
+        ],
+        "question_quote": null,
+        "sentence": "Myxomatous degeneration makes the mitral leaflets floppy, allowing them to billow into the left atrium during systole."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The dyspnea and bilateral crackles suggest pulmonary congestion from mitral regurgitation."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Prompt penicillin treatment of the prior streptococcal pharyngitis makes rheumatic valve disease less likely."
+      }
+    ]
+  },
+  "question_id": "mq_b4c1b4472d00f975f8e8529c07f9602b883ce161f858419d985c3bbde400177d",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

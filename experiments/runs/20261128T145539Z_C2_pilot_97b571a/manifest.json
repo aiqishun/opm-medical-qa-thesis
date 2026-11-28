@@ -1,0 +1,321 @@
+{
+  "allow_dirty": false,
+  "condition": "C2",
+  "config_file": "configs/c2.json",
+  "git": {
+    "branch": "c2-single-graph",
+    "commit": "97b571a0471f426ee2f911345bd3f661f1859ac2",
+    "dirty": false,
+    "modified_tracked": [],
+    "short": "97b571a",
+    "tag": null,
+    "untracked_code_files": []
+  },
+  "git_tag": null,
+  "inputs": {
+    "corpus_manifest_sha256": "988a28b5723ec438b35aad9a355c9bc038d333a4ac5cfe0da2f33bb647327daa",
+    "questions": {
+      "path": "data/versions/thesis-v0.2/inputs/pilot_questions.jsonl",
+      "sha256": "9278e0de8beda332475b8fb110f6ee754bc86215c5f6168a252ad7172a3ffff4"
+    },
+    "retrieval": {
+      "manifest_sha256": "a7c536db4af39ef030868989d24b3fd8ee23504574dc0c9004307ecf8e4aaf01",
+      "path": "experiments/retrieval/medqa-textbooks-en-v1__bm25_k10/pilot.jsonl",
+      "sha256": "d93d12636eca9b609017762cdd40c8da52b7035feab207fe3daf556f76d3f7d0"
+    }
+  },
+  "limit": null,
+  "model_config": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "sampling_parameters": "none (not sent)"
+  },
+  "passage_ids": {
+    "mq_1f491476867b7a387d05dd57fc761ef8a1063019c7fd6d3cfda3c13e6cabe9cf": [
+      "Pharmacology_Katzung:000835",
+      "Biochemistry_Lippincott:001306",
+      "Pharmacology_Katzung:004697",
+      "First_Aid_Step2:000672",
+      "First_Aid_Step2:000015",
+      "Pharmacology_Katzung:000758",
+      "First_Aid_Step2:000022",
+      "InternalMed_Harrison:000960",
+      "Surgery_Schwartz:003705",
+      "Pediatrics_Nelson:001994"
+    ],
+    "mq_2e6b301045ec5e1de14a50cd4ef35211334b464083763fd8b4fb1336a9d83ac8": [
+      "First_Aid_Step2:000022",
+      "InternalMed_Harrison:012326",
+      "First_Aid_Step2:000023",
+      "InternalMed_Harrison:013258",
+      "InternalMed_Harrison:013250",
+      "Obstentrics_Williams:004453",
+      "InternalMed_Harrison:012330",
+      "InternalMed_Harrison:013716",
+      "First_Aid_Step2:000019",
+      "Pharmacology_Katzung:000893"
+    ],
+    "mq_3fcd8a6f86d5e17a7d4e03005fc409e14461a08bf371475a43546f076007e1c0": [
+      "Pharmacology_Katzung:001780",
+      "Gynecology_Novak:002534",
+      "Pharmacology_Katzung:004697",
+      "Surgery_Schwartz:003699",
+      "InternalMed_Harrison:013341",
+      "Pediatrics_Nelson:002024",
+      "First_Aid_Step2:000746",
+      "InternalMed_Harrison:002037",
+      "InternalMed_Harrison:012159",
+      "Anatomy_Gray:000182"
+    ],
+    "mq_414d830c6b8b392665b2244ba24d85ad6c4b1f7f07acf6f4a6c0e0fcfcba30e6": [
+      "Pediatrics_Nelson:000811",
+      "First_Aid_Step1:000425",
+      "Obstentrics_Williams:005288",
+      "Obstentrics_Williams:002790",
+      "Obstentrics_Williams:003748",
+      "Obstentrics_Williams:005781",
+      "Obstentrics_Williams:003285",
+      "InternalMed_Harrison:013487",
+      "Obstentrics_Williams:005203",
+      "Obstentrics_Williams:000992"
+    ],
+    "mq_47eddb8c1ef111f8ab49f71f3e74f74d5e1fcc9642140582cb3ce5bf9ef2fe57": [
+      "Pharmacology_Katzung:001780",
+      "Pathoma_Husain:000108",
+      "Pharmacology_Katzung:003329",
+      "Pharmacology_Katzung:004697",
+      "Anatomy_Gray:000182",
+      "Pharmacology_Katzung:000758",
+      "InternalMed_Harrison:012242",
+      "Pathoma_Husain:000106",
+      "InternalMed_Harrison:013241",
+      "First_Aid_Step1:000191"
+    ],
+    "mq_4c5d7f4ef7161b001e562846b40bce93b523df78eae3a69250764ab0d498e593": [
+      "InternalMed_Harrison:014540",
+      "InternalMed_Harrison:012780",
+      "First_Aid_Step2:000557",
+      "First_Aid_Step2:000746",
+      "Pediatrics_Nelson:002037",
+      "InternalMed_Harrison:012101",
+      "InternalMed_Harrison:002040",
+      "InternalMed_Harrison:002041",
+      "InternalMed_Harrison:002072",
+      "InternalMed_Harrison:002061"
+    ],
+    "mq_5918b9786d5f58e11c2ef448e75336c4a0e33a653e3da2024e830a0b23d17ff3": [
+      "Pharmacology_Katzung:000835",
+      "Pharmacology_Katzung:000611",
+      "Histology_Ross:002343",
+      "Gynecology_Novak:000574",
+      "Pharmacology_Katzung:000758",
+      "Histology_Ross:002465",
+      "Pharmacology_Katzung:000673",
+      "Pharmacology_Katzung:000536",
+      "Pharmacology_Katzung:000999",
+      "Histology_Ross:002523"
+    ],
+    "mq_92d7e0deff35732b723ccb1cd7fb77e7f88d9c2ea5752247710e0d86711407d2": [
+      "InternalMed_Harrison:008162",
+      "InternalMed_Harrison:010011",
+      "Pediatrics_Nelson:001478",
+      "InternalMed_Harrison:001895",
+      "Pediatrics_Nelson:001448",
+      "Surgery_Schwartz:002784",
+      "Surgery_Schwartz:002783",
+      "InternalMed_Harrison:010154",
+      "Gynecology_Novak:002430",
+      "InternalMed_Harrison:001148"
+    ],
+    "mq_9319cc7af1469ec1446a27646a3fcf908ed573f6a1c641661050b27e9a655961": [
+      "InternalMed_Harrison:013101",
+      "Anatomy_Gray:000356",
+      "InternalMed_Harrison:013099",
+      "InternalMed_Harrison:013096",
+      "InternalMed_Harrison:013042",
+      "InternalMed_Harrison:013081",
+      "InternalMed_Harrison:002282",
+      "Pharmacology_Katzung:000835",
+      "InternalMed_Harrison:013079",
+      "Physiology_Levy:001104"
+    ],
+    "mq_97be471ffc66d9164e1887916c0e12fc74490ca7271daf4a5dd4c87f8939b405": [
+      "Pharmacology_Katzung:003329",
+      "Pharmacology_Katzung:001780",
+      "Pharmacology_Katzung:000758",
+      "Biochemistry_Lippincott:001306",
+      "Pharmacology_Katzung:004697",
+      "Pharmacology_Katzung:000611",
+      "Pharmacology_Katzung:002520",
+      "Pharmacology_Katzung:000673",
+      "Anatomy_Gray:000380",
+      "Pharmacology_Katzung:000536"
+    ],
+    "mq_9eed9dc111e3ed9c8aa8b3704df00e8560d3fd29fccbaba4c9508df0c9a5cfac": [
+      "InternalMed_Harrison:013631",
+      "Surgery_Schwartz:003316",
+      "Pediatrics_Nelson:002019",
+      "Pediatrics_Nelson:002015",
+      "InternalMed_Harrison:012113",
+      "InternalMed_Harrison:012326",
+      "Pediatrics_Nelson:002034",
+      "InternalMed_Harrison:012330",
+      "InternalMed_Harrison:012332",
+      "Obstentrics_Williams:000558"
+    ],
+    "mq_a113f615c62b63f81a8f3884c0db9018a2abe72c7d3c74cd0286ee2d506157d4": [
+      "First_Aid_Step2:000746",
+      "Pediatrics_Nelson:001990",
+      "First_Aid_Step2:000006",
+      "InternalMed_Harrison:002021",
+      "InternalMed_Harrison:002053",
+      "InternalMed_Harrison:002032",
+      "InternalMed_Harrison:000962",
+      "Pediatrics_Nelson:001993",
+      "First_Aid_Step2:000550",
+      "InternalMed_Harrison:002020"
+    ],
+    "mq_aedeb42cd0996b60a1b68b2963cc1818b0520f374615867fc807391552323bf1": [
+      "Pharmacology_Katzung:000758",
+      "InternalMed_Harrison:014343",
+      "InternalMed_Harrison:012353",
+      "InternalMed_Harrison:012079",
+      "Biochemistry_Lippincott:001306",
+      "Pharmacology_Katzung:001780",
+      "InternalMed_Harrison:013797",
+      "InternalMed_Harrison:014344",
+      "Pharmacology_Katzung:003329",
+      "Pharmacology_Katzung:004697"
+    ],
+    "mq_b4c1b4472d00f975f8e8529c07f9602b883ce161f858419d985c3bbde400177d": [
+      "First_Aid_Step1:000178",
+      "Pharmacology_Katzung:004697",
+      "Pathology_Robbins:001508",
+      "Pharmacology_Katzung:001780",
+      "First_Aid_Step1:000177",
+      "Pediatrics_Nelson:001990",
+      "InternalMed_Harrison:002032",
+      "InternalMed_Harrison:002041",
+      "InternalMed_Harrison:012124",
+      "Pathoma_Husain:000117"
+    ],
+    "mq_bc1defbfe9631047b557ef5e3b96edfbe24805d776189eb3ed4c6448cf03cf88": [
+      "InternalMed_Harrison:014566",
+      "Histology_Ross:000582",
+      "Neurology_Adams:002191",
+      "Surgery_Schwartz:006037",
+      "InternalMed_Harrison:015066",
+      "InternalMed_Harrison:016827",
+      "Anatomy_Gray:000645",
+      "Immunology_Janeway:000528",
+      "InternalMed_Harrison:017582",
+      "Surgery_Schwartz:003597"
+    ],
+    "mq_cb2080145674d4b2e286ef9051c2cf6f001b29a4a33de037fcfe8852c1c38f5b": [
+      "InternalMed_Harrison:002494",
+      "Pharmacology_Katzung:004697",
+      "InternalMed_Harrison:002536",
+      "InternalMed_Harrison:002527",
+      "InternalMed_Harrison:002518",
+      "InternalMed_Harrison:002541",
+      "InternalMed_Harrison:002552",
+      "InternalMed_Harrison:002531",
+      "Surgery_Schwartz:006309",
+      "Physiology_Levy:000193"
+    ],
+    "mq_d0dbcbb478f3548638334d83780af44bdc4844c7c72d5b502a8ec4170481ef2f": [
+      "InternalMed_Harrison:014497",
+      "Pediatrics_Nelson:000562",
+      "InternalMed_Harrison:012352",
+      "InternalMed_Harrison:001220",
+      "Physiology_Levy:001403",
+      "InternalMed_Harrison:014434",
+      "InternalMed_Harrison:002001",
+      "Physiology_Levy:001349",
+      "Physiology_Levy:001382",
+      "Surgery_Schwartz:001945"
+    ],
+    "mq_da504f2df5c1baa3c6d7dcfdfd1ffd469fb624ce6516d2a3b149e0ca49b8763c": [
+      "Pharmacology_Katzung:001780",
+      "Pathology_Robbins:001469",
+      "Pathoma_Husain:000106",
+      "Pharmacology_Katzung:000758",
+      "InternalMed_Harrison:013162",
+      "InternalMed_Harrison:000933",
+      "Pathology_Robbins:001460",
+      "Surgery_Schwartz:003520",
+      "Pharmacology_Katzung:000673",
+      "Pathology_Robbins:001468"
+    ],
+    "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c": [
+      "InternalMed_Harrison:013293",
+      "Pharmacology_Katzung:001780",
+      "InternalMed_Harrison:000447",
+      "InternalMed_Harrison:000444",
+      "Anatomy_Gray:000380",
+      "InternalMed_Harrison:013298",
+      "InternalMed_Harrison:012318",
+      "InternalMed_Harrison:013481",
+      "InternalMed_Harrison:013479",
+      "InternalMed_Harrison:012702"
+    ],
+    "mq_f695f91b4e9e76bafba22043becd2a46a85fe4575688c4bb149299edb8699cf3": [
+      "Anatomy_Gray:000379",
+      "Pathoma_Husain:000107",
+      "First_Aid_Step2:000028",
+      "InternalMed_Harrison:000967",
+      "InternalMed_Harrison:013443",
+      "InternalMed_Harrison:013308",
+      "Obstentrics_Williams:004490",
+      "InternalMed_Harrison:013070",
+      "Biochemistry_Lippincott:000166",
+      "InternalMed_Harrison:013349"
+    ]
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_ids": [
+    "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+    "mq_bc1defbfe9631047b557ef5e3b96edfbe24805d776189eb3ed4c6448cf03cf88",
+    "mq_cb2080145674d4b2e286ef9051c2cf6f001b29a4a33de037fcfe8852c1c38f5b",
+    "mq_9319cc7af1469ec1446a27646a3fcf908ed573f6a1c641661050b27e9a655961",
+    "mq_b4c1b4472d00f975f8e8529c07f9602b883ce161f858419d985c3bbde400177d",
+    "mq_414d830c6b8b392665b2244ba24d85ad6c4b1f7f07acf6f4a6c0e0fcfcba30e6",
+    "mq_9eed9dc111e3ed9c8aa8b3704df00e8560d3fd29fccbaba4c9508df0c9a5cfac",
+    "mq_92d7e0deff35732b723ccb1cd7fb77e7f88d9c2ea5752247710e0d86711407d2",
+    "mq_4c5d7f4ef7161b001e562846b40bce93b523df78eae3a69250764ab0d498e593",
+    "mq_3fcd8a6f86d5e17a7d4e03005fc409e14461a08bf371475a43546f076007e1c0",
+    "mq_d0dbcbb478f3548638334d83780af44bdc4844c7c72d5b502a8ec4170481ef2f",
+    "mq_97be471ffc66d9164e1887916c0e12fc74490ca7271daf4a5dd4c87f8939b405",
+    "mq_f695f91b4e9e76bafba22043becd2a46a85fe4575688c4bb149299edb8699cf3",
+    "mq_da504f2df5c1baa3c6d7dcfdfd1ffd469fb624ce6516d2a3b149e0ca49b8763c",
+    "mq_1f491476867b7a387d05dd57fc761ef8a1063019c7fd6d3cfda3c13e6cabe9cf",
+    "mq_2e6b301045ec5e1de14a50cd4ef35211334b464083763fd8b4fb1336a9d83ac8",
+    "mq_aedeb42cd0996b60a1b68b2963cc1818b0520f374615867fc807391552323bf1",
+    "mq_a113f615c62b63f81a8f3884c0db9018a2abe72c7d3c74cd0286ee2d506157d4",
+    "mq_5918b9786d5f58e11c2ef448e75336c4a0e33a653e3da2024e830a0b23d17ff3",
+    "mq_47eddb8c1ef111f8ab49f71f3e74f74d5e1fcc9642140582cb3ce5bf9ef2fe57"
+  ],
+  "retry_policy": "at most 1 retry, only on network or rate-limit errors; SDK auto-retry disabled",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "schema": {
+    "name": "c2_answer_with_evidence_linked_opm_graph",
+    "path": "schemas/c2_output.schema.json",
+    "sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8"
+  },
+  "software": {
+    "openai": "2.34.0",
+    "python": "3.11.3"
+  },
+  "split": "pilot",
+  "started_at": "2026-11-28T14:55:39.294995+00:00"
+}

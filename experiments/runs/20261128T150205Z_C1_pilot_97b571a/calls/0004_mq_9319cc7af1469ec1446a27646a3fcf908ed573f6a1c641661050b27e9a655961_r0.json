@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 4,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.766,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_9319cc7af1469ec1446a27646a3fcf908ed573f6a1c641661050b27e9a655961",
+  "raw_text": "{\n  \"answer\": \"B\",\n  \"explanation\": [\n    {\n      \"sentence\": \"Ultrasound shows pericardial calcification and small, tubular ventricles.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"pericardial calcifications and small tubular-shaped ventricles\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"The jugular venous pressure fails to fall on inspiration (Kussmaul’s sign), a characteristic finding in constrictive pericarditis.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:013096\", \"Anatomy_Gray:000356\"]\n    },\n    {\n      \"sentence\": \"The prominent y descent reflects rapid early ventricular filling that stops abruptly when the rigid pericardium limits further expansion.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Chronic constrictive pericarditis best explains the findings because a scarred, calcified pericardium restricts diastolic filling and causes heart failure.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Anatomy_Gray:000356\"]\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5",
+    "user": "c25f74fa9642fb56bec3e4d108453a0cb2e4ecf69bc7795844ca25bb26de2542"
+  },
+  "response_id": "resp_0b74dc889104c52c016b0aecfd20e087d08d2f0f09909e6d1b",
+  "round": 0,
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "schema_sha256": "47aaa2d1e30efdc734fc5db27acbbef41c6d98b979cae91ded7120f18e2e0705",
+  "status": "completed",
+  "total_latency_s": 4.766,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3387,
+    "output_tokens": 300,
+    "reasoning_tokens": 0
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "answer": "C",
+  "condition": "C1",
+  "extra": {},
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "C",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "shortness of breath and chest pain that started a few hours ago",
+        "sentence": "He developed acute dyspnea and chest pain with tachycardia and mild tachypnea."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Recent total hip replacement and a prior deep vein thrombosis make pulmonary thromboembolism the most likely diagnosis despite postoperative heparin prophylaxis."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Anatomy_Gray:000380"
+        ],
+        "question_quote": null,
+        "sentence": "Pulmonary embolism can present with acute chest pain, dyspnea, and tachypnea despite clear lungs on examination."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "The absence of fever and sputum production, together with a normal chest radiograph, makes pneumonia less likely."
+      }
+    ]
+  },
+  "question_id": "mq_97be471ffc66d9164e1887916c0e12fc74490ca7271daf4a5dd4c87f8939b405",
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "validity": "valid"
+}

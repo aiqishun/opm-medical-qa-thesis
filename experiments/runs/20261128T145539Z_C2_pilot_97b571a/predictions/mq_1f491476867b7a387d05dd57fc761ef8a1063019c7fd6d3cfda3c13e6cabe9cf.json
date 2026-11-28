@@ -1,0 +1,287 @@
+{
+  "answer": "A",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "he feels similarly short of breath when lying down",
+        "sentence": "His exertional dyspnea has progressed to orthopnea, and examination shows bibasilar crackles and bilateral leg edema."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "Pharmacology_Katzung:000835",
+          "First_Aid_Step2:000015"
+        ],
+        "question_quote": null,
+        "sentence": "This pattern suggests heart failure with both pulmonary and systemic congestion."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Nightly alcohol use and two prior admissions for “the shakes,” which may have been alcohol withdrawal, suggest sustained heavy alcohol exposure."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Chronic heavy alcohol exposure can directly injure the myocardium, causing a dilated cardiomyopathy with impaired contraction."
+      },
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "a moderately enlarged heart but patent coronary arteries",
+        "sentence": "The prior catheterization showed an enlarged heart despite patent coronary arteries."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Patent coronaries when enlargement was already present make ischemic cardiomyopathy less likely, and the alcohol history favors toxic cardiomyopathy over isolated diastolic heart failure, although no ejection fraction is provided."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "p1",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": true,
+          "label": "Alcohol consumed nightly",
+          "passage_ids": [],
+          "question_quote": "He currently drinks \"a few\" drinks per night."
+        },
+        {
+          "grounding": "question",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Heart",
+          "passage_ids": [],
+          "question_quote": "a moderately enlarged heart"
+        },
+        {
+          "grounding": "question",
+          "id": "o3",
+          "is_question_finding": false,
+          "label": "Coronary arteries",
+          "passage_ids": [],
+          "question_quote": "patent coronary arteries"
+        },
+        {
+          "grounding": "question",
+          "id": "o4",
+          "is_question_finding": false,
+          "label": "Breathing",
+          "passage_ids": [],
+          "question_quote": "short of breath when lying down"
+        },
+        {
+          "grounding": "question",
+          "id": "o5",
+          "is_question_finding": false,
+          "label": "Lower extremities",
+          "passage_ids": [],
+          "question_quote": "2+ edema present in both lower extremities"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "none",
+          "id": "p1",
+          "label": "Alcohol-induced myocardial injury (toxic cardiomyopathy)",
+          "passage_ids": [],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p2",
+          "label": "Impaired ventricular contraction and dilated remodeling",
+          "passage_ids": [
+            "First_Aid_Step2:000015"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p3",
+          "label": "Pulmonary and systemic venous congestion",
+          "passage_ids": [
+            "Pharmacology_Katzung:000835",
+            "First_Aid_Step2:000015"
+          ],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "none",
+          "id": "r1",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "o1",
+          "target_id": "p1",
+          "type": "instrument"
+        },
+        {
+          "grounding": "none",
+          "id": "r2",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "passages",
+          "id": "r3",
+          "passage_ids": [
+            "First_Aid_Step2:000015"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r4",
+          "passage_ids": [
+            "First_Aid_Step2:000015",
+            "Pharmacology_Katzung:000835"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "p3",
+          "type": "invocation"
+        },
+        {
+          "grounding": "passages",
+          "id": "r5",
+          "passage_ids": [
+            "Pharmacology_Katzung:000835",
+            "First_Aid_Step2:000015"
+          ],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "s3",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r6",
+          "passage_ids": [
+            "Pharmacology_Katzung:000835",
+            "First_Aid_Step2:000015"
+          ],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "s4",
+          "type": "output_state"
+        },
+        {
+          "grounding": "none",
+          "id": "r7",
+          "passage_ids": [],
+          "question_quote": null,
+          "source_id": "o2",
+          "target_id": "o3",
+          "type": "aggregation"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "question",
+          "id": "s1",
+          "is_question_finding": true,
+          "label": "Moderately enlarged",
+          "owner_object_id": "o2",
+          "passage_ids": [],
+          "question_quote": "a moderately enlarged heart"
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "Patent at prior catheterization",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": "patent coronary arteries"
+        },
+        {
+          "grounding": "question",
+          "id": "s3",
+          "is_question_finding": true,
+          "label": "Dyspneic when supine (orthopnea)",
+          "owner_object_id": "o4",
+          "passage_ids": [],
+          "question_quote": "short of breath when lying down"
+        },
+        {
+          "grounding": "question",
+          "id": "s4",
+          "is_question_finding": true,
+          "label": "Bilateral 2+ edema",
+          "owner_object_id": "o5",
+          "passage_ids": [],
+          "question_quote": "2+ edema present in both lower extremities"
+        }
+      ],
+      "support_path": [
+        "s1",
+        "r3",
+        "p2",
+        "r2",
+        "p1"
+      ]
+    }
+  },
+  "question_id": "mq_1f491476867b7a387d05dd57fc761ef8a1063019c7fd6d3cfda3c13e6cabe9cf",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

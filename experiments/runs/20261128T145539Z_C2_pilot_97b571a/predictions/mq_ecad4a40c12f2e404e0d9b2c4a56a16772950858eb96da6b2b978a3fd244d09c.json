@@ -1,0 +1,277 @@
+{
+  "answer": "A",
+  "condition": "C2",
+  "extra": {
+    "validation": {
+      "all_passed": true,
+      "checks": {
+        "citation_validity": {
+          "issues": [],
+          "passed": true
+        },
+        "connectivity": {
+          "issues": [],
+          "passed": true
+        },
+        "endpoint_types": {
+          "issues": [],
+          "passed": true
+        },
+        "grounding_rules": {
+          "issues": [],
+          "passed": true
+        },
+        "question_quotes": {
+          "issues": [],
+          "passed": true
+        },
+        "schema": {
+          "issues": [],
+          "passed": true
+        },
+        "state_ownership": {
+          "issues": [],
+          "passed": true
+        },
+        "unique_ids": {
+          "issues": [],
+          "passed": true
+        }
+      },
+      "support_path_valid": true
+    }
+  },
+  "invalid_reason": null,
+  "n_calls": 1,
+  "output": {
+    "answer": "A",
+    "explanation": [
+      {
+        "grounding": "question",
+        "passage_ids": [],
+        "question_quote": "Coronary arteriography shows a reduced ejection fraction, a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery.",
+        "sentence": "This man with diabetes and a prior myocardial infarction has new chest pain, reduced left ventricular ejection fraction, and stenoses of both the LAD and left circumflex arteries."
+      },
+      {
+        "grounding": "passages",
+        "passage_ids": [
+          "InternalMed_Harrison:012702"
+        ],
+        "question_quote": null,
+        "sentence": "CABG is considered for multivessel coronary disease with ischemic left ventricular dysfunction, particularly when angina is ongoing."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Although the stem does not specify whether the LAD stenosis is proximal, the combination of diabetes, LAD-involving two-vessel disease, and reduced ejection fraction favors CABG over stenting in this case."
+      },
+      {
+        "grounding": "none",
+        "passage_ids": [],
+        "question_quote": null,
+        "sentence": "Heparin may be used acutely if an acute coronary syndrome is suspected, and a long-acting nitrate can relieve angina, but neither revascularizes the affected myocardium."
+      }
+    ],
+    "graph": {
+      "answer_element_id": "p3",
+      "objects": [
+        {
+          "grounding": "question",
+          "id": "o1",
+          "is_question_finding": true,
+          "label": "LAD and left circumflex stenoses",
+          "passage_ids": [],
+          "question_quote": "a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery"
+        },
+        {
+          "grounding": "passages",
+          "id": "o2",
+          "is_question_finding": false,
+          "label": "Myocardial perfusion",
+          "passage_ids": [
+            "InternalMed_Harrison:012318",
+            "InternalMed_Harrison:013293"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "o3",
+          "is_question_finding": false,
+          "label": "Left ventricular ejection fraction",
+          "passage_ids": [],
+          "question_quote": "a reduced ejection fraction"
+        },
+        {
+          "grounding": "question",
+          "id": "o4",
+          "is_question_finding": true,
+          "label": "New chest pain",
+          "passage_ids": [],
+          "question_quote": "has developed new chest pain"
+        }
+      ],
+      "processes": [
+        {
+          "grounding": "passages",
+          "id": "p1",
+          "label": "Coronary flow limitation and myocardial ischemia",
+          "passage_ids": [
+            "InternalMed_Harrison:012318",
+            "Anatomy_Gray:000380"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p2",
+          "label": "Ischemic impairment of left ventricular contraction",
+          "passage_ids": [
+            "InternalMed_Harrison:012702",
+            "InternalMed_Harrison:012318"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "passages",
+          "id": "p3",
+          "label": "Coronary artery bypass grafting (CABG)",
+          "passage_ids": [
+            "InternalMed_Harrison:012702",
+            "InternalMed_Harrison:013298"
+          ],
+          "question_quote": null
+        }
+      ],
+      "relations": [
+        {
+          "grounding": "passages",
+          "id": "r1",
+          "passage_ids": [
+            "InternalMed_Harrison:012318",
+            "Anatomy_Gray:000380"
+          ],
+          "question_quote": null,
+          "source_id": "o1",
+          "target_id": "p1",
+          "type": "instrument"
+        },
+        {
+          "grounding": "passages",
+          "id": "r2",
+          "passage_ids": [
+            "InternalMed_Harrison:012318"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "s1",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r3",
+          "passage_ids": [
+            "InternalMed_Harrison:012318",
+            "InternalMed_Harrison:012702"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "p2",
+          "type": "invocation"
+        },
+        {
+          "grounding": "passages",
+          "id": "r4",
+          "passage_ids": [
+            "InternalMed_Harrison:012702"
+          ],
+          "question_quote": null,
+          "source_id": "p2",
+          "target_id": "s2",
+          "type": "output_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r5",
+          "passage_ids": [
+            "InternalMed_Harrison:012318"
+          ],
+          "question_quote": null,
+          "source_id": "p1",
+          "target_id": "o4",
+          "type": "result"
+        },
+        {
+          "grounding": "passages",
+          "id": "r6",
+          "passage_ids": [
+            "InternalMed_Harrison:013293"
+          ],
+          "question_quote": null,
+          "source_id": "s1",
+          "target_id": "p3",
+          "type": "input_state"
+        },
+        {
+          "grounding": "passages",
+          "id": "r7",
+          "passage_ids": [
+            "InternalMed_Harrison:013293"
+          ],
+          "question_quote": null,
+          "source_id": "p3",
+          "target_id": "s3",
+          "type": "output_state"
+        }
+      ],
+      "states": [
+        {
+          "grounding": "passages",
+          "id": "s1",
+          "is_question_finding": false,
+          "label": "Limited distal myocardial blood flow",
+          "owner_object_id": "o2",
+          "passage_ids": [
+            "InternalMed_Harrison:012318"
+          ],
+          "question_quote": null
+        },
+        {
+          "grounding": "question",
+          "id": "s2",
+          "is_question_finding": true,
+          "label": "Reduced",
+          "owner_object_id": "o3",
+          "passage_ids": [],
+          "question_quote": "a reduced ejection fraction"
+        },
+        {
+          "grounding": "passages",
+          "id": "s3",
+          "is_question_finding": false,
+          "label": "Improved distal myocardial blood flow",
+          "owner_object_id": "o2",
+          "passage_ids": [
+            "InternalMed_Harrison:013293"
+          ],
+          "question_quote": null
+        }
+      ],
+      "support_path": [
+        "s2",
+        "r4",
+        "p2",
+        "r3",
+        "p1",
+        "r2",
+        "s1",
+        "r6",
+        "p3"
+      ]
+    }
+  },
+  "question_id": "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "validity": "valid"
+}

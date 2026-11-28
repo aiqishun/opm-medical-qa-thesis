@@ -1,0 +1,59 @@
+{
+  "agent": "c2_single_graph",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 7,
+  "condition": "C2",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 14.61,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c2_answer_with_evidence_linked_opm_graph",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_9eed9dc111e3ed9c8aa8b3704df00e8560d3fd29fccbaba4c9508df0c9a5cfac",
+  "raw_text": "{\n  \"answer\": \"B\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The boy has a harsh holosystolic murmur at the lower left sternal border and no cyanosis.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"a high-pitched, harsh, holosystolic murmur that is best heard at the lower left sternal border\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"A holosystolic murmur at this location is characteristic of a ventricular septal defect.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Pediatrics_Nelson:002015\"]\n    },\n    {\n      \"sentence\": \"With a left-to-right shunt, oxygenated blood flows from the higher-pressure left ventricle into the right ventricle, producing a step-up in right ventricular oxygen tension.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Because deoxygenated blood does not enter the left ventricle through this shunt, left ventricular and systemic arterial oxygen tensions remain normal.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ],\n  \"graph\": {\n    \"objects\": [\n      {\n        \"id\": \"o1\",\n        \"label\": \"Ventricular septal defect\",\n        \"is_question_finding\": false,\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pediatrics_Nelson:002015\"]\n      },\n      {\n        \"id\": \"o2\",\n        \"label\": \"Harsh holosystolic murmur at the lower left sternal border\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a high-pitched, harsh, holosystolic murmur that is best heard at the lower left sternal border\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o3\",\n        \"label\": \"Oxygen tension profile\",\n        \"is_question_finding\": false,\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o4\",\n        \"label\": \"Clinical coloration\",\n        \"is_question_finding\": false,\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"processes\": [\n      {\n        \"id\": \"p1\",\n        \"label\": \"Left-to-right ventricular shunting\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"states\": [\n      {\n        \"id\": \"s1\",\n        \"label\": \"LV normal, RV increased, systemic arterial normal\",\n        \"owner_object_id\": \"o3\",\n        \"is_question_finding\": false,\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s2\",\n        \"label\": \"No cyanosis\",\n        \"owner_object_id\": \"o4\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"No cyanosis is observed\",\n        \"passage_ids\": []\n      }\n    ],\n    \"relations\": [\n      {\n        \"id\": \"r1\",\n        \"type\": \"instrument\",\n        \"source_id\": \"o1\",\n        \"target_id\": \"p1\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r2\",\n        \"type\": \"result\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"o2\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Pediatrics_Nelson:002015\", \"InternalMed_Harrison:012113\"]\n      },\n      {\n        \"id\": \"r3\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"s1\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r4\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"s2\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"answer_element_id\": \"s1\",\n    \"support_path\": [\"s2\", \"r4\", \"p1\", \"r3\", \"s1\"]\n  }\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "48f9fe1f3443dde393380a21f6ea33b55e4485a6e24a0ee4c1afab6cff36d7a6",
+    "user": "43fea9efd0ee7f4d179d614a0167c7fb5bdd63f50eef4fb3c00f1b253bbcad3f"
+  },
+  "response_id": "resp_0ac7a0cef6b306d8016b0aebdc7ff087d089b52faab91125b4",
+  "round": 0,
+  "run_id": "20261128T145539Z_C2_pilot_97b571a",
+  "schema_sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8",
+  "status": "completed",
+  "total_latency_s": 14.61,
+  "usage": {
+    "cached_input_tokens": 3398,
+    "input_tokens": 6100,
+    "output_tokens": 1171,
+    "reasoning_tokens": 101
+  }
+}

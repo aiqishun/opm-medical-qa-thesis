@@ -1,0 +1,59 @@
+{
+  "agent": "c2_single_graph",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 1,
+  "condition": "C2",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 23.701,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c2_answer_with_evidence_linked_opm_graph",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "74518be51881f8d7dd69a33ec07e0408b0320195358dffccaf25f37b3c258e3e"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_ecad4a40c12f2e404e0d9b2c4a56a16772950858eb96da6b2b978a3fd244d09c",
+  "raw_text": "{\n  \"answer\": \"A\",\n  \"explanation\": [\n    {\n      \"sentence\": \"This man with diabetes and a prior myocardial infarction has developed new chest pain.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"has developed new chest pain\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Angiography shows a reduced ejection fraction and two-vessel coronary disease involving the left anterior descending and left circumflex arteries.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"a reduced ejection fraction, a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Coronary artery bypass grafting is the best listed option because diabetes and impaired left ventricular function favor surgical revascularization in multivessel disease involving the LAD.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:013298\", \"InternalMed_Harrison:012702\"]\n    },\n    {\n      \"sentence\": \"The cited recommendation is strongest for two-vessel disease involving the proximal LAD, but the stem does not specify the LAD lesion's location.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:013298\", \"InternalMed_Harrison:013293\"]\n    },\n    {\n      \"sentence\": \"Heparin may be used acutely if an acute coronary syndrome is suspected, and nitrates can relieve angina, but neither revascularizes the obstructed vessels.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ],\n  \"graph\": {\n    \"objects\": [\n      {\n        \"id\": \"o1\",\n        \"label\": \"LAD and left circumflex coronary arteries\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o2\",\n        \"label\": \"Myocardial perfusion\",\n        \"is_question_finding\": false,\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:012318\", \"InternalMed_Harrison:013293\"]\n      },\n      {\n        \"id\": \"o3\",\n        \"label\": \"Left ventricular ejection fraction\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a reduced ejection fraction\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o4\",\n        \"label\": \"New chest pain\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"new chest pain\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o5\",\n        \"label\": \"Bypass grafts\",\n        \"is_question_finding\": false,\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013293\"]\n      }\n    ],\n    \"processes\": [\n      {\n        \"id\": \"p1\",\n        \"label\": \"Restriction of coronary blood flow by stenoses\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:012318\"]\n      },\n      {\n        \"id\": \"p2\",\n        \"label\": \"Myocardial ischemia and ischemic injury\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:012318\", \"InternalMed_Harrison:012702\"]\n      },\n      {\n        \"id\": \"p3\",\n        \"label\": \"Coronary artery bypass grafting (CABG)\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013298\", \"InternalMed_Harrison:012702\"]\n      }\n    ],\n    \"states\": [\n      {\n        \"id\": \"s1\",\n        \"label\": \"65% LAD stenosis and 75% left circumflex stenosis\",\n        \"owner_object_id\": \"o1\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a 65% stenosis of the left anterior descending artery, and a 75% stenosis of the left circumflex artery\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s2\",\n        \"label\": \"Limited distal myocardial perfusion\",\n        \"owner_object_id\": \"o2\",\n        \"is_question_finding\": false,\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:012318\"]\n      },\n      {\n        \"id\": \"s3\",\n        \"label\": \"Improved myocardial perfusion\",\n        \"owner_object_id\": \"o2\",\n        \"is_question_finding\": false,\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013293\"]\n      },\n      {\n        \"id\": \"s4\",\n        \"label\": \"Reduced ejection fraction\",\n        \"owner_object_id\": \"o3\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"a reduced ejection fraction\",\n        \"passage_ids\": []\n      }\n    ],\n    \"relations\": [\n      {\n        \"id\": \"r1\",\n        \"type\": \"exhibition\",\n        \"source_id\": \"o1\",\n        \"target_id\": \"p1\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:012318\"]\n      },\n      {\n        \"id\": \"r2\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"s2\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:012318\"]\n      },\n      {\n        \"id\": \"r3\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"p2\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:012318\"]\n      },\n      {\n        \"id\": \"r4\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"s4\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:012702\"]\n      },\n      {\n        \"id\": \"r5\",\n        \"type\": \"result\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"o4\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r6\",\n        \"type\": \"input_state\",\n        \"source_id\": \"s2\",\n        \"target_id\": \"p3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013293\"]\n      },\n      {\n        \"id\": \"r7\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p3\",\n        \"target_id\": \"s3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013293\"]\n      },\n      {\n        \"id\": \"r8\",\n        \"type\": \"instrument\",\n        \"source_id\": \"o5\",\n        \"target_id\": \"p3\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"InternalMed_Harrison:013293\"]\n      }\n    ],\n    \"answer_element_id\": \"p3\",\n    \"support_path\": [\"s4\", \"r4\", \"p2\", \"r3\", \"p1\", \"r2\", \"s2\", \"r6\", \"p3\"]\n  }\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "74518be51881f8d7dd69a33ec07e0408b0320195358dffccaf25f37b3c258e3e",
+    "user": "54276602e01b59f48d6eb4340dcae9696be20875a28c8ba5cbecd7a6511ebeda"
+  },
+  "response_id": "resp_04a704e0291d4a58016b0ae7f0a1dc87d096b1e17c8732c727",
+  "round": 0,
+  "run_id": "20261128T144047Z_C2_pilot_e62d9d8",
+  "schema_sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8",
+  "status": "completed",
+  "total_latency_s": 23.701,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 5954,
+    "output_tokens": 1955,
+    "reasoning_tokens": 91
+  }
+}

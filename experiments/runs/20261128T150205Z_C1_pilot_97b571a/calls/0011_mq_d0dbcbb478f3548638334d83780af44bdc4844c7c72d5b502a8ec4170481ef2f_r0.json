@@ -1,0 +1,59 @@
+{
+  "agent": "c1_single",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 11,
+  "condition": "C1",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 4.211,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c1_answer_with_cited_explanation",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c1/system.md",
+      "sha256": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5"
+    },
+    "user": {
+      "path": "prompts/c1/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_d0dbcbb478f3548638334d83780af44bdc4844c7c72d5b502a8ec4170481ef2f",
+  "raw_text": "{\n  \"answer\": \"C\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The patient has sudden chest pain radiating to the left shoulder, diaphoresis, ST elevations, and elevated cardiac enzymes.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"ST elevations on his EKG and elevated cardiac enzymes\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"This presentation indicates an acute ST-elevation myocardial infarction, which can impair ventricular contractility.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Reduced contractility lowers stroke volume and thereby tends to decrease cardiac output.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Pediatrics_Nelson:000562\"]\n    },\n    {\n      \"sentence\": \"The fall in effective arterial perfusion triggers sympathetic vasoconstriction, increasing systemic vascular resistance to help maintain arterial pressure.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"InternalMed_Harrison:002001\"]\n    }\n  ]\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "3a4eb8d1f7bebed95cff311fb50e18adc2d23d5c168226eb0a0a2d9f3987c2d5",
+    "user": "0110195b3719e615c4ef1aa983d908c247717c5d96397fd2f960ecffec17ddbe"
+  },
+  "response_id": "resp_05b1c6b0bd481b1f016b0aed1ee08c87d09e4b7e2bba1c50c1",
+  "round": 0,
+  "run_id": "20261128T150205Z_C1_pilot_97b571a",
+  "schema_sha256": "47aaa2d1e30efdc734fc5db27acbbef41c6d98b979cae91ded7120f18e2e0705",
+  "status": "completed",
+  "total_latency_s": 4.211,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 3068,
+    "output_tokens": 267,
+    "reasoning_tokens": 0
+  }
+}

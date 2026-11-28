@@ -1,0 +1,59 @@
+{
+  "agent": "c2_single_graph",
+  "api_ok": true,
+  "attempt_errors": [],
+  "attempts": 1,
+  "call_index": 2,
+  "condition": "C2",
+  "error": null,
+  "incomplete_reason": null,
+  "latency_s": 17.861,
+  "model_requested": "gpt-6.2-sol",
+  "model_returned": "gpt-6.2-sol",
+  "parameters": {
+    "max_output_tokens": 16000,
+    "model": "gpt-6.2-sol",
+    "reasoning": {
+      "effort": "medium"
+    },
+    "store": false,
+    "text_format": {
+      "name": "c2_answer_with_evidence_linked_opm_graph",
+      "strict": true,
+      "type": "json_schema"
+    }
+  },
+  "parse": {
+    "reason": null,
+    "valid": true
+  },
+  "prompt_files": {
+    "system": {
+      "path": "prompts/c2/system.md",
+      "sha256": "74518be51881f8d7dd69a33ec07e0408b0320195358dffccaf25f37b3c258e3e"
+    },
+    "user": {
+      "path": "prompts/c2/user.md",
+      "sha256": "03987dce02548e58e3a5e3a13ed1e9a487f3a7f7eb9fb4109bff3ad17c048fd5"
+    }
+  },
+  "question_id": "mq_bc1defbfe9631047b557ef5e3b96edfbe24805d776189eb3ed4c6448cf03cf88",
+  "raw_text": "{\n  \"answer\": \"D\",\n  \"explanation\": [\n    {\n      \"sentence\": \"The patient has profound hypotension, cold and clammy skin, decreased cardiac output, and high pulmonary capillary wedge pressure.\",\n      \"grounding\": \"question\",\n      \"question_quote\": \"with decreased cardiac output and high pulmonary capillary wedge pressure\",\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Low cardiac output with elevated left-sided filling pressure and signs of poor perfusion indicates cardiogenic shock.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Acute myocardial infarction and severe aortic stenosis can reduce cardiac output through impaired myocardial function and obstruction to left ventricular outflow, respectively.\",\n      \"grounding\": \"passages\",\n      \"question_quote\": null,\n      \"passage_ids\": [\"Neurology_Adams:002191\"]\n    },\n    {\n      \"sentence\": \"Atrial fibrillation with a rapid ventricular response can also precipitate cardiogenic shock by shortening ventricular filling time and eliminating coordinated atrial contraction.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    },\n    {\n      \"sentence\": \"Hemorrhage, pulmonary embolism, and sepsis primarily cause hypovolemic, obstructive, and distributive shock, respectively, so the best answer is I, II, and IV.\",\n      \"grounding\": \"none\",\n      \"question_quote\": null,\n      \"passage_ids\": []\n    }\n  ],\n  \"graph\": {\n    \"objects\": [\n      {\n        \"id\": \"o1\",\n        \"label\": \"Cardiac output\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"cardiac output\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o2\",\n        \"label\": \"Pulmonary capillary wedge pressure\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"pulmonary capillary wedge pressure\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"o3\",\n        \"label\": \"Arterial blood pressure\",\n        \"is_question_finding\": false,\n        \"grounding\": \"question\",\n        \"question_quote\": \"hypotensive to 70/42 mm Hg\",\n        \"passage_ids\": []\n      }\n    ],\n    \"processes\": [\n      {\n        \"id\": \"p1\",\n        \"label\": \"Acute myocardial infarction impairing ventricular contraction (I)\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Neurology_Adams:002191\"]\n      },\n      {\n        \"id\": \"p2\",\n        \"label\": \"Rapid atrial fibrillation impairing ventricular filling (II)\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"p3\",\n        \"label\": \"Severe aortic stenosis restricting left ventricular outflow (IV)\",\n        \"grounding\": \"passages\",\n        \"question_quote\": null,\n        \"passage_ids\": [\"Neurology_Adams:002191\"]\n      },\n      {\n        \"id\": \"p4\",\n        \"label\": \"Cardiogenic shock from acute failure of effective cardiac pumping (I, II, or IV)\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"states\": [\n      {\n        \"id\": \"s1\",\n        \"label\": \"Decreased\",\n        \"owner_object_id\": \"o1\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"decreased cardiac output\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s2\",\n        \"label\": \"High\",\n        \"owner_object_id\": \"o2\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"high pulmonary capillary wedge pressure\",\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"s3\",\n        \"label\": \"Low at 70/42 mm Hg\",\n        \"owner_object_id\": \"o3\",\n        \"is_question_finding\": true,\n        \"grounding\": \"question\",\n        \"question_quote\": \"hypotensive to 70/42 mm Hg\",\n        \"passage_ids\": []\n      }\n    ],\n    \"relations\": [\n      {\n        \"id\": \"r1\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p1\",\n        \"target_id\": \"p4\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r2\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p2\",\n        \"target_id\": \"p4\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r3\",\n        \"type\": \"invocation\",\n        \"source_id\": \"p3\",\n        \"target_id\": \"p4\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r4\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p4\",\n        \"target_id\": \"s1\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r5\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p4\",\n        \"target_id\": \"s2\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      },\n      {\n        \"id\": \"r6\",\n        \"type\": \"output_state\",\n        \"source_id\": \"p4\",\n        \"target_id\": \"s3\",\n        \"grounding\": \"none\",\n        \"question_quote\": null,\n        \"passage_ids\": []\n      }\n    ],\n    \"answer_element_id\": \"p4\",\n    \"support_path\": [\"s2\", \"r5\", \"p4\"]\n  }\n}",
+  "reasoning_effort": "medium",
+  "rendered_prompt_sha256": {
+    "system": "74518be51881f8d7dd69a33ec07e0408b0320195358dffccaf25f37b3c258e3e",
+    "user": "a306953f9849fe890435d8dd7cbddabc36c6b3811bad1b5c939d5791098fc41d"
+  },
+  "response_id": "resp_0aa02803daa75b46016b0ae807eb7087d0a869c337a2f9b674",
+  "round": 0,
+  "run_id": "20261128T144047Z_C2_pilot_e62d9d8",
+  "schema_sha256": "23edb0d98b0d951076583ce5c6bfa252f10f9edf5830de895dbb153198ee75c8",
+  "status": "completed",
+  "total_latency_s": 17.861,
+  "usage": {
+    "cached_input_tokens": 3166,
+    "input_tokens": 6369,
+    "output_tokens": 1498,
+    "reasoning_tokens": 100
+  }
+}
